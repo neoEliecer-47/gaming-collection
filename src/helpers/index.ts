@@ -10,11 +10,11 @@
 // }
 
 
-export async function fetchGames() {
+export async function fetchGames(page: number) {
 
     try {
         const gamesData = await fetch(
-            `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}`,
+            `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`,
             {
               cache: "no-store",
             }
