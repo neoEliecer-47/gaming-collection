@@ -16,16 +16,16 @@ const Pagination = ({ totalPages, currentPage }: {totalPages: number, currentPag
 
   return (
     <div>
-      {Array.from({length: totalPages}, (_, i) => i + 1).map((page) => (
+      {Array.from({length: totalPages}, (_, index) => (//create an array of length totalPages (using only the index + 1 since index starts in 0) and loop through it
         <button
-          key={page}
-          onClick={() => handlePageChange(page)}
+          key={index}
+          onClick={() => handlePageChange(index + 1)}
           className={`px-4 py-2 mx-1 ${
-            currentPage === page ? "bg-gray-800 text-white" : "bg-gray-300"
+            currentPage === index + 1 ? "bg-gray-800 text-white" : "bg-gray-300"
           }`}
-          disabled={currentPage === page}
+          disabled={currentPage === index + 1}
         >
-          {page}
+          {index + 1}
         </button>
       ))}
     </div>
