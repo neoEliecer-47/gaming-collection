@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <main className='bg-black/15 px-2'>
         <Suspense fallback={<p>Loading...</p>} >
-        <GamesList />
+        <GamesList currentPage={1}/>
         </Suspense>
     </main>
   );
