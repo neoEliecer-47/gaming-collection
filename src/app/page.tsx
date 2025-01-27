@@ -15,4 +15,4 @@ export default async function Home() {
   );
 }
 
-export const dynamic = "force-static"; //ensures that the page is statically generated at build time.
+export const dynamic = "force-static"; //ensures that the page is statically generated at build time for the first time.
