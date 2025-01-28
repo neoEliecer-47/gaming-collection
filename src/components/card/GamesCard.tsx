@@ -8,7 +8,12 @@ import PlatformCardImages from "./PlatformCardImages";
 
 const GamesCard = ({ gamesData }: gamesCardProps) => {
   const [moreDetailsShowed, setMoreDetailsShowed] = useState<boolean>(false);
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(true)
   //console.log(gamesData.parent_platforms)
+  function handleImageLoad(){
+    setIsImageLoaded(false)
+  }
+
   return (
     <section
       className={`w-full h-auto bg-gray-300 rounded-md mb-6 overflow-hidden transition-all ${
@@ -19,10 +24,13 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
         <Image
           src={gamesData.background_image}
           alt={gamesData.name}
-          className="w-full h-full"
+          className={`w-full h-full transition-all duration-500 ${isImageLoaded ? 'opacity-0' : 'opacity-100'}`}
           width={300}
           height={350}
           objectFit="contain"
+          onLoadingComplete={handleImageLoad}
+          priority={false}
+          
         />
       </figure>
       <PlatformCardImages platforms={gamesData.parent_platforms} />
