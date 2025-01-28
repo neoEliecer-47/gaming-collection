@@ -24,7 +24,7 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
         <Image
           src={gamesData.background_image}
           alt={gamesData.name}
-          className={`w-full h-full transition-all duration-500 ${isImageLoaded ? 'opacity-0' : 'opacity-100'}`}
+          className={`w-full h-full transition-all duration-500 ${isImageLoaded ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}
           width={300}
           height={350}
           objectFit="contain"
