@@ -11,7 +11,7 @@ const GamesList = async ({ currentPage }: {currentPage: number}) => {
       {gamesData.results.map((game: games) => (
         <GamesCard gamesData={game} />
       ))}
-      <Pagination currentPage={currentPage} totalPages={50}/>
+      <Pagination currentPage={currentPage} totalPages={40}/>
     </div>
   );
 };
