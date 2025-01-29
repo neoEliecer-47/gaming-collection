@@ -18,10 +18,20 @@ export interface games {
     name: string;
     background_image: string;
     parent_platforms: parentPlatforms[];
+    short_screenshots: screenshots[]
+}
+
+export type sliderImagesProps = {
+    images: screenshots[]
 }
 
 export type parentPlatforms = {
     platform: {
         slug: string;
     };
+}
+
+interface screenshots {
+    id: number,
+    image: string
 }

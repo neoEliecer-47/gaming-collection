@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import androidImg from "../../assets/platforms/nintendo.avif";
 import PlatformCardImages from "./PlatformCardImages";
+import SliderImages from "./SliderImages";
 
 const GamesCard = ({ gamesData }: gamesCardProps) => {
   const [moreDetailsShowed, setMoreDetailsShowed] = useState<boolean>(false);
@@ -21,7 +22,7 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
       }`}
     >
       <figure className="w-full h-[12.5rem]">
-        <Image
+        {/* <Image
           src={gamesData.background_image}
           alt={gamesData.name}
           className={`w-full h-full transition-all duration-500 ${isImageLoaded ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}
@@ -31,7 +32,8 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
           onLoadingComplete={handleImageLoad}
           priority={false}
           
-        />
+        /> */}
+        <SliderImages images={gamesData.short_screenshots} />
       </figure>
       <PlatformCardImages platforms={gamesData.parent_platforms} />
       <h4 className="text-blue-700">{gamesData.name}</h4>
