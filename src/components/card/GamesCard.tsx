@@ -21,7 +21,7 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
         moreDetailsShowed ? "z-20" : "z-0"
       }`}
     >
-      <figure className="w-full h-[12.5rem]">
+      <figure className="w-full p-0 m-0 h-[12.5rem]">
         {/* <Image
           src={gamesData.background_image}
           alt={gamesData.name}
