@@ -1,19 +1,14 @@
 "use client";
 
 import { gamesCardProps } from "@/types";
-import Image from "next/image";
+
 import { useState } from "react";
-import androidImg from "../../assets/platforms/nintendo.avif";
 import PlatformCardImages from "./PlatformCardImages";
 import SliderImages from "./SliderImages";
 
 const GamesCard = ({ gamesData }: gamesCardProps) => {
   const [moreDetailsShowed, setMoreDetailsShowed] = useState<boolean>(false);
-  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(true)
-  //console.log(gamesData.parent_platforms)
-  function handleImageLoad(){
-    setIsImageLoaded(false)
-  }
+
 
   return (
     <section

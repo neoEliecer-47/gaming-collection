@@ -16,7 +16,8 @@ export async function fetchGames(page: number) {
         const gamesData = await fetch(
             `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`,
             {
-              cache: "no-store",
+              cache: "force-cache",
+              
             }
           );
           if (!gamesData.ok)
