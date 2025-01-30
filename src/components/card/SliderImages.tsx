@@ -52,7 +52,7 @@ const SliderImages = ({ images }: sliderImagesProps) => {
                 isImageNotLoaded
                   ? "opacity-0 translate-y-2"
                   : "opacity-100 translate-y-0"
-              } ${index !== currentIndex && "hidden"}`}
+              } ${index !== currentIndex ? "hidden" : 'block'}`}
               objectFit="contain"
               priority={index === 0}//only preload the very first image
               loading={index < 3 ? 'eager' : 'lazy'}//only load eagerly the first four images and lazy the rest ones
