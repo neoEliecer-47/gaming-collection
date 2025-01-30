@@ -28,3 +28,17 @@ export async function fetchGames(page: number) {
         console.log(error)
     }
 }
+
+
+export async function fetchGameDetails(slug: string) {
+  try {
+    const gameDetailData = await fetch(`https://api.rawg.io/api/games/${slug}?key=${process.env.NEXT_PUBLIC_API_KEY}`, {
+      cache: 'no-store'
+    })
+
+    const data = await gameDetailData.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}

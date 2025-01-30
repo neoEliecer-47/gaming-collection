@@ -16,9 +16,10 @@ export type platformsProps = {
 export interface games {
     id: number;
     name: string;
+    slug: string;
     background_image: string;
     parent_platforms: parentPlatforms[];
-    short_screenshots: screenshots[]
+    short_screenshots: screenshots[];
 }
 
 export type sliderImagesProps = {
@@ -34,4 +35,15 @@ export type parentPlatforms = {
 interface screenshots {
     id: number,
     image: string
+}
+
+
+export type gameDetailsProps = {
+    gameDetailsData: gameDetails
+}
+
+interface gameDetails {
+    name: string;
+    description: string;
+    background_image: string
 }

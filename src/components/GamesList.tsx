@@ -8,9 +8,11 @@ const GamesList = async ({ currentPage }: {currentPage: number}) => {
   return (
     <div className="h-fit">
       <h1 className="text-2xl font-bold p-4 ">All the games</h1>
-      {gamesData.results.map((game: games) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-0 m-0">
+    {gamesData.results.map((game: games) => (
         <GamesCard gamesData={game} />
       ))}
+    </div>
       <Pagination currentPage={currentPage} totalPages={40}/>
     </div>
   );

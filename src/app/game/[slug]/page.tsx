@@ -1,8 +1,11 @@
+import GameDetails from "@/components/game/GameDetails"
+import { fetchGameDetails } from "@/helpers"
 
 
-const GamePage = () => {
+const GamePage = async ({ params }: { params: { slug: string } }) => {
+  const gameDetailsData = await fetchGameDetails(params.slug)
   return (
-    <div>page</div>
+    <GameDetails gameDetailsData={gameDetailsData}/>
   )
 }
 
