@@ -12,7 +12,7 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
 
   return (
     <section
-      className={`w-full h-auto bg-gray-500 rounded-md mb-6 overflow-hidden transition-all`}
+      className={`w-full h-auto bg-gray-400 rounded-md mb-6 overflow-hidden transition-all`}
     >
       <figure className="w-full p-0 m-0 h-[12.5rem]">
         {/* <Image
