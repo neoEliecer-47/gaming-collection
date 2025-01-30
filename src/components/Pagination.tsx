@@ -15,7 +15,7 @@ const Pagination = ({
 
   function handlePageChange(page: number) {
     if (page !== currentPage) {
-      router.push(`/games/${page}`);
+      router.push(`/games/${page}`, { scroll: false });
     }
   }
 

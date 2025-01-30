@@ -5,6 +5,7 @@ import { gamesCardProps } from "@/types";
 import { useState } from "react";
 import PlatformCardImages from "./PlatformCardImages";
 import SliderImages from "./SliderImages";
+import Link from "next/link";
 
 const GamesCard = ({ gamesData }: gamesCardProps) => {
   const [moreDetailsShowed, setMoreDetailsShowed] = useState<boolean>(false);
@@ -29,7 +30,10 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
         <SliderImages images={gamesData.short_screenshots} />
       </figure>
       <PlatformCardImages platforms={gamesData.parent_platforms} />
-      <h4 className="text-blue-700">{gamesData.name}</h4>
+      <div className="flex items-center justify-between">
+        <h4 className="text-blue-700">{gamesData.name}</h4>
+        <Link href={'/'}></Link>
+      </div>
       <button onClick={() => setMoreDetailsShowed(!moreDetailsShowed)}>
         {moreDetailsShowed ? "view less..." : "view more..."}
       </button>

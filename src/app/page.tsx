@@ -1,16 +1,13 @@
-
 import GamesList from "@/components/GamesList";
 
 import { Suspense } from "react";
 
 export default async function Home() {
-  
- 
   return (
-    <main className='bg-black/20 px-2'>
-        <Suspense fallback={<p>Loading...</p>} >
-        <GamesList currentPage={1}/>
-        </Suspense>
+    <main className="bg-black/20 px-2">
+      <Suspense fallback={<p>Loading...</p>}>
+        <GamesList currentPage={1} />
+      </Suspense>
     </main>
   );
 }
