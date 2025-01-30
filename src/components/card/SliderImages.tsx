@@ -58,7 +58,7 @@ const SliderImages = ({ images }: sliderImagesProps) => {
       >
        <ArrowLeftIcon />
       </button>
-      <div className="flex transition-all w-full h-full">
+      <div className="flex transition-all duration-500 w-full h-full" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
         {images.map(({ image, id }, index) => (
           <>
             {isImageNotLoaded && (
@@ -75,7 +75,7 @@ const SliderImages = ({ images }: sliderImagesProps) => {
                 isImageNotLoaded
                   ? "opacity-0 translate-y-2"
                   : "opacity-100 translate-y-0"
-              } ${index !== currentIndex ? "hidden" : 'block'}`}
+              } ${index !== currentIndex ? "opacity-0" : 'opacity-100'}`}
               objectFit="contain"
               priority={index === 0}//only preload the very first image
               loading={index < 3 ? 'eager' : 'lazy'}//only load eagerly the first four images and lazy the rest ones
