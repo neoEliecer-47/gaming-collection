@@ -2,7 +2,7 @@
 
 import { sliderImagesProps } from "@/types";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import ArrowLeftIcon from "../icons/ArrowPrev";
 import ArrowRightIcon from "../icons/ArrowNext";
 import ImageSkeleton from "./skeletons/ImageSkeleton";
@@ -10,6 +10,29 @@ import ImageSkeleton from "./skeletons/ImageSkeleton";
 const SliderImages = ({ images }: sliderImagesProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isImageNotLoaded, setIsImageNotLoaded] = useState<boolean>(true);
+  const touchStartX = useRef<number | null>(null)
+
+  function handleTouchStart(e: React.TouchEvent){
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  function handleTouchEnd(e: React.TouchEvent){
+    if(touchStartX.current === null) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchEndX -touchStartX.current;
+
+    if(deltaX > 50){
+      //swipe right
+      setCurrentIndex((prev)=> (prev > 0 ? prev - 1: images.length - 1))
+    }else if(deltaX < -50){
+      //swipe left
+      setCurrentIndex((prev)=> (prev < images.length - 1 ? prev + 1 : 0))
+    }
+
+    touchStartX.current = null;
+  }
+
 
   function handlePrevImage() {
     setCurrentIndex((prevIndex) =>
@@ -28,7 +51,7 @@ const SliderImages = ({ images }: sliderImagesProps) => {
   }
 
   return (
-    <div className="relative overflow-hidden h-full w-full ">
+    <div className="relative overflow-hidden h-full w-full" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <button
         className="absolute bg-black/35 top-[50%] z-10 ml-2 p-1 rounded-full"
         onClick={handlePrevImage}
