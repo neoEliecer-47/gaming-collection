@@ -39,7 +39,7 @@ interface screenshots {
 
 
 export type gameDetailsProps = {
-    gameDetailsData: gameDetails
+    gameDetailsData: games
 }
 
 interface gameDetails {
