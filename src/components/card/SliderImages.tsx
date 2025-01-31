@@ -51,7 +51,7 @@ const SliderImages = ({ images }: sliderImagesProps) => {
 
   return (
     <div
-      className="relative overflow-hidden h-full w-full"
+      className="relative overflow-hidden h-full w-[100%]"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -72,18 +72,18 @@ const SliderImages = ({ images }: sliderImagesProps) => {
               key={id}
               src={image}
               alt="image"
-              width={300}
+              width={320}
               height={350}
               quality={40}
-              className={`w-full h-auto aspect-video transition-all duration-300 ${
+              className={`w-full h-auto aspect-video transition-all duration-300 object-fill ${
                 isImageNotLoaded
                   ? "opacity-0 translate-y-2"
                   : "opacity-100 translate-y-0"
               } ${index !== currentIndex ? "opacity-0" : "opacity-100"}`} //this helps images can avoid suddenly renders since the are not even in the DOM if display none is set
-              objectFit="contain"
+              
               priority={index === 0} //only preload the very first image
               loading={index < 3 ? "eager" : "lazy"} //only load eagerly the first four images and lazy the rest ones
-              onLoadingComplete={handleImageLoad}
+              onLoad={handleImageLoad}
             />
           </>
         ))}

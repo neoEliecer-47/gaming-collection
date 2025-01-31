@@ -8,7 +8,7 @@ const GamesList = async ({ currentPage }: {currentPage: number}) => {
   return (
     <div className="h-fit">
       <h1 className="text-2xl font-bold p-4 ">All the games</h1>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-0 m-0">
+    <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-0 m-auto">
     {gamesData.results.map((game: games) => (
         <GamesCard gamesData={game} />
       ))}
