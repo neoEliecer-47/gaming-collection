@@ -1,14 +1,15 @@
 'use client'
 import { multimediaGameContent } from '@/types'
 import React from 'react'
-import SliderImages from '../card/SliderImages'
+
+import ImageCarousel from '../interface/ImageCarousel'
 
 const MultimediaGameContent = ({ id, images }: multimediaGameContent) => {
-  console.log(images)//create carrusel
+  //console.log(images)//create carrusel
     return (
-    <div>
-         <SliderImages images={images}/> 
-    </div>
+    
+         <ImageCarousel images={images}/> 
+    
   )
 }
 

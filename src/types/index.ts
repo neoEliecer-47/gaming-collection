@@ -33,9 +33,13 @@ export type parentPlatforms = {
     };
 }
 
-interface screenshots {
+export interface screenshots {
     id: number,
     image: string
+}
+
+export type imageCarousel = {
+    images: screenshots[]
 }
 
 
