@@ -6,6 +6,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import PlatformCardImages from "../card/PlatformCardImages";
 import { buildDate } from "@/utils";
+import MultimediaGameContent from "./MultimediaGameContent";
 
 const GameDetails = ({ gameDetailsData }: gameDetailsProps) => {
   return (
@@ -42,9 +43,15 @@ const GameDetails = ({ gameDetailsData }: gameDetailsProps) => {
         }}
       ></div>
 
-      <h1 className="relative text-white text-lg font-bold z-[2]">
-        {gameDetailsData.name}
-      </h1>
+      <div className="relative w-full flex justify-center items-start mt-4 z-[2]">
+        <h1 className="break-words w-[13rem] text-white text-3xl font-bold text-center">
+          {gameDetailsData.name}
+        </h1>
+      </div>
+
+      <section className="relative z-[2]">
+        <MultimediaGameContent />
+      </section>
     </div>
   );
 };
