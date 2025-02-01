@@ -7,8 +7,10 @@ import Link from "next/link";
 import PlatformCardImages from "../card/PlatformCardImages";
 import { buildDate } from "@/utils";
 import MultimediaGameContent from "./MultimediaGameContent";
+import { fetchGameImages } from "@/helpers";
 
-const GameDetails = ({ gameDetailsData }: gameDetailsProps) => {
+const GameDetails =async ({ gameDetailsData }: gameDetailsProps) => {
+ const imagesData = await fetchGameImages(gameDetailsData.id)
   return (
     <div className="relative w-full h-[100vh] bg-black">
       <Header />
@@ -50,7 +52,7 @@ const GameDetails = ({ gameDetailsData }: gameDetailsProps) => {
       </div>
 
       <section className="relative z-[2]">
-        <MultimediaGameContent />
+        <MultimediaGameContent id={gameDetailsData.id} images={imagesData.results}/>
       </section>
     </div>
   );

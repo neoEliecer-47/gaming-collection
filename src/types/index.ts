@@ -48,3 +48,8 @@ interface gameDetails {
     description: string;
     background_image: string
 }
+
+export type multimediaGameContent = {
+    id: number;
+    images: screenshots[]
+}

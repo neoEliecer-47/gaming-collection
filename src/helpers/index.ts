@@ -42,3 +42,16 @@ export async function fetchGameDetails(slug: string) {
     console.log(error)
   }
 }
+
+export async function fetchGameImages(gameId: number) {
+  try {
+    const gameDetailData = await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${process.env.NEXT_PUBLIC_API_KEY}`, {
+      cache: 'force-cache'
+    })
+
+    const data = await gameDetailData.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
