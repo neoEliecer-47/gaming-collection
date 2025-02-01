@@ -5,6 +5,7 @@ import styles from "./GameDetails.module.css";
 import classNames from "classnames";
 import Link from "next/link";
 import PlatformCardImages from "../card/PlatformCardImages";
+import { buildDate } from "@/utils";
 
 const GameDetails = ({ gameDetailsData }: gameDetailsProps) => {
   return (
@@ -16,7 +17,9 @@ const GameDetails = ({ gameDetailsData }: gameDetailsProps) => {
         <Link href='/'>games</Link>
       </section>
 
-      <section className="relative z-[2] flex justify-center items-center px-2 w-fit m-auto bg-white/50 rounded-lg">
+      <section className="relative z-[2] flex justify-center gap-4 items-center m-auto ">
+        <span className="text-white">{buildDate(gameDetailsData.released)}</span>
+        
         <PlatformCardImages platforms={gameDetailsData.parent_platforms}/>
       </section>
 
