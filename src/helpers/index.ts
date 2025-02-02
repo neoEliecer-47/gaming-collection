@@ -1,14 +1,3 @@
-//import { NextRequest } from "next/server";
-
-// export function getBaseUrl(req: Request | NextRequest): string{
-   
-//     const host = req?.headers.get('host')
-//     const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-//     const baseUrl = `${protocol}://${host}`
-//     return  baseUrl
-
-// }
-
 
 export async function fetchGames(page: number) {
 
@@ -53,5 +42,19 @@ export async function fetchGameImages(gameId: number) {
     return data
   } catch (error) {
     console.log(error)
+  }
+}
+
+
+export async function fetchGameVideos(gameId: number) {
+  try {
+    const gameVideosData = await fetch(`https://api.rawg.io/api/games/${gameId}/movies?key=${process.env.NEXT_PUBLIC_API_KEY}`, {
+      cache: 'no-store'
+    })
+
+    const data = await gameVideosData.json()
+    return data
+  } catch (error) {
+    
   }
 }

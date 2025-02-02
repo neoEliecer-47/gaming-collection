@@ -1,14 +1,23 @@
-'use client'
+
 import { multimediaGameContent } from '@/types'
-import React from 'react'
+
 
 import ImageCarousel from '../interface/ImageCarousel'
+import { fetchGameVideos } from '@/helpers'
+import GameVideoPreview from '../interface/GameVideoPreview'
 
-const MultimediaGameContent = ({ id, images }: multimediaGameContent) => {
-  //console.log(images)//create carrusel
+const MultimediaGameContent = async({ id, images }: multimediaGameContent) => {
+  const gameVideos = await fetchGameVideos(id)
+  console.log('first',gameVideos)
     return (
     
-         <ImageCarousel images={images}/> 
+         <>
+          {gameVideos.results?.length > 0 ? (
+            <GameVideoPreview videoData={gameVideos.results}/>
+          ): (
+            <ImageCarousel images={images}/> 
+          )}
+         </>
     
   )
 }

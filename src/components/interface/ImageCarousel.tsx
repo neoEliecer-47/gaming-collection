@@ -10,7 +10,7 @@ const ImageCarousel = ({ images }: imageCarousel) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+    }, 3200);
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -24,13 +24,14 @@ const ImageCarousel = ({ images }: imageCarousel) => {
         {images.map(({ id, image }, index) => (
           <div
             key={id}
-            className="min-w-full h-[13rem] relative border-white/40 border-y-[1px]"
+            className="min-w-full h-[13rem] relative border-white/45 border-y-[1px]"
           >
             <Image
               src={image}
               alt="asas"
+              quality={40}
               fill
-              priority={index < 3}
+              priority={index === 0}
               className="object-cover w-full h-full"
               loading="eager"
             />
@@ -46,7 +47,9 @@ const ImageCarousel = ({ images }: imageCarousel) => {
             className={`transition-all h-3 w-3 rounded-full ${
               currentIndex === index ? "bg-white" : "bg-gray-500"
             }`}
-            style={{ boxShadow: currentIndex === index ? '0px 0px 5px 1px #fff' : '' }}
+            style={{
+              boxShadow: currentIndex === index ? "0px 0px 5px 1px #fff" : "",
+            }}
           />
         ))}
       </section>
