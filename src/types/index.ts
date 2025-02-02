@@ -21,6 +21,7 @@ export interface games {
   parent_platforms: parentPlatforms[];
   short_screenshots: screenshots[];
   released: string;
+  description: string;
 }
 
 export type sliderImagesProps = {

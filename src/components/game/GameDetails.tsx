@@ -8,11 +8,12 @@ import PlatformCardImages from "../card/PlatformCardImages";
 import { buildDate } from "@/utils";
 import MultimediaGameContent from "./MultimediaGameContent";
 import { fetchGameImages } from "@/helpers";
+import GameAbout from "./GameAbout";
 
 const GameDetails =async ({ gameDetailsData }: gameDetailsProps) => {
- const imagesData = await fetchGameImages(gameDetailsData.id)
+ const imagesData = await fetchGameImages(gameDetailsData?.id)
   return (
-    <div className="relative w-full h-[100vh] bg-black">
+    <div className="relative w-full min-h-[100vh] bg-black px-2">
       <Header />
       <section className="relative text-white p-2 flex justify-center items-center z-[2] gap-2">
         <Link href='/'>home</Link>
@@ -38,7 +39,7 @@ const GameDetails =async ({ gameDetailsData }: gameDetailsProps) => {
 
       {/* <div className="fixed h-full w-full bg-[rgba(21,21,21)]"></div> */}
       <div
-        className="absolute top-0 left-0 w-full h-full z-[1]"
+        className="absolute top-0 left-0 w-full h-full z-[1]"//change to 1
         style={{
           background:
             "linear-gradient(rgba(15, 15, 15, 0.5), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.3), rgba(21, 21, 21, 0.9))",
@@ -54,6 +55,10 @@ const GameDetails =async ({ gameDetailsData }: gameDetailsProps) => {
       <section className="relative z-[2] w-full h-[10rem]">
         <MultimediaGameContent id={gameDetailsData.id} images={imagesData.results}/>
       </section>
+
+      <div className="relative z-[2] w-full h-auto mt-[7rem]"> 
+        <GameAbout description={gameDetailsData.description}/>
+      </div>
     </div>
   );
 };

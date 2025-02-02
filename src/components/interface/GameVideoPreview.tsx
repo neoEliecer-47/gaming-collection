@@ -1,5 +1,6 @@
 import { videoPreviewProps } from "@/types";
 import Link from "next/link";
+import Play from "../icons/Play";
 
 const GameVideoPreview = ({ videoData }: videoPreviewProps) => {
   return (
@@ -19,8 +20,8 @@ const GameVideoPreview = ({ videoData }: videoPreviewProps) => {
               href={`/game/video/${encodeURIComponent(max)}`}
               className="z-[2]"
             >
-              <div className="absolute bottom-5 right-7 flex items-center justify-center text-white font-bold ">
-                watch
+              <div className="absolute bg-transparent backdrop-blur-[10px] px-2 py-[0.35rem] rounded-lg bottom-5 right-4 flex items-center justify-center text-white text-xs">
+                <Play /> watch full video
               </div>
             </Link>
           </div>
