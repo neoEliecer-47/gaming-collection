@@ -52,11 +52,11 @@ const GameDetails =async ({ gameDetailsData }: gameDetailsProps) => {
         </h1>
       </div>
 
-      <section className="relative z-[2] w-full h-[10rem]">
+      
         <MultimediaGameContent id={gameDetailsData.id} images={imagesData.results}/>
-      </section>
+      
 
-      <div className="relative z-[2] w-full h-auto mt-[6rem]"> 
+      <div className="relative z-[2] w-full h-auto"> 
         <GameAbout description={gameDetailsData.description}/>
       </div>
     </div>
