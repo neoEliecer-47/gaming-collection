@@ -16,7 +16,7 @@ const ImageCarousel = ({ images }: imageCarousel) => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full h-[300px] overflow-hidden mt-4 ">
+    <div className=" w-full max-h-[500px] overflow-hidden mt-4">
       <div
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         className="flex transition-all duration-500"
@@ -39,7 +39,7 @@ const ImageCarousel = ({ images }: imageCarousel) => {
         ))}
       </div>
 
-      <section className="absolute bottom-[20%] w-full flex items-center justify-center gap-2 ">
+      <section className="absolute bottom-[-50%] w-full flex items-center justify-center gap-2 ">
         {images.map((_, index) => (
           <button
             onClick={() => setCurrentIndex(index)}
