@@ -10,11 +10,12 @@ import MultimediaGameContent from "./MultimediaGameContent";
 import { fetchGameImages } from "@/helpers";
 import GameAbout from "./GameAbout";
 
+import GameFeatures from "./GameFeatures";
+
 const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
   const imagesData = await fetchGameImages(gameDetailsData?.id);
   return (
     <div className="relative w-full min-h-screen px-2 overflow-y-hidden">
-
       <div className="absolute inset-0 w-full h-[500px] z-[-1]">
         <Image
           src={gameDetailsData.background_image}
@@ -66,9 +67,14 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
         <GameAbout description={gameDetailsData.description} />
       </div>
 
-
-      <div className="relative z-[2] w-full p-16 mt-[2rem] bg-white/40">
-        <h3>more content here</h3>
+      <div className="grid grid-cols-2 relative z-[2] w-full mt-[2rem]">
+        <GameFeatures label="platforms" data={gameDetailsData.parent_platforms}/>
+        <GameFeatures label="metascore" data={gameDetailsData.metacritic} />
+        <GameFeatures label="genres" data={gameDetailsData.genres} />
+        <GameFeatures label="release date" data={gameDetailsData.released} />
+        <GameFeatures label="developers" data={gameDetailsData.developers} />
+        <GameFeatures label="publisher" data={gameDetailsData.publishers} />
+        <GameFeatures label="age rating" data={gameDetailsData.esrb_rating} />
       </div>
     </div>
   );

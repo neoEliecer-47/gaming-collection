@@ -22,6 +22,11 @@ export interface games {
   short_screenshots: screenshots[];
   released: string;
   description: string;
+  metacritic: number;
+  genres: genres[]
+  developers: developers[];
+  publishers: publishers[];
+  esrb_rating: rating[]
 }
 
 export type sliderImagesProps = {
@@ -31,6 +36,7 @@ export type sliderImagesProps = {
 export type parentPlatforms = {
   platform: {
     slug: string;
+    name: string;
   };
 };
 
@@ -69,3 +75,34 @@ export type multimediaGameContent = {
   id: number;
   images: screenshots[];
 };
+
+export type gameAttributesProps = {
+  platforms: parentPlatforms[]
+  released: string;
+  metacritic: number;
+  genres: genres[]
+  developers: developers[];
+  publishers: publishers[];
+  esrb_rating: rating[]
+
+}
+
+interface genres {
+  id: number;
+  name: string
+}
+
+interface developers {
+  id: number;
+  name: string;
+}
+
+interface publishers {
+  id: number;
+  name: string;
+}
+
+interface rating {
+  id: number;
+  name: string;
+}
