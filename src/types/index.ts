@@ -106,3 +106,16 @@ interface rating {
   id: number;
   name: string;
 }
+
+
+export type achievementsProps = {
+  trophies: achievements[]
+}
+
+interface achievements {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  percent: string;
+}

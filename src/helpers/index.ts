@@ -58,3 +58,16 @@ export async function fetchGameVideos(gameId: number) {
     
   }
 }
+
+export async function fetchGameAchievements(gameId: number) {
+  try {
+    const gameAchievementsData = await fetch(`https://api.rawg.io/api/games/${gameId}/achievements?key=${process.env.NEXT_PUBLIC_API_KEY}`, {
+      cache: 'no-store'
+    })
+
+    const data = await gameAchievementsData.json()
+    return data
+  } catch (error) {
+    
+  }
+}

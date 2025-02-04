@@ -1,19 +1,20 @@
 import { gameDetailsProps } from "@/types";
 import Image from "next/image";
 import Header from "../Header";
-import styles from "./GameDetails.module.css";
-import classNames from "classnames";
 import Link from "next/link";
 import PlatformCardImages from "../card/PlatformCardImages";
 import { buildDate } from "@/utils";
 import MultimediaGameContent from "./MultimediaGameContent";
-import { fetchGameImages } from "@/helpers";
+import { fetchGameAchievements, fetchGameImages } from "@/helpers";
 import GameAbout from "./GameAbout";
 
 import GameFeatures from "./GameFeatures";
+import GameAchievements from "./GameAchievements";
 
 const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
   const imagesData = await fetchGameImages(gameDetailsData?.id);
+  const achievementsData = await fetchGameAchievements(gameDetailsData.id)
+
   return (
     <div className="relative w-full min-h-screen px-2 overflow-y-hidden">
       <div className="absolute inset-0 w-full h-[500px] z-[-1]">
@@ -76,6 +77,10 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
         <GameFeatures label="publisher" data={gameDetailsData.publishers} />
         <GameFeatures label="age rating" data={gameDetailsData.esrb_rating} />
       </div>
+
+      <section className="relative z-[2] w-full">
+        <GameAchievements trophies={achievementsData.results} />
+      </section>
     </div>
   );
 };

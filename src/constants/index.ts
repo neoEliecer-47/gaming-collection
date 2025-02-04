@@ -7,6 +7,11 @@ import xboxSrc from '../assets/platforms/xbox.avif'
 import nintendoSrc from '../assets/platforms/nintendo.avif'
 import { platformsProps } from '@/types'
 
+import platinumSrc from '../assets/trophies/platinum.avif'
+import goldSrc from '../assets/trophies/gold.avif'
+import silverSrc from '../assets/trophies/silver.avif'
+import bronceSrc from '../assets/trophies/bronce.avif'
+
 
 export const platformsImages: platformsProps[] = [
     {slug: 'pc', imgSrc: windowsSrc},
@@ -16,4 +21,12 @@ export const platformsImages: platformsProps[] = [
     {slug: 'xbox', imgSrc: xboxSrc},
     {slug: 'nintendo', imgSrc: nintendoSrc},
     {slug: 'android', imgSrc: androidSrc},
+]
+
+
+export const trophiesImages = [
+    {image: platinumSrc},
+    {image: goldSrc},
+    {image: silverSrc},
+    {image: bronceSrc},
 ]
