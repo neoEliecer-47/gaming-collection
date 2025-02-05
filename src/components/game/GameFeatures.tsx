@@ -20,10 +20,8 @@ const GameFeatures = ({ label, data }: { label: string; data: any }) => {
     content = data.name || "";
   } else {
     //to handle primitive values
-    if(label === 'release date'){
-        return content = buildDate(data)
-    }
-    content = data;
+   
+    content = label === 'release date' ? buildDate(data) : data;
   }
 
   return (
