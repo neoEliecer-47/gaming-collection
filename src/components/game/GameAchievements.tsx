@@ -39,9 +39,9 @@ const GameAchievements = ({ trophies }: achievementsProps) => {
               />
             </figure>
             <div className="flex-1 text-white  mx-1">
-              <h1>{name}</h1>
+              <h1 className="text-center">{name}</h1>
               <h4 className="text-xs">{description}</h4>
-              <div className="flex gap-1">
+              <div className="flex items-center justify-end gap-1">
                 <Image
                   src={buildTrophieImg(index, percent)}
                   alt="trophie"
