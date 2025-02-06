@@ -7,7 +7,7 @@ import PlatformCardImages from "./PlatformCardImages";
 import SliderImages from "./SliderImages";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavoriteGame, setFavoritesFromStorage } from "@/store/slices/favoritesSlice";
+import { addFavoriteGame, removeFavoriteGame, setFavoritesFromStorage } from "@/store/slices/favoritesSlice";
 import LoadingSpinner from "./skeletons/LoadingSpinner";
 
 const GamesCard = ({ gamesData }: gamesCardProps) => {
@@ -23,21 +23,24 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
 
   function handleAddFavorite(){
     const { id, name, background_image } = gamesData
-   
+    if(isFavorite){
+      dispatch(removeFavoriteGame(id))
+      return
+    }
     dispatch(addFavoriteGame({ id, name, background_image }))
   }
 
   useEffect(()=>{
    
     if(typeof window !== 'undefined'){
-      console.log('here ')
+      
       const storedFavorites = localStorage.getItem('favoriteGames')
       if(storedFavorites){
         dispatch(setFavoritesFromStorage(JSON.parse(storedFavorites)))
       }
       setIsFavoriteGameLoading(false)
     }
-  }, [dispatch])
+  }, [isFavorite])
 
 
   return (
