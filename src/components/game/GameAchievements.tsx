@@ -22,8 +22,16 @@ const GameAchievements = ({ trophies }: achievementsProps) => {
   return (
     <>
       <h1 className="text-center text-white text-lg">Achievements</h1>
-      <div className={`flex flex-col w-full h-[25rem] overflow-x-scroll gap-4 border-4 border-yellow-600 p-2 ${trophies.length === 0 && 'h-[6rem]'}`}>
-        {trophies.length === 0 && (<p className="text-white w-full text-center my-auto">No Achievements to show</p>)}
+      <div
+        className={`flex flex-col w-full h-[25rem] overflow-x-scroll gap-2 border-4 border-yellow-600 p-2 ${
+          trophies.length === 0 && "h-[6rem]"
+        }`}
+      >
+        {trophies.length === 0 && (
+          <p className="text-white w-full text-center my-auto">
+            No Achievements to show
+          </p>
+        )}
         {trophies.map(({ description, id, image, name, percent }, index) => (
           <div
             key={id}

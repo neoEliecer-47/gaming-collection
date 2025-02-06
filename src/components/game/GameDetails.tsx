@@ -68,7 +68,7 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
         <GameAbout description={gameDetailsData.description} />
       </div>
 
-      <div className="grid grid-cols-2 relative z-[2] w-full mt-[2rem]">
+      <div className="grid grid-cols-2 relative z-[2] w-full mt-[2rem] gap-1">
         <GameFeatures label="platforms" data={gameDetailsData.parent_platforms}/>
         <GameFeatures label="metascore" data={gameDetailsData.metacritic} />
         <GameFeatures label="genres" data={gameDetailsData.genres} />
