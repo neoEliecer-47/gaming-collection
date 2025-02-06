@@ -19,8 +19,14 @@ const favoritesSlice = createSlice({
     name: 'favorites',
     initialState,
     reducers: {
+        setFavoritesFromStorage: (state, action: PayloadAction<FavoriteGame[]>)=>{
+            state.favoriteGames = action.payload
+        },
         addFavoriteGame: (state, action: PayloadAction<FavoriteGame>) => {
             state.favoriteGames.push(action.payload)
+            if(typeof window !== 'undefined'){
+                localStorage.setItem('favoriteGames', JSON.stringify(state.favoriteGames)) //save to local storage
+            }
         },
         removeFavoriteGame: (state, action: PayloadAction<number>) => {
             state.favoriteGames = state.favoriteGames.filter(game => game.id !== action.payload)
