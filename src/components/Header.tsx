@@ -13,7 +13,7 @@ const Header = () => {
           className="p-2 m-0 rounded-lg bg-transparent backdrop-blur-[5px] border-[1px] border-gray-800"
         />
         <Link href='/user' className="p-0 m-0">
-          <User />
+          <User size={9} className="w-[3rem] h-[2.5rem]"/>
         </Link>
       </header>
     );

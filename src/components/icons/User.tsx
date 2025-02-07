@@ -1,4 +1,4 @@
-const User = ({ size = '11', className }: { size?: string, className?: string }) => {
+const User = ({ size = 11, className }: { size?: number, className?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

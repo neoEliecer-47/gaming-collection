@@ -26,8 +26,9 @@ const page = () => {
     <>
       <Header />
       <div className="px-2 bg-gray-500 w-full min-h-screen">
-        <section className="w-full h-[10rem] flex items-center justify-center bg-green-500">
-          <User size={"20"} className="w-[9.5rem]" />
+        <section className="w-full h-[10rem] flex flex-col gap-2 mb-4 items-center justify-center bg-green-500">
+          <User size={20} className="w-[9.5rem]" />
+          <span className="text-lg font-bold">User 47</span>
         </section>
         <div className="w-full h-full bg-orange-200">
           <Navbar
@@ -39,7 +40,7 @@ const page = () => {
         <section>
             {activeOptionIndex === -1 && (
                 <div>
-                    {favoriteGames.map((favGames)=>(
+                    {favoriteGames.map((favGames: any)=>(
                         <GamesCard gamesData={favGames}/>
                     ))}
                 </div>
