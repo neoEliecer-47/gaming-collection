@@ -119,3 +119,9 @@ interface achievements {
   image: string;
   percent: string;
 }
+
+export type navbarProps = {
+  titles: string[];
+  activeOptionIndex: number;
+  updateOptionIndex: React.Dispatch<React.SetStateAction<number>>;
+};
