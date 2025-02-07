@@ -2,7 +2,7 @@ const LoadingSpinner = () => {
   return (
     <div className="w-[1rem] h-[0.5rem] p-0 m-0">
       <svg
-        fill="hsl(228, 97%, 42%)"
+        fill="#fff"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         style={{ height: '1rem', width: '1rem' }}

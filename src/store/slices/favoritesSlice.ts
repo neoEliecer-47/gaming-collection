@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface FavoriteGame {
+export interface FavoriteGame {
     id: number;
     name: string;
     background_image: string;

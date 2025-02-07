@@ -7,8 +7,9 @@ import PlatformCardImages from "./PlatformCardImages";
 import SliderImages from "./SliderImages";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavoriteGame, removeFavoriteGame, setFavoritesFromStorage } from "@/store/slices/favoritesSlice";
+import { addFavoriteGame, FavoriteGame, removeFavoriteGame, setFavoritesFromStorage } from "@/store/slices/favoritesSlice";
 import LoadingSpinner from "./skeletons/LoadingSpinner";
+import Star from "../icons/Star";
 
 const GamesCard = ({ gamesData }: gamesCardProps) => {
   const [moreDetailsShowed, setMoreDetailsShowed] = useState<boolean>(false);
@@ -17,8 +18,8 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
   const favoriteGames = useSelector((state: any)=> state.favorites.favoriteGames)
   
 
-  const isFavorite = useMemo(()=> {
-    return favoriteGames.some((game)=> game.id === gamesData.id)
+  const isFavorite = useMemo(()=> {//for better performance
+    return favoriteGames.some((game: FavoriteGame)=> game.id === gamesData.id)
   }, [favoriteGames])
 
   function handleAddFavorite(){
@@ -33,7 +34,6 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
   useEffect(()=>{
    
     if(typeof window !== 'undefined'){
-      
       const storedFavorites = localStorage.getItem('favoriteGames')
       if(storedFavorites){
         dispatch(setFavoritesFromStorage(JSON.parse(storedFavorites)))
@@ -45,22 +45,21 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
 
   return (
     <section
-      className={`w-[22rem] h-auto bg-gray-400 rounded-md mb-6 overflow-hidden transition-all select-none`}
+      className={`w-[22rem] h-auto bg-gray-800 rounded-md mb-6 overflow-hidden transition-all select-none`}
     >
       <figure className="w-[22rem] p-0 m-0 h-[12.5rem]">
         <SliderImages images={gamesData.short_screenshots} />
       </figure>
       <div className="flex p-0 m-0 items-center justify-start gap-2">
         <PlatformCardImages platforms={gamesData.parent_platforms} />
-        <button onClick={handleAddFavorite} className={`p-1 text-white rounded-md ${isFavorite ? 'bg-red-500' : 'bg-blue-500'}`}>
-          {isFavoriteGameLoading ? <LoadingSpinner /> : <p>fav</p>}
-          {/* {isFavorite ? 'Favorites' : 'FFF'} */}
+        <button onClick={handleAddFavorite} className={`p-1 text-white rounded-md bg-white/10`}>
+          {isFavoriteGameLoading ? <LoadingSpinner /> : <Star fill={isFavorite && '#FFD700'}/>}
         </button>
       </div>
       <div className="flex items-center justify-between">
-        <h4 className="text-blue-700">{gamesData.name}</h4>
+        <h4 className="text-white">{gamesData.name}</h4>
         <Link className="bg-green-300 p-1" href={`/game/${gamesData.slug}`}>
-          GO ---
+          GO--
         </Link>
       </div>
       <button onClick={() => setMoreDetailsShowed(!moreDetailsShowed)}>
