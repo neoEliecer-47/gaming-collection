@@ -1,12 +1,27 @@
 "use client";
 
+import GamesCard from "@/components/card/GamesCard";
 import Header from "@/components/Header";
 import User from "@/components/icons/User";
 import Navbar from "@/components/user/Navbar";
-import { useState } from "react";
+import { setFavoritesFromStorage } from "@/store/slices/favoritesSlice";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const page = () => {
   const [activeOptionIndex, setactiveOptionIndex] = useState<number>(-1);
+  const dispatch = useDispatch()
+  const favoriteGames = useSelector((state: any) => state.favorites.favoriteGames)
+
+    useEffect(()=> {
+        if(typeof window !== 'undefined'){
+            const storedFavorites = localStorage.getItem('favoriteGames')
+            if(storedFavorites){
+                dispatch(setFavoritesFromStorage(JSON.parse(storedFavorites)))
+            }
+        }
+    }, [dispatch])
+
   return (
     <>
       <Header />
@@ -21,6 +36,15 @@ const page = () => {
             titles={["Favorites", "Wishlist", "PLaylists"]}
           />
         </div>
+        <section>
+            {activeOptionIndex === -1 && (
+                <div>
+                    {favoriteGames.map((favGames)=>(
+                        <GamesCard gamesData={favGames}/>
+                    ))}
+                </div>
+            )}
+        </section>
       </div>
     </>
   );
