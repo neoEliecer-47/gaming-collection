@@ -125,3 +125,10 @@ export type navbarProps = {
   activeOptionIndex: number;
   updateOptionIndex: React.Dispatch<React.SetStateAction<number>>;
 };
+
+export type FavoriteGameSlice = {
+  id: number;
+  name: string;
+  parent_platforms: parentPlatforms[];
+  short_screenshots: screenshots[];
+}

@@ -1,13 +1,13 @@
 "use client";
 
-import { gamesCardProps } from "@/types";
+import { FavoriteGameSlice, gamesCardProps } from "@/types";
 
 import { useEffect, useMemo, useState } from "react";
 import PlatformCardImages from "./PlatformCardImages";
 import SliderImages from "./SliderImages";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavoriteGame, FavoriteGame, removeFavoriteGame, setFavoritesFromStorage } from "@/store/slices/favoritesSlice";
+import { addFavoriteGame, removeFavoriteGame, setFavoritesFromStorage } from "@/store/slices/favoritesSlice";
 import LoadingSpinner from "./skeletons/LoadingSpinner";
 import Star from "../icons/Star";
 import Wish from "../icons/Wish";
@@ -21,16 +21,16 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
   
 
   const isFavorite = useMemo(()=> {//for better performance
-    return favoriteGames.some((game: FavoriteGame)=> game.id === gamesData.id)
+    return favoriteGames.some((game: FavoriteGameSlice)=> game.id === gamesData.id)
   }, [favoriteGames])
 
   function handleAddFavorite(){
-    const { id, name, background_image } = gamesData
+    const { id, name, short_screenshots, parent_platforms } = gamesData
     if(isFavorite){
       dispatch(removeFavoriteGame(id))
       return
     }
-    dispatch(addFavoriteGame({ id, name, background_image }))
+    dispatch(addFavoriteGame({ id, name, short_screenshots, parent_platforms }))
   }
 
   useEffect(()=>{

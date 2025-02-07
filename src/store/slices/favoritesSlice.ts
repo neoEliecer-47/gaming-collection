@@ -1,13 +1,10 @@
+import { FavoriteGameSlice } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface FavoriteGame {
-    id: number;
-    name: string;
-    background_image: string;
-}
+
 
 interface FavoritesState {
-    favoriteGames: FavoriteGame[]
+    favoriteGames: FavoriteGameSlice[]
 }
 
 const initialState: FavoritesState ={
@@ -19,10 +16,10 @@ const favoritesSlice = createSlice({
     name: 'favorites',
     initialState,
     reducers: {
-        setFavoritesFromStorage: (state, action: PayloadAction<FavoriteGame[]>)=>{
+        setFavoritesFromStorage: (state, action: PayloadAction<FavoriteGameSlice[]>)=>{
             state.favoriteGames = action.payload
         },
-        addFavoriteGame: (state, action: PayloadAction<FavoriteGame>) => {
+        addFavoriteGame: (state, action: PayloadAction<FavoriteGameSlice>) => {
             state.favoriteGames.push(action.payload)
             if(typeof window !== 'undefined'){
                 // const favGamesInLocalStorage = JSON.parse(localStorage.getItem('favoriteGames'))
