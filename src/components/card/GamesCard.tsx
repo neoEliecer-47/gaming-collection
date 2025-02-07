@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFavoriteGame, FavoriteGame, removeFavoriteGame, setFavoritesFromStorage } from "@/store/slices/favoritesSlice";
 import LoadingSpinner from "./skeletons/LoadingSpinner";
 import Star from "../icons/Star";
+import Wish from "../icons/Wish";
+import More from "../icons/More";
 
 const GamesCard = ({ gamesData }: gamesCardProps) => {
   const [moreDetailsShowed, setMoreDetailsShowed] = useState<boolean>(false);
@@ -50,10 +52,16 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
       <figure className="w-[22rem] p-0 m-0 h-[12.5rem]">
         <SliderImages images={gamesData.short_screenshots} />
       </figure>
-      <div className="flex p-0 m-0 items-center justify-start gap-2">
+      <div className="flex p-0 m-0 items-center justify-start gap-1">
         <PlatformCardImages platforms={gamesData.parent_platforms} />
         <button onClick={handleAddFavorite} className={`p-1 text-white rounded-md bg-white/10`}>
           {isFavoriteGameLoading ? <LoadingSpinner /> : <Star fill={isFavorite && '#FFD700'}/>}
+        </button>
+        <button className="p-1 text-white rounded-md bg-white/10">
+          <Wish />
+        </button>
+        <button className="p-1 text-white rounded-md bg-white/10">
+          <More />
         </button>
       </div>
       <div className="flex items-center justify-between">
