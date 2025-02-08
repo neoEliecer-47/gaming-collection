@@ -12,7 +12,7 @@ const Header = ({ searchParams }: { searchParams: string }) => {
         <Link href='/' className=" m-4 bg-gray-600 text-white p-[0.10rem] rounded-md color-black text-sm">
           Gaming Library
         </Link>
-       <GameSearch searchParams={searchParams}/>
+       <GameSearch query={searchParams}/>
         <Link href='/user' className="p-0 m-0">
           <User size={9} className="w-[3rem] h-[2.5rem]"/>
         </Link>
