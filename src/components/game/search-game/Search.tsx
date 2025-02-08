@@ -11,9 +11,9 @@ const Search = () => {
     function handleSearch(term: string){
         const params = new URLSearchParams(searchParams)
         if(term){
-            params.set('search', term)
+            params.set('query', term)
         }else {
-            params.delete('search')
+            params.delete('query')
         }
         replace(`${pathname}?${params.toString()}`)
     }
@@ -24,6 +24,7 @@ const Search = () => {
           type="text"
           placeholder="Search game..."
           className="p-2 m-0 rounded-lg bg-transparent backdrop-blur-[5px] border-[1px] border-gray-800"
+          defaultValue={searchParams.get('query')?.toString()}
           onChange={(e)=>handleSearch(e.target.value)}
         />
     </div>
