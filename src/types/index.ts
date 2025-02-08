@@ -132,3 +132,10 @@ export type FavoriteGameSlice = {
   parent_platforms: parentPlatforms[];
   short_screenshots: screenshots[];
 }
+
+
+export type gamesSearchProps = {
+  name: string;
+  platforms: parentPlatforms[]
+  background_image: string;
+}
