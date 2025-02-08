@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    
   }
   
   .navOption {
@@ -19,7 +20,7 @@
     align-items: center;
     padding: 0.8rem;
     margin: 0 1.8rem;
-   
+   z-index: -1;
     width: 3rem;
     outline: none;
     z-index: 1;
@@ -40,7 +41,7 @@
       rgb(57, 13, 168) 90%
     );
     transition: transform 250ms ease;
-    z-index: 0;
+    z-index: -2;
     pointer-events: none;
   }
   

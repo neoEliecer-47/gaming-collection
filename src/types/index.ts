@@ -134,8 +134,18 @@ export type FavoriteGameSlice = {
 }
 
 
-export type gamesSearchProps = {
+export type gamesSearchedList = {
   name: string;
   platforms: parentPlatforms[]
   background_image: string;
+  slug: string;
+}
+
+export type searchParamsProps = {
+  searchParams: Promise<params>;
+};
+
+
+interface params {
+  query: string;
 }
