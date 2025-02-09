@@ -14,9 +14,7 @@ const GameSearch = async ({ query }: { query: string }) => {
           
         
         <div className="">
-        {query && (
-            <GamesSearchedList />
-        )}
+        
         </div>
           
      </div>

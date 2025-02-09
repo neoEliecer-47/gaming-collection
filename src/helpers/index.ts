@@ -75,7 +75,7 @@ export async function fetchGameAchievements(gameId: number) {
 export async function fetchGamesSearchedByQuery(query: string) {
   try {
     const gamesSearched = await fetch(`https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&search=${query}`, {
-      cache: 'force-cache'
+      cache: 'no-store'
     })
 
     const data = await gamesSearched.json()
