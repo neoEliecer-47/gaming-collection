@@ -7,8 +7,8 @@ import { useState } from "react";
 const Filters = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const [selectedDeveloper, setSelectedDeveloper] = useState(searchParams.get('developer') || '');
-    const [selectedPlatform, setSelectedPlatform] = useState(searchParams.get('platform') || '');
+    const [selectedDeveloper, ] = useState(searchParams.get('developer') || '');
+    const [selectedPlatform, ] = useState(searchParams.get('platform') || '');
 
     function handleFilterChange(key: string, value: string){
         const params = new URLSearchParams(searchParams);
@@ -26,11 +26,13 @@ const Filters = () => {
         <select value={selectedDeveloper} onChange={(e)=>handleFilterChange('developers',e.target.value)}>
             <option value="smt">another</option>
             <option value="rockstar-games">Rockstar</option>
+            <option value="ubisoft">ubisoft</option>
         </select>
 
         <select value={selectedPlatform} onChange={(e)=>handleFilterChange('platforms',e.target.value)}>
-            <option value="pc">PC</option>
-            <option value="playstation">PlayStation</option>
+            <option value="4">PC</option>
+            <option value="18">PlayStation 4</option>
+            <option value="15">PlayStation 2</option>
         </select>
     </div>
   )

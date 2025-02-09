@@ -1,13 +1,16 @@
 
 export async function fetchGames(page: number, searchParams: Record<string, string>) {
 
-  if(searchParams.query) delete searchParams.query
+  if(searchParams?.query) delete searchParams.query
 
+  //convert search params into query string
   const query = new URLSearchParams()
+  
+  //loop throught searchParams and append to query
   Object.entries(searchParams).forEach(([key, value])=>{
     if(value) query.append(key, value)
   })
-  console.log('fetchGamesQuery', query.toString())
+  //console.log('fetchGamesQuery', query.toString())
     try {
         const gamesData = await fetch(
             `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}&${query.toString()}`,
