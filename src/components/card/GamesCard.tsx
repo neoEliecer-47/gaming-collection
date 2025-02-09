@@ -12,12 +12,16 @@ import LoadingSpinner from "./skeletons/LoadingSpinner";
 import Star from "../icons/Star";
 import Wish from "../icons/Wish";
 import More from "../icons/More";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const GamesCard = ({ gamesData }: gamesCardProps) => {
   const [moreDetailsShowed, setMoreDetailsShowed] = useState<boolean>(false);
   const [isFavoriteGameLoading, setIsFavoriteGameLoading] = useState<boolean>(true)
   const dispatch = useDispatch()
   const favoriteGames = useSelector((state: any)=> state.favorites.favoriteGames)
+  const searchParams = useSearchParams()
+  const params = new URLSearchParams(searchParams)
+  console.log('game card comp', params.toString())
   
 
   const isFavorite = useMemo(()=> {//for better performance

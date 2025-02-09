@@ -9,7 +9,7 @@ const Search = () => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const inputRef = useRef<HTMLInputElement>(null)
-
+ 
   function handleClearInput(){
     if(inputRef.current){
       inputRef.current.value = ''

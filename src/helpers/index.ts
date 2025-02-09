@@ -7,7 +7,7 @@ export async function fetchGames(page: number, searchParams: Record<string, stri
   const query = new URLSearchParams()
   
   //loop throught searchParams and append to query
-  Object.entries(searchParams).forEach(([key, value])=>{
+  Object?.entries(searchParams).forEach(([key, value])=>{
     if(value) query.append(key, value)
   })
   //console.log('fetchGamesQuery', query.toString())

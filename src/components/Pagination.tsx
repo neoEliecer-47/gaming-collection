@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Pagination = ({
@@ -12,10 +12,12 @@ const Pagination = ({
 }) => {
   const [visibleButtons, setVisibleButtons] = useState<(number | string)[]>([]);
   const router = useRouter();
+  const searchParams = useSearchParams()
+  const params = new URLSearchParams(searchParams)
 
   function handlePageChange(page: number) {
     if (page !== currentPage) {
-      router.push(`/games/${page}`);
+      router.push(`/games/${page}?${params.toString()}`);
     }
   }
 
