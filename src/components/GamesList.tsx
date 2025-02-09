@@ -3,8 +3,8 @@ import { games } from "@/types";
 import GamesCard from "./card/GamesCard";
 import Pagination from "./Pagination";
 
-const GamesList = async ({ currentPage }: { currentPage: number }) => {
-  const gamesData = await fetchGames(currentPage);
+const GamesList = async ({ currentPage, searchParams }: { currentPage: number, searchParams: Record<string, string> }) => {
+  const gamesData = await fetchGames(currentPage, searchParams);
   return (
     <div className="h-fit">
       <h1 className="text-2xl font-bold p-4 ">All the games</h1>

@@ -14,7 +14,7 @@ interface gamesSearchedListProps {
 
 const GamesSearchedList = ({ games, query }: gamesSearchedListProps) => {
   const [loadingGames, setLoadingGames] = useState<boolean>(false);
-  console.log(games);
+  //console.log(games);
   useEffect(() => {
     if (query) {
       setLoadingGames(true);
@@ -44,7 +44,7 @@ const GamesSearchedList = ({ games, query }: gamesSearchedListProps) => {
                   width={50}
                   height={50}
                   quality={40}
-                  objectFit="cover"
+                  objectFit="contain"
                   className="w-auto h-auto"
                   loading='eager'
                 /> 

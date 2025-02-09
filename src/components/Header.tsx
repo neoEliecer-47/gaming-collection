@@ -12,7 +12,7 @@ const Header =async ({ searchParams }: { searchParams: string }) => {
   console.log('HEADER FATA',data)
     return (
       <>
-      <header className="backdrop-blur-[2px] flex justify-center items-center gap-4 p-8 w-full h-8 bg-transparent">
+      <header className="backdrop-blur-[2px] flex justify-center items-center gap-4 p-8 w-full h-8 bg-transparent overflow-hidden">
         <Link href='/' className=" m-4 bg-gray-600 text-white p-[0.10rem] rounded-md color-black text-sm">
           Gaming Library
         </Link>
