@@ -22,8 +22,8 @@ const Header =async ({ searchParams }: { searchParams: string }) => {
           <User size={9} className="w-[3rem] h-[2.5rem]"/>
         </Link>
       </header>
-      {data.results.length > 0 && (
-        <GamesSearchedList query={searchParams} games={data.results}/>//to prevent error when trying to loop games
+      {data.results.length > 0 && searchParams && (
+        <GamesSearchedList query={searchParams} games={data.results || []}/>//to prevent error when trying to loop games
       )}
       </>
     );

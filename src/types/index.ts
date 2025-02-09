@@ -136,7 +136,7 @@ export type FavoriteGameSlice = {
 
 export type gamesSearchedList = {
   name: string;
-  platforms: parentPlatforms[]
+  parent_platforms: parentPlatforms[]
   background_image: string;
   slug: string;
 }
