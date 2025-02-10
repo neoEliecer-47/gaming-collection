@@ -10,16 +10,19 @@ interface filterType {
 
 const OptionFilter = ({ filterType }: { filterType: string }) => {
   const searchParams = useSearchParams();
-  const [optionFilter] = useState<string>(searchParams.get(filterType) || "");
+  const [optionFilter, setOptionFilter] = useState<string | null>(null);
   const [filterData, setFilterData] = useState<filterType[]>([]);
   const router = useRouter();
 
   function handleFilterChange(key: string, value: string) {
+    
     const params = new URLSearchParams(searchParams);
-    if (value) {
-      params.set(key, value);
+    if (optionFilter === value) {
+        params.delete(key);
+        setOptionFilter(null)
     } else {
-      params.delete(key);
+        setOptionFilter(value)
+        params.set(key, value);
     }
 
     router.push(`?${params.toString()}`, { scroll: false });
@@ -31,6 +34,9 @@ const OptionFilter = ({ filterType }: { filterType: string }) => {
         const res = await fetch(`/api/games/filter?type=${filterType}`);
         const data = await res.json();
         setFilterData(data);
+
+        const existingFilter = searchParams.get(filterType)
+        setOptionFilter(existingFilter || null)
       } catch (error) {}
     }
     fetchFilters();
@@ -38,10 +44,11 @@ const OptionFilter = ({ filterType }: { filterType: string }) => {
 
   return (
     <select
-      value={optionFilter}
+      value={optionFilter ?? ''}
       onChange={(e) => handleFilterChange(filterType, e.target.value)}
       className="max-h-[5rem]"
     >
+        <option value="" disabled={optionFilter !== null} className="capitalize">{filterType}</option>
       {filterData.length > 0 &&
         filterData.map(({ id, name }) => (
           <option key={id} value={id}>

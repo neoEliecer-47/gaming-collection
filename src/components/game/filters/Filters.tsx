@@ -34,6 +34,7 @@ const Filters = () => {
         </select> */}
         <OptionFilter filterType="genres"/>
         <OptionFilter filterType="developers"/>
+        <OptionFilter filterType="platforms"/>
 
     </div>
   )

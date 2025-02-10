@@ -38,7 +38,7 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
 
       <section className="relative z-[2] flex justify-center gap-4 items-center m-auto ">
         <span className="text-white">
-          {buildDate(gameDetailsData.released)}
+          {gameDetailsData.released ? buildDate(gameDetailsData.released) : 'Unknown'} 
         </span>
 
         <PlatformCardImages platforms={gameDetailsData.parent_platforms} />

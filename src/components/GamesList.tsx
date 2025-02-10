@@ -5,6 +5,12 @@ import Pagination from "./Pagination";
 
 const GamesList = async ({ currentPage, searchParams }: { currentPage: number, searchParams: Record<string, string> }) => {
   const gamesData = await fetchGames(currentPage, searchParams);
+  
+  function buildTotalPages(){
+    const totalPages = Math.ceil(gamesData.count / 20)
+    return totalPages
+  }
+
   return (
     <div className="h-fit">
       <h1 className="text-2xl font-bold p-4 ">All the games</h1>
@@ -13,7 +19,7 @@ const GamesList = async ({ currentPage, searchParams }: { currentPage: number, s
           <GamesCard gamesData={game} />
         ))}
       </div>
-      <Pagination currentPage={currentPage} totalPages={40} />
+      <Pagination currentPage={currentPage} totalPages={buildTotalPages()} />
     </div>
   );
 };
