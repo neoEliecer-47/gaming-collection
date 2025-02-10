@@ -35,6 +35,7 @@ const Filters = () => {
         <OptionFilter filterType="genres"/>
         <OptionFilter filterType="developers"/>
         <OptionFilter filterType="platforms"/>
+        <OptionFilter filterType="publishers"/>
 
     </div>
   )

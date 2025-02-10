@@ -10,16 +10,18 @@ interface filterType {
 
 const OptionFilter = ({ filterType }: { filterType: string }) => {
   const searchParams = useSearchParams();
-  const [optionFilter, setOptionFilter] = useState<string | null>(null);
+  const [optionFilter, setOptionFilter] = useState(()=> searchParams.get(filterType) || '');
   const [filterData, setFilterData] = useState<filterType[]>([]);
   const router = useRouter();
-
+console.log('component mounted')
   function handleFilterChange(key: string, value: string) {
+    //setOptionFilter(value)
+    console.log('handle', key, value)
     
     const params = new URLSearchParams(searchParams);
     if (optionFilter === value) {
         params.delete(key);
-        setOptionFilter(null)
+        setOptionFilter('')
     } else {
         setOptionFilter(value)
         params.set(key, value);
@@ -35,22 +37,27 @@ const OptionFilter = ({ filterType }: { filterType: string }) => {
         const data = await res.json();
         setFilterData(data);
 
-        const existingFilter = searchParams.get(filterType)
-        setOptionFilter(existingFilter || null)
       } catch (error) {}
     }
     fetchFilters();
   }, [filterType]);
 
+
+   useEffect(()=>{    const valueFromSearchParams = searchParams.get(filterType)
+    console.log('VALUE EFFECT', valueFromSearchParams)
+    if(valueFromSearchParams) setOptionFilter(valueFromSearchParams)
+   }, [searchParams, filterType])
+
   return (
     <select
       value={optionFilter ?? ''}
       onChange={(e) => handleFilterChange(filterType, e.target.value)}
-      className="max-h-[5rem]"
+      className="max-h-[5rem] capitalize"
+      
     >
-        <option value="" disabled={optionFilter !== null} className="capitalize">{filterType}</option>
-      {filterData.length > 0 &&
-        filterData.map(({ id, name }) => (
+        <option value="" disabled={optionFilter !== null} className="capitalize h-4">{filterType}</option>
+        <button className="p-1 bg-green-500 text-white">clear</button>
+        {filterData.map(({ id, name }) => (
           <option key={id} value={id}>
             {name}
           </option>
