@@ -30,3 +30,17 @@ export const trophiesImages = [
     {image: silverSrc},
     {image: bronceSrc},
 ]
+
+
+export const mainPlatformsFilters = [
+    {name: 'PC', id: 4},
+    // {name: 'play station', platforms: [{ name: 'play station 4', id: 18 }, { name: 'play station 5', id: 187 }]},
+    // {name: 'xbox', platforms: [{ name: 'xbox one', id: 1 }, { name: 'xbox series s/x', id: 186 }]},
+    // {name: 'nintendo', platforms: [{ name: 'nintendo switch', id: 7 }, { name: 'nintendo 3ds', id: 8 }]},
+    {name: 'iOS', id: 3},
+    {name: 'android', id: 21},
+    {name: 'apple macintosh', id: 1},
+    {name: 'linux', id: 6},
+   
+    
+]

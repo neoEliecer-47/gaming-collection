@@ -3,6 +3,8 @@
 import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react";
 import OptionFilter from "./OptionFilter";
+import { mainPlatformsFilters } from "@/constants";
+
 
 
 const Filters = () => {
@@ -32,10 +34,10 @@ const Filters = () => {
             <option value="18">PlayStation 4</option>
             <option value="15">PlayStation 2</option>
         </select> */}
-        <OptionFilter filterType="genres"/>
-        <OptionFilter filterType="developers"/>
-        <OptionFilter filterType="platforms"/>
-        <OptionFilter filterType="publishers"/>
+        {/* <OptionFilter filterType="genres"/>
+         <OptionFilter filterType="developers"/> */}
+       <OptionFilter filterType="platforms" placeholder="platforms" filterTypeData={mainPlatformsFilters}/>
+         {/*<OptionFilter filterType="publishers"/> */}
 
     </div>
   )
