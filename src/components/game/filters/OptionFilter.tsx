@@ -67,7 +67,7 @@ const OptionFilter = ({ filterType, placeholder, filterTypeData }: optionFilterP
   function toggleSubmenus(platformName: string){
     console.log('plat', platformName)
     setOpenSubmenus((prev)=>({
-      ...prev, [platformName]: !prev[platformName]
+       [platformName]: !prev[platformName]
     }))
   }
 
@@ -100,21 +100,21 @@ const OptionFilter = ({ filterType, placeholder, filterTypeData }: optionFilterP
 <section
         className="cursor-pointer p-0 mt-2 shadow-md z-20 "
         ref={dropMenuRef}
-        onClick={() => setIsOpen(!isOpen)}
+        
       >
-        <button className="capitalize hover:bg-white/65 relative flex justify-center w-[7rem] text-[1rem] py-[6px]  transition-all duration-300 ease-linear bg-gray-200 rounded-[5px]">
+        <button onClick={() => setIsOpen(!isOpen)} className="capitalize hover:bg-white/65 relative flex justify-center w-[7rem] text-[1rem] py-[6px]  transition-all duration-300 ease-linear bg-gray-200 rounded-[5px]">
           {placeholder}
         </button>
 
         <ul
-          className={`max-h-[10rem] z-10 bg-transparent absolute m-auto w-[12rem] rounded-[0.5rem] transition-all duration-250 ease-linear shadow-sm overflow-scroll overflow-y-auto`}
+          className={` z-10 bg-transparent absolute m-auto w-[12rem] rounded-[0.5rem] transition-all duration-250 ease-linear shadow-sm overflow-scroll overflow-y-auto`}
           ref={countriesRef}
           style={{
             height:
               isOpen === false
                 ? "0px"
                 : `${countriesRef.current?.scrollHeight}px`,
-            maxHeight: `${isOpen === true ? "10rem" : "0rem"}`,
+            maxHeight: `${isOpen === true ? "15rem" : "0rem"}`,
             scrollbarWidth: "none",
           }}
         >
@@ -122,24 +122,24 @@ const OptionFilter = ({ filterType, placeholder, filterTypeData }: optionFilterP
             return (
               <div
                 key={id}
-                onClick={id !== 0 ? () => handleFilterChange(filterType, id) : ()=>null}
-                className="z-10 relative bg-white m-0 flex justify-between items-center md:hover:bg-red-100 transition-all"
+                onClick={id === 0 ? ()=>null : ()=> handleFilterChange(filterType, id)}
+                className="z-10 bg-white m-0 flex justify-between items-center md:hover:bg-red-100 transition-all"
               >
                 <li
                   className={`${
                     optionFilter === id
                       ? "bg-blue-300"
                       : "bg-white/35"
-                  } flex gap-2 rounded-md text-center w-full m-0 p-2 border-[2px] border-red-100`}
+                  } flex flex-col items-center justify-center gap-2 rounded-md text-center ${openSubmenus[name] ? 'h-[9rem]' : 'h-[3rem]'} w-full m-0 p-0 border-[2px] border-red-100`}
                 >
                   <p className="p-0 m-0">{name}</p>
                   {platforms?.length > 0 && (
                     <>
-                      <p className="p-0 bg-black text-white" onClick={()=> toggleSubmenus(platforms[index]?.name)}>aaa</p>
-                      {openSubmenus[platforms[index]?.name] && (
-                        <ul className="absolute bottom-0 w-[8rem] -right-10 z-20 bg-green-300" onClick={()=> handleFilterChange(filterType, id)}>
-                          {platforms.map(({ id, name })=>(
-                            <li key={id} >{name}</li>
+                      <p className="p-0 bg-black text-white w-[10%]" onClick={()=> toggleSubmenus(name)}>aaa</p>
+                      {openSubmenus[name] && (
+                        <ul className=" z-[999]">
+                          {platforms.map(({ id: subId, name: subName })=>(
+                            <li onClick={()=> handleFilterChange(filterType, subId)} key={subId} className="bg-green-300 mb-1">{subName}</li>
                           ))}
                         </ul>
                       )}
