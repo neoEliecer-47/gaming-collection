@@ -14,10 +14,7 @@ export async function fetchGames(page: number, searchParams: Record<string, stri
     try {
         const gamesData = await fetch(
             `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}&${query.toString()}`,
-            {
-              cache: "no-store",
-              
-            }
+           
           );
           if (!gamesData.ok)
             throw new Error("Failed to fetch games data from external API");
@@ -32,7 +29,8 @@ export async function fetchGames(page: number, searchParams: Record<string, stri
 export async function fetchGameDetails(slug: string) {
   try {
     const gameDetailData = await fetch(`https://api.rawg.io/api/games/${slug}?key=${process.env.NEXT_PUBLIC_API_KEY}`, {
-      cache: 'no-store'
+      //cache: 'no-store' //<-- for SSR --> without it is SSG (static side generation)
+      //next: { revalidate: 60 }
     })
 
     const data = await gameDetailData.json()
@@ -85,7 +83,7 @@ export async function fetchGameAchievements(gameId: number) {
 export async function fetchGamesSearchedByQuery(query: string) {
   try {
     const gamesSearched = await fetch(`https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&search=${query}`, {
-      cache: 'no-store'
+      //SSG instead of SSR
     })
 
     const data = await gamesSearched.json()
