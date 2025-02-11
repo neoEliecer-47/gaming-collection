@@ -4,10 +4,6 @@ import { useClickOutsideDetector } from "@/hooks/useClickOutsideDetector";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
-interface filterType {
-  id: number;
-  name: string;
-}
 
 interface optionFilterProps {
   filterType: string;
@@ -27,7 +23,7 @@ interface filterData {
 const OptionFilter = ({ filterType, placeholder, filterTypeData }: optionFilterProps) => {
   const searchParams = useSearchParams();
   const [optionFilter, setOptionFilter] = useState<number | null>(null);
-  const [filterData, setFilterData] = useState<filterType[]>([]);
+  
   const [isOpen, setIsOpen] = useState(false)
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>(({}))
   const router = useRouter();
