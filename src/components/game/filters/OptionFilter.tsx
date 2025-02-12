@@ -141,7 +141,7 @@ const OptionFilter = ({
                     !openSubmenus[name]
                       ? "3rem"
                       : `${submenuRef.current?.scrollHeight}rem`,
-                  maxHeight: `${!openSubmenus[name] ? "3rem" : "5rem"}`,
+                  maxHeight: `${!openSubmenus[name] || platforms.length < 1 ? "3rem" : "5rem"}`,
                  
                 }}
               >
