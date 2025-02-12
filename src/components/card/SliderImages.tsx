@@ -65,7 +65,7 @@ const SliderImages = ({ images }: sliderImagesProps) => {
         className="flex transition-all duration-500 w-full h-full"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        {images.map(({ image, id }, index) => (
+        {images?.length > 0 ? images.map(({ image, id }, index) => (
           <>
             {isImageNotLoaded && <ImageSkeleton />}
             <Image
@@ -86,7 +86,9 @@ const SliderImages = ({ images }: sliderImagesProps) => {
               onLoad={handleImageLoad}
             />
           </>
-        ))}
+        )): (
+          <div>nothing</div>
+        )}
       </div>
       <button
         className="absolute bg-black/35 right-0 top-[50%] z-10 mr-2 p-1 rounded-full"
