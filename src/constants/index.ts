@@ -44,3 +44,16 @@ export const mainPlatformsFilters = [
    
     
 ]
+
+
+export const mainOrderingFilters = [
+    {name: 'name', id: 'name', platforms: []},
+    {name: 'released', id:'-released', platforms: []},
+    {name: 'rating', id: '-rating', platforms: []},
+    {name: 'metacritic', id: '-metacritic', platforms: []},
+    {name: 'created', id: '-created', platforms: []},
+    {name: 'updated', id: '-updated', platforms: []},
+   
+   
+    
+]

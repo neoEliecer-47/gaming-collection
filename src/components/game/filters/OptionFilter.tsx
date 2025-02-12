@@ -3,7 +3,13 @@
 import ArrowY from "@/components/icons/ArrowY";
 import { useClickOutsideDetector } from "@/hooks/useClickOutsideDetector";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 interface optionFilterProps {
   filterType: string;
@@ -13,10 +19,10 @@ interface optionFilterProps {
 
 interface filterData {
   name: string;
-  id: number;
+  id: number | string;
   platforms: Array<{
     name: string;
-    id: number;
+    id: number | string;
   }>;
 }
 
@@ -26,8 +32,8 @@ const OptionFilter = ({
   filterTypeData,
 }: optionFilterProps) => {
   const searchParams = useSearchParams();
-  const [optionFilter, setOptionFilter] = useState<number | null>(null);
-
+  const [optionFilter, setOptionFilter] = useState<number | string>("");
+  const [optionName, setOptionName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
   const router = useRouter();
@@ -37,56 +43,32 @@ const OptionFilter = ({
   const submenuRef = useRef<HTMLLIElement | null>(null);
 
   //console.log('component mounted')
-  function handleFilterChange(key: string, value: number) {
-    //console.log("value: ", value);
-    setOptionFilter(value);
-    //   ...prev: value[]
-
-    // ))
-    console.log("handle", key, value);
-    console.log("option filter: ", optionFilter);
-    const params = new URLSearchParams(searchParams);
-    // if(value === 'clear') {
-
-    //   console.log('HEREEEEEEEEEE')
-    //   params.delete(key)
-    //   router.push(`?${params.toString()}`, { scroll: false });
-    //   return
-    // }
-    if (optionFilter === value) {
-      params.delete(key);
-      setOptionFilter(null);
-    } else {
+  const handleFilterChange = useCallback(
+    (key: string, value: number | string) => {
+      //console.log("value: ", value);
       setOptionFilter(value);
-      params.set(key, value.toString());
-    }
 
-    router.push(`?${params.toString()}`, { scroll: false });
-  }
+      const params = new URLSearchParams(searchParams);
 
-  function toggleSubmenus(platformName: string) {
+      if (optionFilter === value) {
+        params.delete(key);
+        setOptionFilter("");
+      } else {
+        setOptionFilter(value);
+        params.set(key, value.toString());
+      }
+
+      router.push(`?${params.toString()}`, { scroll: false });
+    },
+    [searchParams, router]
+  );
+
+  const toggleSubmenus = useCallback((platformName: string) => {
     console.log("plat", platformName);
     setOpenSubmenus((prev) => ({
       [platformName]: !prev[platformName],
     }));
-  }
-
-  // useEffect(() => {
-  //   async function fetchFilters() {
-  //     try {
-  //       const res = await fetch(`/api/games/filter?type=${filterType}`);
-  //       const data = await res.json();
-  //       setFilterData(data);
-
-  //     } catch (error) {}
-  //   }
-  //   fetchFilters();
-  // }, [filterType]);
-
-  //  useEffect(()=>{    const valueFromSearchParams = searchParams.get(filterType)
-  //   console.log('VALUE EFFECT', valueFromSearchParams)
-  //   if(valueFromSearchParams) setOptionFilter(valueFromSearchParams)
-  //  }, [searchParams, filterType])
+  }, []);
 
   useEffect(() => {
     if (isClickOutside) {
@@ -94,6 +76,8 @@ const OptionFilter = ({
       setIsClickOutside(false);
     }
   }, [isClickOutside]); //to handle and close it when user clicks outside the element
+
+  const filteredData = useMemo(() => filterTypeData, [filterTypeData]); //to prevent unnecessary recalculations.
 
   return (
     <section
@@ -104,7 +88,7 @@ const OptionFilter = ({
         onClick={() => setIsOpen(!isOpen)}
         className="capitalize hover:bg-white/65 relative flex justify-center w-[7rem] text-[1rem] py-[6px]  transition-all duration-300 ease-linear bg-gray-200 rounded-[5px]"
       >
-        {placeholder}
+        {!optionFilter ? placeholder : optionName}
       </button>
 
       <ul
@@ -119,7 +103,7 @@ const OptionFilter = ({
           scrollbarWidth: "none",
         }}
       >
-        {filterTypeData.map(({ name, id, platforms }, index) => {
+        {filteredData.map(({ name, id, platforms }, index) => {
           return (
             <div
               key={id}
@@ -127,7 +111,9 @@ const OptionFilter = ({
                 id === 0
                   ? () => null
                   : () => {
-                      handleFilterChange(filterType, id), setIsOpen(!isOpen);
+                      handleFilterChange(filterType, id),
+                        setIsOpen(!isOpen),
+                        setOptionName(name);
                     }
               }
               className="z-10 bg-white m-0 flex justify-between items-center md:hover:bg-red-100 transition-all"
@@ -161,7 +147,8 @@ const OptionFilter = ({
                           <li
                             onClick={() => {
                               handleFilterChange(filterType, subId),
-                                setIsOpen(!isOpen);
+                                setIsOpen(!isOpen),
+                                setOptionName(subName);
                             }}
                             key={subId}
                             className={`mb-2 h-6 flex justify-center w-full border-2 m-auto capitalize ${

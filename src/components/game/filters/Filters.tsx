@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react";
 import OptionFilter from "./OptionFilter";
-import { mainPlatformsFilters } from "@/constants";
+import { mainOrderingFilters, mainPlatformsFilters } from "@/constants";
 
 
 
@@ -22,7 +22,7 @@ const Filters = () => {
     // }
 
   return (
-    <div className="gap-2">
+    <div className="gap-2 flex ">
         {/* <select value={selectedDeveloper} onChange={(e)=>handleFilterChange('developers',e.target.value)}>
             <option value="smt">another</option>
             <option value="rockstar-games">Rockstar</option>
@@ -38,6 +38,7 @@ const Filters = () => {
          <OptionFilter filterType="developers"/> */}
        <OptionFilter filterType="platforms" placeholder="platforms" filterTypeData={mainPlatformsFilters}/>
          {/*<OptionFilter filterType="publishers"/> */}
+         <OptionFilter filterType="ordering" placeholder="order by" filterTypeData={mainOrderingFilters}/>
 
     </div>
   )
