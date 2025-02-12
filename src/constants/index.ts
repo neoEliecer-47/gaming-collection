@@ -34,7 +34,7 @@ export const trophiesImages = [
 
 export const mainPlatformsFilters = [
     {name: 'PC', id: 4, platforms: []},
-    {name: 'play station', id: 0, platforms: [{ name: 'play station 4', id: 18 }, { name: 'play station 5', id: 187 }]},
+    {name: 'playStation', id: 0, platforms: [{ name: 'playStation 4', id: 18 }, { name: 'playStation 5', id: 187 }]},
     {name: 'xbox', id: 0, platforms: [{ name: 'xbox one', id: 1 }, { name: 'xbox series s/x', id: 186 }]},
     {name: 'nintendo', id: 0, platforms: [{ name: 'nintendo switch', id: 7 }, { name: 'nintendo 3ds', id: 8 }]},
     {name: 'iOS', id: 3, platforms: []},

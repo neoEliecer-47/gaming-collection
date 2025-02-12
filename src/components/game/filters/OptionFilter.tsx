@@ -34,11 +34,11 @@ const OptionFilter = ({
   const { dropMenuRef, isClickOutside, setIsClickOutside } =
     useClickOutsideDetector();
   const countriesRef = useRef<HTMLUListElement | null>(null);
-  const submenuRef = useRef<HTMLLIElement | null>(null)
+  const submenuRef = useRef<HTMLLIElement | null>(null);
 
   //console.log('component mounted')
   function handleFilterChange(key: string, value: number) {
-    console.log("value: ", value);
+    //console.log("value: ", value);
     setOptionFilter(value);
     //   ...prev: value[]
 
@@ -108,7 +108,7 @@ const OptionFilter = ({
       </button>
 
       <ul
-        className={` z-10 bg-transparent absolute m-auto w-[12rem] rounded-[0.5rem] transition-all duration-250 ease-linear shadow-sm overflow-scroll overflow-y-auto`}
+        className={` z-20 bg-transparent absolute m-auto w-[12rem] rounded-[0.5rem] transition-all duration-250 ease-linear shadow-sm overflow-scroll overflow-y-auto`}
         ref={countriesRef}
         style={{
           height:
@@ -124,7 +124,11 @@ const OptionFilter = ({
             <div
               key={id}
               onClick={
-                id === 0 ? () => null : () => handleFilterChange(filterType, id)
+                id === 0
+                  ? () => null
+                  : () => {
+                      handleFilterChange(filterType, id), setIsOpen(!isOpen);
+                    }
               }
               className="z-10 bg-white m-0 flex justify-between items-center md:hover:bg-red-100 transition-all"
             >
@@ -132,32 +136,39 @@ const OptionFilter = ({
                 ref={submenuRef}
                 className={`${
                   optionFilter === id ? "bg-blue-300" : "bg-white/35"
-                } flex flex-col items-center justify-center transition-all duration-300 overflow-hidden rounded-md text-center ${
-                  ''
-                } w-full m-0 p-0 border-[2px] border-red-100`}
+                } flex flex-col z-10 items-center justify-center transition-all duration-300 overflow-hidden rounded-md text-center ${""} w-full m-0 p-0 border-[2px] border-red-100`}
                 onClick={() => toggleSubmenus(name)}
                 style={{
-                  height:
-                    !openSubmenus[name]
+                  height: !openSubmenus[name]
+                    ? "3rem"
+                    : `${submenuRef.current?.scrollHeight}rem`,
+                  maxHeight: `${
+                    !openSubmenus[name] || platforms.length < 1
                       ? "3rem"
-                      : `${submenuRef.current?.scrollHeight}rem`,
-                  maxHeight: `${!openSubmenus[name] || platforms.length < 1 ? "3rem" : "5rem"}`,
-                 
+                      : "6.5rem"
+                  }`,
                 }}
               >
-                <p className="p-0 m-0">{name}</p>
+                <p className="p-0 m-0 capitalize font-semibold">{name}</p>
                 {platforms?.length > 0 && (
                   <>
-                    <ArrowY className={openSubmenus[name] ? 'rotate-[180deg]' : ''}/>
+                    <ArrowY
+                      className={openSubmenus[name] ? "rotate-[180deg]" : ""}
+                    />
                     {openSubmenus[name] && (
-                      <ul className="">
+                      <ul className="w-full">
                         {platforms.map(({ id: subId, name: subName }) => (
                           <li
-                            onClick={() =>
-                              handleFilterChange(filterType, subId)
-                            }
+                            onClick={() => {
+                              handleFilterChange(filterType, subId),
+                                setIsOpen(!isOpen);
+                            }}
                             key={subId}
-                            className="bg-green-300 mb-1"
+                            className={`mb-2 h-6 flex justify-center w-full border-2 m-auto capitalize ${
+                              optionFilter === subId
+                                ? "bg-blue-300"
+                                : "bg-white/35"
+                            }`}
                           >
                             {subName}
                           </li>
