@@ -10,7 +10,7 @@ export default function Home({ searchParams }: { searchParams: Record<string, st
   //console.log('homeeeeeeeeeeee',searchParams)
   return (
     <>
-    {/* <Header searchParams={searchParams.query}/>  */}
+     <Header searchParams={searchParams.query}/>  
     <main className="bg-black/20 px-2 overflow-x-hidden">
       <Filters />
       <Suspense fallback={<p>Loading...</p>}>

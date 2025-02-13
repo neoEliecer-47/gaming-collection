@@ -6,7 +6,7 @@ const User = ({ size = 11, className }: { size?: number, className?: string }) =
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className={`size-${size} ${className}`}
+      className={` size-${size} ${className}`}
     >
       <path
         stroke-linecap="round"
