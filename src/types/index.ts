@@ -149,3 +149,7 @@ export type searchParamsProps = {
 interface params {
   query: string;
 }
+
+export interface collectionProps {
+  name: string
+}

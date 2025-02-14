@@ -1,4 +1,5 @@
 import { Dispatch } from "@reduxjs/toolkit";
+import Link from "next/link";
 import React, { SetStateAction } from "react";
 
 const ModalContent = ({ isOpenModal, setIsOpenModal }: { isOpenModal: boolean, setIsOpenModal: React.Dispatch<SetStateAction<boolean>> }) => {
@@ -11,6 +12,9 @@ const ModalContent = ({ isOpenModal, setIsOpenModal }: { isOpenModal: boolean, s
         dignissimos hic corporis nesciunt veniam aut cumque, nulla, quas vel
         praesentium!
       </p>
+      <Link href='/developers' className="bg-green-200 p-2">
+        Developers
+      </Link>
       <button onClick={()=>setIsOpenModal(false)}>close</button>
     </div>
   );
