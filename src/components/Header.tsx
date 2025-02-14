@@ -4,6 +4,7 @@ import Search from "./game/search-game/Search";
 import GamesSearchedList from "./game/search-game/GamesSearchedList";
 import { fetchGamesSearchedByQuery } from "@/helpers";
 import Menu from "./icons/Menu";
+import Modal from "./modal/Modal";
 
 const Header = async ({ searchParams }: { searchParams: string }) => {
   //console.log('HEADER',searchParams)
@@ -24,14 +25,14 @@ const Header = async ({ searchParams }: { searchParams: string }) => {
           <Link href="/user" className="p-0 m-0">
             <User size={9} className="w-[3rem] h-[2.5rem]" />
           </Link>
-          <button>
-            <Menu />
-          </button>
         </div>
       </header>
       {data.results.length > 0 && searchParams && (
         <GamesSearchedList query={searchParams} games={data.results || []} /> //to prevent error when trying to loop games
       )}
+  
+      <Modal />
+     
     </>
   );
 };
