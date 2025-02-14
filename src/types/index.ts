@@ -150,6 +150,19 @@ interface params {
   query: string;
 }
 
+// export type collectionProps = {
+//   collection: collection
+// }
+
 export interface collectionProps {
-  name: string
+  name: string;
+  slug: string;
+  image_background: string;
+  games_count: number;
+  games: Array<{
+    id: number;
+    name: string;
+    slug: string;
+    added: number;
+  }>
 }

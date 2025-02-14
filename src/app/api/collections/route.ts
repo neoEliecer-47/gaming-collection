@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     const collectionsData = await fetch(
       `https://api.rawg.io/api/${collectionType}?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`,
       {
-        cache: "force-cache",
+        cache: "no-store",
       }
     );
     if (!collectionsData.ok)
