@@ -92,3 +92,17 @@ export async function fetchGamesSearchedByQuery(query: string) {
     
   }
 }
+
+export async function fetchGamesCollection(type: "genres" | "developers" | "platforms") {
+  try {
+    const gamesCollection = await fetch(`https://api.rawg.io/api/${type}?key=${process.env.NEXT_PUBLIC_API_KEY}`, {
+      //SSG instead of SSR
+      cache: 'no-store'
+    })
+
+    const data = await gamesCollection.json()
+    return data
+  } catch (error) {
+    
+  }
+}
