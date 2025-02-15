@@ -2,8 +2,11 @@ import { collectionProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import UserCollection from "../icons/UserCollection";
+import { usePathname } from "next/navigation";
 
 const CollectionCard = ({ collection }: { collection: collectionProps }) => {
+  const currentPathname = usePathname()
+  const pathname = currentPathname.split('/')[1]
   return (
     <div className="relative p-2 w-full h-[18rem] mb-2 overflow-hidden rounded-lg">
       <div className="absolute inset-0 m-2 rounded-lg">
@@ -24,8 +27,8 @@ const CollectionCard = ({ collection }: { collection: collectionProps }) => {
           {collection.name}
         </h1>
         <Link
-          href="/"
-          className="px-6 py-2 mt-4 flex justify-center items-center rounded-md text-white bg-white/20 backdrop-blur-[2px]"
+          href={`/?developers=${collection.slug}`}
+          className="px-6 py-2 mt-[1.7rem] flex justify-center items-center rounded-md text-white bg-white/20 backdrop-blur-[2px]"
         >
           Games
         </Link>
@@ -44,7 +47,7 @@ const CollectionCard = ({ collection }: { collection: collectionProps }) => {
         <section className="gap-2">
           {collection.games.slice(0, 3).map((game) => (
             <div className="flex items-center justify-between">
-              <p className="p-0 m-0 text-white">{game.name}</p>
+              <Link href={`/game/${game.slug}`} className="p-0 m-0 text-white underline">{game.name}</Link>
               <div className="flex items-center">
                 <span className="text-white/40">{game.added}</span>
                 <UserCollection />

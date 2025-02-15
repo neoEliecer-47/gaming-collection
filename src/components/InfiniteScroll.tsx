@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import CollectionCard from "./card/CollectionCard";
 import { collectionProps } from "@/types";
+import LoadingCollectionSpinner from "./card/LoadingCollectionSpinner";
 
 interface infiniteScrollProps<T> {
   initialData: collectionProps[];
@@ -68,7 +69,11 @@ export default function InfiniteScroll<T>({
       {data.length > 0 && data.map((item)=>(
         <CollectionCard collection={item}/>
       ))}
-      {loading && <p>loading...</p>}
+      {loading && (
+        <div className="w-full flex items-center justify-center">
+            <LoadingCollectionSpinner />
+        </div>
+      )}
       {hasMore && <div ref={observerRef} className="h-10 bg-transparent"></div>}
     </div>
   );
