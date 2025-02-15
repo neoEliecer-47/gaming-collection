@@ -87,7 +87,7 @@ const SliderImages = ({ images }: sliderImagesProps) => {
             />
           </>
         )): (
-          <div>nothing</div>
+          <div className="text-white text-2xl">nothing</div>
         )}
       </div>
       <button

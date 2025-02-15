@@ -16,8 +16,9 @@ const Pagination = ({
   const params = new URLSearchParams(searchParams)
 
   function handlePageChange(page: number) {
+    params.set('page', page.toString())
     if (page !== currentPage) {
-      router.push(`/games/${page}?${params.toString()}`);
+      router.push(`?${params}`);
     }
   }
 

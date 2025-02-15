@@ -10,6 +10,12 @@ const GamesList = async ({ currentPage, searchParams }: { currentPage: number, s
     const totalPages = Math.ceil(gamesData.count / 20)
     return totalPages
   }
+  function buildCurrentPage(){
+    const { page } = searchParams
+    console.log(page)
+    const currentPage = Number(page) || 1
+    return currentPage
+  }
 
   return (
     <div className="h-fit">
@@ -19,7 +25,7 @@ const GamesList = async ({ currentPage, searchParams }: { currentPage: number, s
           <GamesCard gamesData={game} />
         ))}
       </div>
-      <Pagination currentPage={currentPage} totalPages={buildTotalPages()} />
+      <Pagination currentPage={buildCurrentPage()} totalPages={buildTotalPages()} />
     </div>
   );
 };

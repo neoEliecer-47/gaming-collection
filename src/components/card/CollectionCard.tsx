@@ -2,11 +2,10 @@ import { collectionProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import UserCollection from "../icons/UserCollection";
-import { usePathname } from "next/navigation";
 
 const CollectionCard = ({ collection }: { collection: collectionProps }) => {
-  const currentPathname = usePathname()
-  const pathname = currentPathname.split('/')[1]
+  //const currentPathname = usePathname()
+  //const pathname = currentPathname.split('/')[1]
   return (
     <div className="relative p-2 w-full h-[18rem] mb-2 overflow-hidden rounded-lg">
       <div className="absolute inset-0 m-2 rounded-lg">
