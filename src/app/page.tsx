@@ -13,7 +13,7 @@ export default function Home({ searchParams }: { searchParams: Record<string, st
      <Header searchParams={searchParams.query}/>  
     <main className="bg-black/20 px-2 overflow-x-hidden">
       <Filters />
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense key={searchParams.platforms} fallback={<p>Loading...</p>}>
         <GamesList currentPage={1} searchParams={searchParams}/>
       </Suspense>
     </main>
