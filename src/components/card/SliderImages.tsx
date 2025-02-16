@@ -11,7 +11,7 @@ const SliderImages = ({ images }: sliderImagesProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isImageNotLoaded, setIsImageNotLoaded] = useState<boolean>(true);
   const touchStartX = useRef<number | null>(null);
-
+//console.log(images)
   function handleTouchStart(e: React.TouchEvent) {
     touchStartX.current = e.touches[0].clientX;
   }
@@ -55,12 +55,14 @@ const SliderImages = ({ images }: sliderImagesProps) => {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <button
-        className="absolute bg-black/35 top-[50%] z-10 ml-2 p-1 rounded-full"
-        onClick={handlePrevImage}
-      >
-        <ArrowLeftIcon />
-      </button>
+   
+       <button
+       className="absolute bg-black/35 top-[50%] z-10 ml-2 p-1 rounded-full"
+       onClick={handlePrevImage}
+     >
+       <ArrowLeftIcon />
+     </button>
+   
       <div
         className="flex transition-all duration-500 w-full h-full"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
