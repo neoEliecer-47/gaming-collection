@@ -39,7 +39,7 @@ export const mainPlatformsFilters = [
     {name: 'nintendo', id: 0, platforms: [{ name: 'nintendo switch', id: 7 }, { name: 'nintendo 3ds', id: 8 }]},
     {name: 'iOS', id: 3, platforms: []},
     {name: 'android', id: 21, platforms: []},
-    {name: 'apple macintosh', id: 1, platforms: []},
+    {name: 'apple macintosh', id: 5, platforms: []},
     {name: 'linux', id: 6, platforms: []},
    
     
