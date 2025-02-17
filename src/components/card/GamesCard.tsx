@@ -54,7 +54,7 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
         <SliderImages images={gamesData.short_screenshots} />
       </figure>
       <div className="flex p-0 m-0 items-center justify-start gap-1">
-        <PlatformCardImages platforms={gamesData.parent_platforms} />
+        {gamesData.parent_platforms?.length > 0 && <PlatformCardImages platforms={gamesData.parent_platforms} />}
         <button onClick={handleAddFavorite} className={`p-1 text-white rounded-md bg-white/10`}>
           {isFavoriteGameLoading ? <LoadingSpinner /> : <Star fill={isFavorite && '#FFD700'}/>}
         </button>

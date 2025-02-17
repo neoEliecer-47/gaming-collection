@@ -2,7 +2,7 @@
 
 import { sliderImagesProps } from "@/types";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ArrowLeftIcon from "../icons/ArrowPrev";
 import ArrowRightIcon from "../icons/ArrowNext";
 import ImageSkeleton from "./skeletons/ImageSkeleton";
@@ -48,6 +48,20 @@ const SliderImages = ({ images }: sliderImagesProps) => {
   function handleImageLoad() {
     setIsImageNotLoaded(false);
   }
+
+  
+
+  // const imageSkeletonLoader = useCallback(() =>{
+  //   return 
+  // }, [images])
+
+  //  useEffect(()=>{
+  //    if(!isImageNotLoaded){
+  //      setIsImageNotLoaded(true)
+  //   }else{
+  //     setIsImageNotLoaded(false)
+  //   }
+  //  }, [images])
 
   return (
     <div
