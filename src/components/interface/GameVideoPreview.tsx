@@ -4,9 +4,9 @@ import Play from "../icons/Play";
 
 const GameVideoPreview = ({ videoData }: videoPreviewProps) => {
   return (
-    <div className=" overflow-x-auto w-full min-h-[12rem] mt-4">
+    <div className=" overflow-x-auto w-full min-h-[12rem] mt-4"  style={{ scrollbarWidth: 'none' }}>
       <div className="flex gap-2 p-2">
-        {videoData.map(({ data: { "480": min, max }, id }) => (
+        {videoData?.map(({ data: { "480": min, max }, id }) => (
           <div key={id} className="min-w-[250px] relative">
             <video
               src={min}

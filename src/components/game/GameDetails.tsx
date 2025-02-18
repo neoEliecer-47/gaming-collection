@@ -81,7 +81,7 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
       </div>
 
       <section className="relative z-[2] w-full">
-        <GameAchievements trophies={achievementsData.results} />
+        <GameAchievements trophies={achievementsData?.results} />
       </section>
     </div>
   );

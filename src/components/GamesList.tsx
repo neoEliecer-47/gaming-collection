@@ -4,6 +4,8 @@ import GamesCard from "./card/GamesCard";
 import Pagination from "./Pagination";
 import { mainPlatformsFilters } from "@/constants";
 import { buildDeveloperTitle, buildGamesCurrentTitle } from "@/utils";
+import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
 
 const GamesList = async ({
   currentPage,
@@ -12,17 +14,24 @@ const GamesList = async ({
   currentPage: number;
   searchParams: Record<string, string>;
 }) => {
+  //if(Number(searchParams.page) > buildTotalPages()) return
   const gamesData = await fetchGames(currentPage, searchParams);
-
+  if(!gamesData){
+  
+    notFound()
+    
+  }
   function buildTotalPages() {
     const totalPages = Math.ceil(gamesData.count / 20);
     return totalPages;
   }
 
+  //const MAX_CURRENT_PAGES: number = buildTotalPages()
+
   function buildCurrentPage() {
     const { page } = searchParams;
     const currentPage = Number(page) || 1;
-    return currentPage;
+    return currentPage 
   }
 
 

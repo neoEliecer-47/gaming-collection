@@ -11,11 +11,11 @@ const MultimediaGameContent = async ({ id }: { id: number }) => {
   return (
     <div
       className={`p-0 m-0 relative z-[2] w-full h-[10rem] ${
-        gameVideos.results?.length === 0 ? "mb-[7rem]" : "mb-[4.5rem]"
+        gameVideos?.length === 0 ? "mb-[7rem]" : "mb-[4.5rem]"
       }`}
     >
-      {gameVideos.results?.length > 0 ? (
-        <GameVideoPreview videoData={gameVideos.results} />
+      {gameVideos?.length > 0 ? (
+        <GameVideoPreview videoData={gameVideos} />
       ) : (
         <ImageCarousel images={gameImages} />
       )}
