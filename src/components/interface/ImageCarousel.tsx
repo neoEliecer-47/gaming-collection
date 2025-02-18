@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const ImageCarousel = ({ images }: imageCarousel) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  console.log("first", images);
+  //console.log("first", images);
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -31,8 +31,8 @@ const ImageCarousel = ({ images }: imageCarousel) => {
               alt="asas"
               quality={40}
               fill
-              priority={index === 0}
-              className="object-cover w-full h-full"
+              priority={index < 3}
+              className="object-cover w-full h-full aspect-video"
               loading="eager"
             />
           </div>

@@ -10,9 +10,10 @@ import GameAbout from "./GameAbout";
 
 import GameFeatures from "./GameFeatures";
 import GameAchievements from "./GameAchievements";
+import { Suspense } from "react";
 
 const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
-  const imagesData = await fetchGameImages(gameDetailsData?.id);
+  //const imagesData = await fetchGameImages(gameDetailsData?.id);
   const achievementsData = await fetchGameAchievements(gameDetailsData.id)
 
   return (
@@ -23,7 +24,7 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
           alt="image"
           quality={40}
           layout="fill"
-          priority
+          priority={true}
           objectFit="cover"
           className=" bg-cover"
           loading="eager"
@@ -59,10 +60,11 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
         </h1>
       </div>
 
-      <MultimediaGameContent
-        id={gameDetailsData.id}
-        images={imagesData.results}
-      />
+      <Suspense key={gameDetailsData.id} fallback={<p className="text-lg text-white bg-green-400 w-full h-[11rem]">loading...</p>}>
+        <MultimediaGameContent
+          id={gameDetailsData.id}
+        />
+      </Suspense>
 
       <div className="relative z-[2] w-full">
         <GameAbout description={gameDetailsData.description} />

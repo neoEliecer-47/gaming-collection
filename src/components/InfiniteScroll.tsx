@@ -4,17 +4,18 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import CollectionCard from "./card/CollectionCard";
 import { collectionProps } from "@/types";
 import LoadingCollectionSpinner from "./card/LoadingCollectionSpinner";
+import { fetchCollections } from "@/actions";
 
-interface infiniteScrollProps<T> {
+interface infiniteScrollProps {
   initialData: collectionProps[];
   collectionTypeEndpoint: string;
   //renderItem: (item: T) => JSX.Element;
 }
 
-export default function InfiniteScroll<T>({
+export default function InfiniteScroll({
   collectionTypeEndpoint,
   initialData,
-}: infiniteScrollProps<T>) {
+}: infiniteScrollProps) {
   const [data, setdata] = useState(initialData);
   const [page, setPage] = useState<number>(2);
   const [hasMore, setHasMore] = useState<boolean>(true);
@@ -26,17 +27,12 @@ export default function InfiniteScroll<T>({
   const fetchMoreData = useCallback(async () => {
     setLoading(true)
     try {
-      const res = await fetch(
-        `/api/collections?collectionType=${collectionTypeEndpoint}&page=${page}`,
-        {
-          cache: "no-store",
-        }
-      );
-      const newData = await res.json();
-      console.log("new data", newData);
-      if (newData instanceof Array) {
+      
+      const newData = await fetchCollections(page, collectionTypeEndpoint);
+      //console.log("new data", newData);
+      //if (newData instanceof Array) {
         setdata((prev) => [...prev, ...newData]); //we need the prev to now lose the old data, the previous loaded data
-      }
+      //}
       setPage((prev) => prev + 1);
       setHasMore(newData instanceof Array);
       setLoading(false)

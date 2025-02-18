@@ -73,7 +73,7 @@ interface gameDetails {
 
 export type multimediaGameContent = {
   id: number;
-  images: screenshots[];
+  //images: screenshots[];
 };
 
 export type gameAttributesProps = {
