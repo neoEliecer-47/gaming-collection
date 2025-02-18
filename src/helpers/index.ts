@@ -47,7 +47,7 @@ export async function fetchGameImages(gameId: number) {
     })
 
     const data = await gameDetailData.json()
-    return data
+    return data.results
   } catch (error) {
     console.log(error)
   }
@@ -61,7 +61,7 @@ export async function fetchGameVideos(gameId: number) {
     })
 
     const data = await gameVideosData.json()
-    return data
+    return data.results
   } catch (error) {
     
   }

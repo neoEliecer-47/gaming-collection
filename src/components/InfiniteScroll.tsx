@@ -6,16 +6,16 @@ import { collectionProps } from "@/types";
 import LoadingCollectionSpinner from "./card/LoadingCollectionSpinner";
 import { fetchCollections } from "@/actions";
 
-interface infiniteScrollProps<T> {
+interface infiniteScrollProps {
   initialData: collectionProps[];
   collectionTypeEndpoint: string;
   //renderItem: (item: T) => JSX.Element;
 }
 
-export default function InfiniteScroll<T>({
+export default function InfiniteScroll({
   collectionTypeEndpoint,
   initialData,
-}: infiniteScrollProps<T>) {
+}: infiniteScrollProps) {
   const [data, setdata] = useState(initialData);
   const [page, setPage] = useState<number>(2);
   const [hasMore, setHasMore] = useState<boolean>(true);
@@ -29,10 +29,10 @@ export default function InfiniteScroll<T>({
     try {
       
       const newData = await fetchCollections(page, collectionTypeEndpoint);
-      console.log("new data", newData);
-      if (newData instanceof Array) {
+      //console.log("new data", newData);
+      //if (newData instanceof Array) {
         setdata((prev) => [...prev, ...newData]); //we need the prev to now lose the old data, the previous loaded data
-      }
+      //}
       setPage((prev) => prev + 1);
       setHasMore(newData instanceof Array);
       setLoading(false)
