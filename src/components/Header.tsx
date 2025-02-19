@@ -31,7 +31,9 @@ const Header = async ({ searchParams }: { searchParams: string }) => {
         <GamesSearchedList query={searchParams} games={data.results || []} /> //to prevent error when trying to loop games
       )}
   
+      <div className="w-full h-full md:hidden">
       <Modal />
+      </div>
      
     </>
   );
