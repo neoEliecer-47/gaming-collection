@@ -7,12 +7,12 @@ import ModalContent from "./ModalContent";
 const Modal = () => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   return (
-    <div className="overflow-hidden">
-      <div className="relative overflow-x-hidden">
+    <div className="max-h-[4rem] flex px-2 text-center outline-none border-black/50 overflow-hidden md:hidden bg-black/50 border-none">
+     
         <button className="" onClick={() => setIsOpenModal(!isOpenModal)}>
           <Menu />
         </button>
-      </div>
+     
 
       <ModalContent isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
     </div>

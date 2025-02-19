@@ -11,8 +11,8 @@ const Header = async ({ searchParams }: { searchParams: string }) => {
   const data = await fetchGamesSearchedByQuery(searchParams);
   //console.log('HEADER FATA',data)
   return (
-    <>
-      <header className="backdrop-blur-[2px] flex justify-center items-center gap-4 p-8 w-full h-8 bg-transparent overflow-hidden">
+    <div className="fixed inset-0 z-[100] flex">
+      <header className=" flex justify-center items-center gap-4 p-8 w-full h-8 bg-black/50 overflow-hidden">
         <Link
           href="/"
           className=" bg-gray-600 text-white p-[0.10rem] rounded-md color-black text-sm"
@@ -21,7 +21,7 @@ const Header = async ({ searchParams }: { searchParams: string }) => {
         </Link>
 
         <Search />
-        <div className="flex">
+        <div className=" flex">
           <Link href="/user" className="p-0 m-0">
             <User size={9} className="w-[3rem] h-[2.5rem]" />
           </Link>
@@ -31,11 +31,11 @@ const Header = async ({ searchParams }: { searchParams: string }) => {
         <GamesSearchedList query={searchParams} games={data.results || []} /> //to prevent error when trying to loop games
       )}
   
-      <div className="w-full h-full md:hidden">
       <Modal />
-      </div>
+      
+      
      
-    </>
+    </div>
   );
 };
 

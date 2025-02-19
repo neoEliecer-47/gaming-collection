@@ -9,26 +9,28 @@ const ModalContent = ({
   isOpenModal: boolean;
   setIsOpenModal: React.Dispatch<SetStateAction<boolean>>;
 }) => {
-  const [translateX, setTranslateX] = useState<number>(isOpenModal ? 200 : 1600);
-  const [isDragging, setIsDragging] = useState(false)
+  const [translateX, setTranslateX] = useState<number>(
+    isOpenModal ? 200 : 1600
+  );
+  const [isDragging, setIsDragging] = useState(false);
   const touchStartX = useRef<number>(0);
   //const touchEndX = useRef<number>(0);
   //console.log(images)
   function handleTouchStart(e: React.TouchEvent) {
     touchStartX.current = e.touches[0].clientX;
-    setIsDragging(true)
+    setIsDragging(true);
   }
 
   function handleTouchMove(e: React.TouchEvent) {
     const touchCurrentX = e.touches[0].clientX;
     const swipeDistance = touchCurrentX - touchStartX.current;
 
-    setTranslateX((prev)=>Math.min(480, Math.max(64, 64 + swipeDistance)));
+    setTranslateX((prev) => Math.min(480, Math.max(64, 64 + swipeDistance)));
   }
 
   function handleTouchEnd() {
-    setIsDragging(false)
-    if (translateX > 250) {
+    setIsDragging(false);
+    if (translateX > 300) {
       setIsOpenModal(false);
     } else {
       setTranslateX(48);
@@ -45,17 +47,18 @@ const ModalContent = ({
     return () => document.body.classList.remove("overflow-hidden", "h-screen"); //clean up
   }, [isOpenModal]);
 
-
-  useEffect(()=>{
-    setTranslateX(isOpenModal ? 64 : 480)
-  }, [isOpenModal])
+  useEffect(() => {
+    setTranslateX(isOpenModal ? 64 : 480);
+  }, [isOpenModal]);
   return (
     <>
       <div
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
-        className={`fixed overflow-hidden z-[2000] w-full inset-0 min-h-[50vh] backdrop-blur-2xl bg-red-300 ${isDragging ? '' : 'transition-transform duration-300'}`}
+        className={`fixed overflow-hidden z-[2000] w-full bg-black/30 inset-0 min-h-[50vh] backdrop-blur-[30px] bg-red-300 ${
+          isDragging ? "" : "transition-transform duration-300"
+        }`}
         style={{ transform: `translateX(${translateX}px)` }}
       >
         <h1>TITLE</h1>
