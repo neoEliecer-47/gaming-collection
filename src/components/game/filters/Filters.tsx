@@ -22,7 +22,7 @@ const Filters = () => {
     // }
 
   return (
-    <div className="gap-2 flex justify-center items-center w-full">
+    <div className="gap-2 flex justify-center mt-16 items-center w-full">
         {/* <select value={selectedDeveloper} onChange={(e)=>handleFilterChange('developers',e.target.value)}>
             <option value="smt">another</option>
             <option value="rockstar-games">Rockstar</option>

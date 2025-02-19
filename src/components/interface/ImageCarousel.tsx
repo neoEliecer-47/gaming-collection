@@ -3,10 +3,17 @@
 import { imageCarousel, screenshots } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import ImageSkeleton from "../card/skeletons/ImageSkeleton";
 
 const ImageCarousel = ({ images }: imageCarousel) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isImageLoaded, setIsImageLoaded] = useState(true)
   //console.log("first", images);
+
+  function handleLoadedImages(){
+    setIsImageLoaded(false)
+  } 
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -34,12 +41,14 @@ const ImageCarousel = ({ images }: imageCarousel) => {
               priority={index < 3}
               className="object-cover w-full h-full aspect-video"
               loading="eager"
+              onLoad={handleLoadedImages}
             />
           </div>
         ))}
       </div>
 
       <section className="absolute bottom-[-50%] w-full flex items-center justify-center gap-2 ">
+        {isImageLoaded && <ImageSkeleton />}
         {images.map((_, index) => (
           <button
             onClick={() => setCurrentIndex(index)}
