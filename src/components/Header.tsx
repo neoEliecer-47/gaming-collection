@@ -12,7 +12,7 @@ const Header = async ({ searchParams }: { searchParams: string }) => {
   //console.log('HEADER FATA',data)
   return (
     <div className="fixed inset-0 z-[100] flex">
-      <header className=" flex justify-center items-center gap-4 p-8 w-full h-8 bg-black/50 overflow-hidden">
+      <header className=" flex justify-center items-center gap-4 p-8 w-full h-8 bg-black/50 overflow-hidden border-none">
         <Link
           href="/"
           className=" bg-gray-600 text-white p-[0.10rem] rounded-md color-black text-sm"
