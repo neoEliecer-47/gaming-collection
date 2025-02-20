@@ -11,7 +11,7 @@ const Header = async ({ searchParams }: { searchParams: string }) => {
   const data = await fetchGamesSearchedByQuery(searchParams);
   //console.log('HEADER FATA',data)
   return (
-    <div className="fixed inset-0 z-[100] flex">
+    <div className="fixed inset-0 z-[100] flex w-full h-8">
       <header className=" flex justify-center items-center gap-4 p-8 w-full h-8 bg-black/50 overflow-hidden border-none">
         <Link
           href="/"
@@ -30,11 +30,8 @@ const Header = async ({ searchParams }: { searchParams: string }) => {
       {data.results.length > 0 && searchParams && (
         <GamesSearchedList query={searchParams} games={data.results || []} /> //to prevent error when trying to loop games
       )}
-  
+
       <Modal />
-      
-      
-     
     </div>
   );
 };
