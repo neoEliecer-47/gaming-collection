@@ -12,6 +12,12 @@ import goldSrc from '../assets/trophies/gold.avif'
 import silverSrc from '../assets/trophies/silver.avif'
 import bronceSrc from '../assets/trophies/bronce.avif'
 
+import devSrc from '../assets/collections/developers.avif'
+import genresSrc from '../assets/collections/genres.avif'
+import platSrc from '../assets/collections/platforms.avif'
+import storesSrc from '../assets/collections/stores.avif'
+import tagsSrc from '../assets/collections/tags.avif'
+
 
 export const platformsImages: platformsProps[] = [
     {slug: 'pc', imgSrc: windowsSrc},
@@ -56,4 +62,13 @@ export const mainOrderingFilters = [
    
    
     
+]
+
+
+export const mainCollectionsFilters = [
+    { name: 'developers', id: 1, imgSrc: devSrc },
+    { name: 'genres', id: 2, imgSrc: genresSrc},
+    { name: 'platforms', id: 3, imgSrc: platSrc},
+    { name: 'stores', id: 4, imgSrc: storesSrc},
+    { name: 'tags', id: 5, imgSrc: tagsSrc},
 ]

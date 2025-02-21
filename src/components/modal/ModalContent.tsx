@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import React, { SetStateAction, useEffect, useRef, useState } from "react";
+import GamesCollection from "./GamesCollection";
+import Delete from "../icons/Delete";
 
 const ModalContent = ({
   isOpenModal,
@@ -56,25 +58,26 @@ const ModalContent = ({
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
-        className={`fixed overflow-hidden z-[2000] w-full bg-black/30 inset-0 min-h-[50vh] backdrop-blur-[30px] bg-red-300 ${
+        className={`fixed overflow-hidden z-[2000] w-full bg-black/60 inset-0 min-h-[50vh] backdrop-blur-[15px] ${
           isDragging ? "" : "transition-transform duration-300"
         }`}
         style={{ transform: `translateX(${translateX}px)` }}
       >
-        <h1>TITLE</h1>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-          corrupti in tenetur excepturi! Repudiandae, in quod. Saepe omnis
-          commodi dignissimos hic corporis nesciunt veniam aut cumque, nulla,
-          quas vel praesentium!
-        </p>
-        <Link href="/developers" className="bg-green-200 p-2">
-          Developers
-        </Link>
-        <button onClick={() => setIsOpenModal(false)}>close</button>
+        <h1 className="capitalize leading-none text-3xl flex justify-center  items-center w-[85vw] bg-black/55 text-border-white font-extrabold m-0 py-[1.05rem] text-green-800 drop-shadow-[0_0_0.25rem_rgba(255,200,255,0.90)]">
+          games collections
+        </h1>
+        <GamesCollection />
+        <aside className="flex w-[90vw] h-[50vh] items-center justify-center bg-transparent">
+          <button
+            className="text-white/80 p-2 bg-green-600 rounded-full"
+            onClick={() => setIsOpenModal(false)}
+          >
+            <Delete strokeWidth={3} />
+          </button>
+        </aside>
       </div>
       {isOpenModal && (
-        <div className="fixed inset-0 z-[900] backdrop-invert-[70%] transition-all duration-500 h-screen overflow-hidden" />
+        <div className="fixed inset-0 z-[900] transition-all duration-500 h-screen overflow-hidden" />
       )}
     </>
   );

@@ -30,7 +30,7 @@ const GamesSearchedList = ({ games, query }: gamesSearchedListProps) => {
   if (!query) return 'null f';
 
   return (
-    <div className="absolute z-[9999] m-auto p-4 bg-blue-600 h-auto w-full overflow-y-scroll">
+    <div className="absolute z-[99] m-auto p-4 bg-blue-600 mt-16 h-auto w-full overflow-y-scroll">
       {loadingGames ? (
         <p>loading...</p>
       ) : (

@@ -166,3 +166,6 @@ export interface collectionProps {
     added: number;
   }>
 }
+
+
+export type collectionType = 'developers' | 'genres' | 'platforms' | 'tags' | 'publishers' | 'stores'
