@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import GamesCollection from "./GamesCollection";
+import Delete from "../icons/Delete";
 
 const ModalContent = ({
   isOpenModal,
@@ -62,11 +63,13 @@ const ModalContent = ({
         }`}
         style={{ transform: `translateX(${translateX}px)` }}
       >
-        <h1 className="capitalize text-3xl w-full text-border-white font-extrabold m-0 py-4 text-black drop-shadow-[0_0_0.20rem_green]">games collections</h1>
+        <h1 className="capitalize leading-none text-3xl flex justify-center  items-center w-[85vw] bg-black/55 text-border-white font-extrabold m-0 py-[1.05rem] text-green-800 drop-shadow-[0_0_0.25rem_rgba(255,200,255,0.90)]">
+          games collections
+        </h1>
         <GamesCollection />
-       <aside className="flex items-center justify-end">
-       <button onClick={() => setIsOpenModal(false)}>close</button>
-       </aside>
+        <aside className="flex w-[90vw] h-[50vh] items-center justify-center bg-transparent">
+          <button className="text-white/80 p-2 bg-green-600 rounded-full" onClick={() => setIsOpenModal(false)}><Delete strokeWidth={3}/></button>
+        </aside>
       </div>
       {isOpenModal && (
         <div className="fixed inset-0 z-[900] transition-all duration-500 h-screen overflow-hidden" />
