@@ -71,4 +71,5 @@ export const mainCollectionsFilters = [
     { name: 'platforms', id: 3, imgSrc: platSrc},
     { name: 'stores', id: 4, imgSrc: storesSrc},
     { name: 'tags', id: 5, imgSrc: tagsSrc},
+    { name: 'publishers', id: 6, imgSrc: tagsSrc},
 ]

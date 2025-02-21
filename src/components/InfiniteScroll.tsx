@@ -28,13 +28,18 @@ export default function InfiniteScroll({
     setLoading(true)
     try {
       
-      const newData = await fetchCollections(page, collectionTypeEndpoint);//server action
+      const collectionRes = await fetchCollections(page, collectionTypeEndpoint);//server action
+      if(!collectionRes?.data){
+        setLoading(false)
+        console.log('hjereeeeee')
+        return
+      }
       //console.log("new data", newData);
       //if (newData instanceof Array) {
-        setdata((prev) => [...prev, ...newData]); //we need the prev to now lose the old data, the previous loaded data
+        setdata((prev) => [...prev, ...collectionRes?.data]); //we need the prev to now lose the old data, the previous loaded data
       //}
       setPage((prev) => prev + 1);
-      setHasMore(newData instanceof Array);
+      setHasMore(collectionRes.data instanceof Array);
       setLoading(false)
     } catch (error) {
       console.log(error);
