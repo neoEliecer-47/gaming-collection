@@ -1,3 +1,4 @@
+import { collectionType } from "@/types";
 
 export async function fetchGames(page: number, searchParams: Record<string, string>) {
 
@@ -93,7 +94,7 @@ export async function fetchGamesSearchedByQuery(query: string) {
   }
 }
 
-export async function fetchGamesCollection(type: "genres" | "developers" | "platforms") {
+export async function fetchGamesCollection(type: collectionType) {
   try {
     const gamesCollection = await fetch(`https://api.rawg.io/api/${type}?key=${process.env.NEXT_PUBLIC_API_KEY}`, {
       //SSG instead of SSR

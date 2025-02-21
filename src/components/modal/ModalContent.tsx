@@ -68,7 +68,12 @@ const ModalContent = ({
         </h1>
         <GamesCollection />
         <aside className="flex w-[90vw] h-[50vh] items-center justify-center bg-transparent">
-          <button className="text-white/80 p-2 bg-green-600 rounded-full" onClick={() => setIsOpenModal(false)}><Delete strokeWidth={3}/></button>
+          <button
+            className="text-white/80 p-2 bg-green-600 rounded-full"
+            onClick={() => setIsOpenModal(false)}
+          >
+            <Delete strokeWidth={3} />
+          </button>
         </aside>
       </div>
       {isOpenModal && (

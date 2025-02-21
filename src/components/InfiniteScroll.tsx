@@ -28,7 +28,7 @@ export default function InfiniteScroll({
     setLoading(true)
     try {
       
-      const newData = await fetchCollections(page, collectionTypeEndpoint);
+      const newData = await fetchCollections(page, collectionTypeEndpoint);//server action
       //console.log("new data", newData);
       //if (newData instanceof Array) {
         setdata((prev) => [...prev, ...newData]); //we need the prev to now lose the old data, the previous loaded data
