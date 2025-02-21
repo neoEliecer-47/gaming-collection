@@ -11,6 +11,11 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; 
 }
 
+.text-border-1{
+  -webkit-text-stroke-color: white;
+  
+}
+
 ::-webkit-scrollbar{
   width: 0.5rem;
 }

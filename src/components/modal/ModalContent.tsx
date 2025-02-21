@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { SetStateAction, useEffect, useRef, useState } from "react";
+import GamesCollection from "./GamesCollection";
 
 const ModalContent = ({
   isOpenModal,
@@ -56,25 +57,19 @@ const ModalContent = ({
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
-        className={`fixed overflow-hidden z-[2000] w-full bg-black/30 inset-0 min-h-[50vh] backdrop-blur-[30px] bg-red-300 ${
+        className={`fixed overflow-hidden z-[2000] w-full bg-black/60 inset-0 min-h-[50vh] backdrop-blur-[15px] ${
           isDragging ? "" : "transition-transform duration-300"
         }`}
         style={{ transform: `translateX(${translateX}px)` }}
       >
-        <h1>TITLE</h1>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-          corrupti in tenetur excepturi! Repudiandae, in quod. Saepe omnis
-          commodi dignissimos hic corporis nesciunt veniam aut cumque, nulla,
-          quas vel praesentium!
-        </p>
-        <Link href="/developers" className="bg-green-200 p-2">
-          Developers
-        </Link>
-        <button onClick={() => setIsOpenModal(false)}>close</button>
+        <h1 className="capitalize text-3xl w-full text-border-white font-extrabold m-0 py-4 text-black drop-shadow-[0_0_0.20rem_green]">games collections</h1>
+        <GamesCollection />
+       <aside className="flex items-center justify-end">
+       <button onClick={() => setIsOpenModal(false)}>close</button>
+       </aside>
       </div>
       {isOpenModal && (
-        <div className="fixed inset-0 z-[900] backdrop-invert-[70%] transition-all duration-500 h-screen overflow-hidden" />
+        <div className="fixed inset-0 z-[900] transition-all duration-500 h-screen overflow-hidden" />
       )}
     </>
   );
