@@ -17,6 +17,7 @@ import genresSrc from '../assets/collections/genres.avif'
 import platSrc from '../assets/collections/platforms.avif'
 import storesSrc from '../assets/collections/stores.avif'
 import tagsSrc from '../assets/collections/tags.avif'
+import publiSrc from '../assets/collections/publishers.avif'
 
 
 export const platformsImages: platformsProps[] = [
@@ -71,5 +72,5 @@ export const mainCollectionsFilters = [
     { name: 'platforms', id: 3, imgSrc: platSrc},
     { name: 'stores', id: 4, imgSrc: storesSrc},
     { name: 'tags', id: 5, imgSrc: tagsSrc},
-    { name: 'publishers', id: 6, imgSrc: tagsSrc},
+    { name: 'publishers', id: 6, imgSrc: publiSrc},
 ]

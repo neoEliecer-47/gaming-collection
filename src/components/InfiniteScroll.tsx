@@ -18,20 +18,21 @@ export default function InfiniteScroll({
 }: infiniteScrollProps) {
   const [data, setdata] = useState(initialData);
   const [page, setPage] = useState<number>(2);
-  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [hasMore, setHasMore] = useState<boolean | null>(true);
   const [loading, setLoading] = useState(false)
 
-  //console.log(hasMore);
+  console.log(hasMore);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   const fetchMoreData = useCallback(async () => {
+    if(!hasMore) return
     setLoading(true)
     try {
       
       const collectionRes = await fetchCollections(page, collectionTypeEndpoint);//server action
       if(!collectionRes?.data){
         setLoading(false)
-        console.log('hjereeeeee')
+        //console.log('hjereeeeee')
         return
       }
       //console.log("new data", newData);
@@ -39,8 +40,9 @@ export default function InfiniteScroll({
         setdata((prev) => [...prev, ...collectionRes?.data]); //we need the prev to now lose the old data, the previous loaded data
       //}
       setPage((prev) => prev + 1);
-      setHasMore(collectionRes.data instanceof Array);
+      setHasMore(collectionRes.isNextPage); //collectionRes.data.length > 0
       setLoading(false)
+      
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +65,9 @@ export default function InfiniteScroll({
 
       return () => observer.disconnect();
     }
-  }, [hasMore, page, collectionTypeEndpoint]);
+
+    
+  }, [hasMore, fetchMoreData]);
 
   return (
     <div className="w-full overflow-hidden">
