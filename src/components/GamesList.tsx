@@ -3,7 +3,7 @@ import { games } from "@/types";
 import GamesCard from "./card/GamesCard";
 import Pagination from "./Pagination";
 import { mainPlatformsFilters } from "@/constants";
-import { buildDeveloperTitle, buildGamesCurrentTitle } from "@/utils";
+import { buildCollectionTitle, buildGamesCurrentTitle } from "@/utils";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
@@ -16,10 +16,8 @@ const GamesList = async ({
 }) => {
   //if(Number(searchParams.page) > buildTotalPages()) return
   const gamesData = await fetchGames(currentPage, searchParams);
-  if(!gamesData){
-  
-    notFound()
-    
+  if (!gamesData) {
+    notFound();
   }
   function buildTotalPages() {
     const totalPages = Math.ceil(gamesData.count / 20);
@@ -31,16 +29,24 @@ const GamesList = async ({
   function buildCurrentPage() {
     const { page } = searchParams;
     const currentPage = Number(page) || 1;
-    return currentPage 
+    return currentPage;
   }
 
-
+  const currentCollection =
+    searchParams.platforms ||
+    searchParams.developers ||
+    searchParams.genres ||
+    searchParams.stores ||
+    searchParams.tags ||
+    searchParams.publishers ||
+    searchParams.platforms;
+//console.log(currentCollection)
 
   return (
     <div className="h-fit">
-      {searchParams.developers && (
+      {currentCollection && (
         <h1 className="text-3xl text-center block p-2 pb-0 font-bold capitalize">
-          {buildDeveloperTitle(searchParams)}
+          {buildCollectionTitle(currentCollection)}
         </h1>
       )}
       <h1 className="text-2xl font-semibold p-4 text-center capitalize">

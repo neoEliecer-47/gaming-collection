@@ -86,7 +86,7 @@ const OptionFilter = ({
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="capitalize font-bold hover:bg-white/65 relative flex justify-center w-[10rem] text-[1rem] py-[6px]  transition-all duration-300 ease-linear bg-gray-200 rounded-[5px]"
+        className={`capitalize font-bold hover:bg-white/65 relative flex justify-center w-[10rem] text-[1rem] py-[6px]  transition-all duration-300 ease-linear ${optionFilter ? 'bg-green-300' : 'bg-gray-200'} rounded-[5px]`}
       >
         {!optionFilter ? placeholder : optionName}
       </button>

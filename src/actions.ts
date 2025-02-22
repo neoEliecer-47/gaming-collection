@@ -4,8 +4,8 @@ export async function fetchCollections(page: number, collectionType: string) {
     try {
         const res = await fetch(`https://api.rawg.io/api/${collectionType}?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
             //next: { revalidate: 60 }
-            //cache: 'no-store'
-            //SSG activated
+            cache: 'force-cache'
+           
         })
         
         const collectionData = await res.json()

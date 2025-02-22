@@ -48,9 +48,9 @@ export default function InfiniteScroll({
     }
   }, [collectionTypeEndpoint, page]);
 
-  function renderItem(item: any) {
-    return <CollectionCard collection={item} />;
-  }
+  // function renderItem(item: any) {
+  //   return <CollectionCard collection={item} />;
+  // }
 
   useEffect(() => {
     if (hasMore) {
@@ -72,10 +72,10 @@ export default function InfiniteScroll({
   return (
     <div className="w-full overflow-hidden">
       {data.length > 0 && data.map((item)=>(
-        <CollectionCard collection={item}/>
+        <CollectionCard collectionData={item} collectionType={collectionTypeEndpoint}/>
       ))}
       {loading && (
-        <div className="w-full flex items-center justify-center">
+        <div className="w-full flex items-center justify-center p-0">
             <LoadingCollectionSpinner />
         </div>
       )}

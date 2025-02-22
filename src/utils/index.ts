@@ -42,7 +42,7 @@ export function buildGamesCurrentTitle(searchParams: Record<string, string>) {
     const subPlatform = platform.platforms?.find(
       (sub) => sub.id === platformId
     )?.name;
-    console.log(subPlatform);
+    //console.log(subPlatform);
     if (subPlatform) {
       return `Games for ${subPlatform}`;
     }
@@ -50,11 +50,13 @@ export function buildGamesCurrentTitle(searchParams: Record<string, string>) {
   return "Games";
 }
 
-export function buildDeveloperTitle(searchParams: Record<string, string>) {
-  const developerName = searchParams.developers
+export function buildCollectionTitle(currentCollection: string) {
+  //console.log('build collection title',new URLSearchParams(currentCollection))
+  if(currentCollection === 'platforms') return;
+  const collectionName = currentCollection
     ?.split("-")
     .join()
     .replace(/,/g, " ");
 
-  return developerName;
+  return collectionName;
 }

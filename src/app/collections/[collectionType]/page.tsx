@@ -16,7 +16,7 @@ const page = async ({ params }: { params: { collectionType: collectionType }}) =
       {params.collectionType === 'genres' || params.collectionType ==='stores' ? (
         <div className="flex flex-wrap justify-center gap-4">
           {gamesCollectionInitialData.results.map((item: collectionProps) => (
-            <CollectionCard collection={item} />
+            <CollectionCard collectionData={item} collectionType={params.collectionType}/>
           ))}
         </div>
       ): (
