@@ -7,7 +7,7 @@ import { Suspense } from "react";
 
 export default function Home({ searchParams }: { searchParams: Record<string, string> }) {
 //  const params = await searchParams;
-  console.log('homeeeeeeeeeeee',JSON.stringify(searchParams))
+  //console.log('homeeeeeeeeeeee',JSON.stringify(searchParams))
   return (
     <>
      <Header searchParams={searchParams.query}/>  

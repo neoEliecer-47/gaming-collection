@@ -18,32 +18,39 @@ export default function InfiniteScroll({
 }: infiniteScrollProps) {
   const [data, setdata] = useState(initialData);
   const [page, setPage] = useState<number>(2);
-  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [hasMore, setHasMore] = useState<boolean | null>(true);
   const [loading, setLoading] = useState(false)
 
-  //console.log(hasMore);
+  console.log(hasMore);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   const fetchMoreData = useCallback(async () => {
+    if(!hasMore) return
     setLoading(true)
     try {
       
-      const newData = await fetchCollections(page, collectionTypeEndpoint);//server action
+      const collectionRes = await fetchCollections(page, collectionTypeEndpoint);//server action
+      if(!collectionRes?.data){
+        setLoading(false)
+        //console.log('hjereeeeee')
+        return
+      }
       //console.log("new data", newData);
       //if (newData instanceof Array) {
-        setdata((prev) => [...prev, ...newData]); //we need the prev to now lose the old data, the previous loaded data
+        setdata((prev) => [...prev, ...collectionRes?.data]); //we need the prev to now lose the old data, the previous loaded data
       //}
       setPage((prev) => prev + 1);
-      setHasMore(newData instanceof Array);
+      setHasMore(collectionRes.isNextPage); //collectionRes.data.length > 0
       setLoading(false)
+      
     } catch (error) {
       console.log(error);
     }
   }, [collectionTypeEndpoint, page]);
 
-  function renderItem(item: any) {
-    return <CollectionCard collection={item} />;
-  }
+  // function renderItem(item: any) {
+  //   return <CollectionCard collection={item} />;
+  // }
 
   useEffect(() => {
     if (hasMore) {
@@ -58,15 +65,17 @@ export default function InfiniteScroll({
 
       return () => observer.disconnect();
     }
-  }, [hasMore, page, collectionTypeEndpoint]);
+
+    
+  }, [hasMore, fetchMoreData]);
 
   return (
     <div className="w-full overflow-hidden">
       {data.length > 0 && data.map((item)=>(
-        <CollectionCard collection={item}/>
+        <CollectionCard collectionData={item} collectionType={collectionTypeEndpoint}/>
       ))}
       {loading && (
-        <div className="w-full flex items-center justify-center">
+        <div className="w-full flex items-center justify-center p-0">
             <LoadingCollectionSpinner />
         </div>
       )}
