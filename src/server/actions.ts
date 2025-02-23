@@ -29,6 +29,7 @@ export async function fetchGamesByQuery(query: string) {
     const gamesSearched = await fetch(
       `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&search=${query}`,
       {
+        cache: 'force-cache'
         //SSG instead of SSR
       }
     );

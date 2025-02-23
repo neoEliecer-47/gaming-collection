@@ -10,10 +10,10 @@ import emptyImageGame from '../../../assets/game.avif'
 interface gamesSearchedListProps {
   loading: boolean;
   games: gamesSearchedList[];
-  onClose: ()=>void;
+  
 }
 
-const GamesSearchedList = ({ games, loading, onClose }: gamesSearchedListProps) => {
+const GamesSearchedList = ({ games, loading }: gamesSearchedListProps) => {
   //const [loadingGames, setLoadingGames] = useState<boolean>(false);
 
   console.log('games searched',games)

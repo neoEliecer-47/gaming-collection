@@ -9,19 +9,21 @@ import GamesSearchedList from "./GamesSearchedList";
 const Search = () => {
   const [gamesSearchedData, setGamesSearchedData] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [gamesListOpen, setGamesListOpen] = useState(false);
+  const [gamesListOpen, setGamesListOpen] = useState<boolean>(false);
+  const [isFading, setIsFading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   function handleClearInput() {
     if (inputRef.current) {
       inputRef.current.value = "";
-      setGamesListOpen(false);
+      //setGamesListOpen(false);
     }
   }
 
   const handleSearch = useDebouncedCallback(async (term: string) => {
     if (term) {
       setGamesListOpen(true);
+      setIsFading(false)
       setLoading(true);
       try {
         const gamesSearched = await fetchGamesByQuery(term);
@@ -41,6 +43,14 @@ const Search = () => {
     // console.log(pathname)
   }, 500);
 
+  const handleCloseGamesList = () => {
+    
+    setIsFading(true);
+    setTimeout(() => {
+      setGamesListOpen(false);
+    }, 350);
+  };
+
   useEffect(() => {
     if (gamesListOpen) {
       document.body.classList.add("overflow-hidden", "h-screen");
@@ -48,7 +58,7 @@ const Search = () => {
       document.body.classList.remove("overflow-hidden", "h-screen");
       //document.body.classList.add("scroll-smooth");
     }
-    console.log('games list open',gamesListOpen)
+    console.log("games list open", gamesListOpen);
     return () => document.body.classList.remove("overflow-hidden", "h-screen"); //clean up
   }, [gamesListOpen]);
 
@@ -71,14 +81,15 @@ const Search = () => {
 
       <div
         className={`fixed z-[999] top-7 ${
-          gamesListOpen ? "block" : "hidden"
-        } transition-opacity duration-300 left-[1.3rem] m-auto p-0 bg-blue-600 mt-10 h-[30rem] w-[90vw]`}
+          isFading ? "animate-fadeOut" : 'animate-fadeIn'
+        } transition-opacity duration-300 left-[1.3rem] m-auto p-0 bg-blue-600 mt-10 h-[30rem] w-[90vw]
+        ${gamesListOpen ? "block opacity-100" : "opacity-0 hidden"}`}
       >
-        <button onClick={()=>setGamesListOpen(false)}>close</button>
+        <button onClick={handleCloseGamesList}>close</button>
         <GamesSearchedList
           loading={loading}
           games={gamesSearchedData}
-          onClose={() => setGamesListOpen(false)}
+         
         />
       </div>
     </div>
