@@ -10,12 +10,13 @@ import emptyImageGame from '../../../assets/game.avif'
 interface gamesSearchedListProps {
   loading: boolean;
   games: gamesSearchedList[];
+  onClose: ()=>void;
 }
 
-const GamesSearchedList = ({ games, loading }: gamesSearchedListProps) => {
+const GamesSearchedList = ({ games, loading, onClose }: gamesSearchedListProps) => {
   //const [loadingGames, setLoadingGames] = useState<boolean>(false);
 
-  
+  console.log('games searched',games)
   // useEffect(() => {
   //   if (query) {
   //     setLoadingGames(true);
@@ -36,6 +37,7 @@ const GamesSearchedList = ({ games, loading }: gamesSearchedListProps) => {
         <p>loading...</p>
       ) : (
         <div className="">
+          {/* <button className="w-full" onClick={onClose}>close</button> */}
             {games.length > 0 ?
             games.map(({ slug, name, background_image, parent_platforms }, index) => (
               <Link href={`/game/${slug}`} className="flex gap-2 mb-1 rounded-md p-2 bg-white/50 m-0">

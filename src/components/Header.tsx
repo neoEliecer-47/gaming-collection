@@ -24,9 +24,9 @@ const Header = async () => {
           </Link>
 
           <Search />
-          <div className="">
+          <div className="p-0">
             <Link href="/user" className="p-0 m-0">
-              <User size={9} className="w-[3rem] h-[2.5rem] text-white" />
+              <User size={9} className="w-fit h-auto p-0 m-0 text-white" />
             </Link>
           </div>
         </header>
