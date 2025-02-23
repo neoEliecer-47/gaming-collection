@@ -15,7 +15,10 @@ const GamesList = async ({
   searchParams: Record<string, string>;
 }) => {
   //if(Number(searchParams.page) > buildTotalPages()) return
-  const gamesData = await fetchGames(currentPage, searchParams);
+  //let gamesData = []
+  
+    const gamesData = await fetchGames(currentPage, searchParams);
+  
   if (!gamesData) {
     notFound();
   }
@@ -52,7 +55,7 @@ const GamesList = async ({
       <h1 className="text-2xl font-semibold p-4 text-center capitalize">
         {buildGamesCurrentTitle(searchParams)}
       </h1>
-      <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-0 m-auto">
+      <div className="grid place-items-center grid-cols-1 md:gap-4 w-fit h-fit md:grid-cols-2 lg:grid-cols-3 p-0 m-auto">
         {gamesData.results.map((game: games) => (
           <GamesCard gamesData={game} />
         ))}

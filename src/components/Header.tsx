@@ -7,14 +7,14 @@ import Modal from "./modal/Modal";
 import Image, { StaticImageData } from "next/image";
 import homeIcon from '../assets/home.avif'
 
-const Header = async ({ searchParams }: { searchParams: string }) => {
+const Header = async () => {
   //console.log('HEADER',searchParams)
-  const data = await fetchGamesSearchedByQuery(searchParams);
+  //const data = await fetchGamesSearchedByQuery(searchParams);
   //console.log('HEADER FATA',data)
   return (
     <>
-      <div className="fixed inset-0 z-[100] flex w-full h-8">
-        <header className="flex justify-center items-center backdrop-blur-[8px] gap-4 p-8 w-full h-8 bg-black/50 overflow-hidden border-none">
+      <div className="fixed inset-0 z-[100] flex w-full h-8 ">
+        <header className="flex justify-center items-center backdrop-blur-[8px] gap-4 p-8 w-[90%] h-8 bg-black/50 clip-path-inset-0 border-none">
           <Link
             href="/"
             className=" bg-white/60 p-[0.10rem] shrink-0 h-8 w-8 rounded-md color-black text-sm"
@@ -34,9 +34,9 @@ const Header = async ({ searchParams }: { searchParams: string }) => {
         <Modal />
       </div>
       
-      {data.results.length > 0 && searchParams && (
-        <GamesSearchedList query={searchParams} games={data.results || []} /> //to prevent error when trying to loop games
-      )}
+      
+        
+   
       
     </>
   );

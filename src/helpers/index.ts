@@ -15,7 +15,7 @@ export async function fetchGames(page: number, searchParams: Record<string, stri
     try {
         const gamesData = await fetch(
             `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}&${query.toString()}`,
-           
+         
           );
           if (!gamesData.ok)
             throw new Error("Failed to fetch games data from external API");

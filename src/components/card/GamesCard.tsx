@@ -48,7 +48,7 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
 
   return (
     <section
-      className={` w-[22rem] h-auto bg-gray-800 rounded-md mb-6 overflow-hidden transition-all select-none`}
+      className={` w-[22rem] h-auto bg-gray-800 rounded-md mb-4 md:mb-0 overflow-hidden transition-all select-none`}
     >
       <figure className="w-[22rem] p-0 m-0 h-[12.5rem]">
         <SliderImages images={gamesData.short_screenshots} />
@@ -75,7 +75,7 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
         {moreDetailsShowed ? "view less..." : "view more..."}
       </button>
       {moreDetailsShowed && (
-        <div>
+        <div className="">
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. At impedit
             animi nam voluptates. Repellat ipsam iste rem facere, ducimus

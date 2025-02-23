@@ -1,11 +1,15 @@
 "use client";
 
 import Delete from "@/components/icons/Delete";
+import { fetchGamesByQuery } from "@/server/actions";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
+import GamesSearchedList from "./GamesSearchedList";
 
 const Search = () => {
+  const [gamesSearchedData, setGamesSearchedData] = useState([])
+  const [loading, setLoading] = useState<boolean>(false)
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -20,13 +24,26 @@ const Search = () => {
     }
   }
 
-  const handleSearch = useDebouncedCallback((term: string) => {
+  const handleSearch = useDebouncedCallback(async(term: string) => {
     if (term) {
-      params.set("query", term);
-    } else {
-      params.delete("query");
-    }
-    replace(`${pathname}?${params.toString()}`);
+      setLoading(true)
+        try {
+          const gamesSearched = await fetchGamesByQuery(term)
+          console.log(gamesSearched)
+          setGamesSearchedData(gamesSearched?.data)
+        } catch (error) {
+          console.log(error)
+        }finally{
+          setLoading(false)
+        }
+    
+    
+    }// } else {
+      //   params.delete("query");
+      //params.set("query", term);
+    // }
+    // replace(`${pathname}?${params.toString()}`);
+    // console.log(pathname)
   }, 500);
 
   return (
@@ -36,7 +53,7 @@ const Search = () => {
         ref={inputRef}
         placeholder="Search game..."
         className=" p-[0.3rem] m-0 max-w-[12rem] rounded-lg bg-white/90 backdrop-blur-[3px] border-[1px] border-gray-400 text-black focus:border-green-600 focus:border-[2px] focus:outline-none"
-        defaultValue={searchParams.get("query")?.toString()}
+        
         onChange={(e) => handleSearch(e.target.value)}
       />
       
@@ -47,7 +64,12 @@ const Search = () => {
         <Delete />
       </button>
      
-      
+      <div className="fixed z-[999] top-7 left-[1.3rem] m-auto p-4 bg-blue-600 mt-10 h-[10rem] w-[90vw]" >
+        {loading && 
+          <p>loading...</p>
+        }
+        {<div>data</div>}
+      </div>
     </div>
   );
 };

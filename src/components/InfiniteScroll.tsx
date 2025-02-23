@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import CollectionCard from "./card/CollectionCard";
 import { collectionProps } from "@/types";
 import LoadingCollectionSpinner from "./card/LoadingCollectionSpinner";
-import { fetchCollections } from "@/actions";
+import { fetchCollections } from "@/server/actions";
 
 interface infiniteScrollProps {
   initialData: collectionProps[];

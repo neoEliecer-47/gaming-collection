@@ -10,7 +10,7 @@ export default function Home({ searchParams }: { searchParams: Record<string, st
   //console.log('homeeeeeeeeeeee',JSON.stringify(searchParams))
   return (
     <>
-     <Header searchParams={searchParams.query}/>  
+     
     <main className="bg-black/20 px-2 overflow-x-hidden">
       <Filters />
       

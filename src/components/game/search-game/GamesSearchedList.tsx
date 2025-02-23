@@ -8,30 +8,31 @@ import { useEffect, useState } from "react";
 import emptyImageGame from '../../../assets/game.avif'
 
 interface gamesSearchedListProps {
-  query: string;
+  loading: boolean;
   games: gamesSearchedList[];
 }
 
-const GamesSearchedList = ({ games, query }: gamesSearchedListProps) => {
-  const [loadingGames, setLoadingGames] = useState<boolean>(false);
-  //console.log(games);
-  useEffect(() => {
-    if (query) {
-      setLoadingGames(true);
-      const timeout = setTimeout(() => {
-        setLoadingGames(false);
-      }, 3000);
+const GamesSearchedList = ({ games, loading }: gamesSearchedListProps) => {
+  //const [loadingGames, setLoadingGames] = useState<boolean>(false);
 
-      return () => clearTimeout(timeout);
-    }
-  }, [query]);
+  
+  // useEffect(() => {
+  //   if (query) {
+  //     setLoadingGames(true);
+  //     const timeout = setTimeout(() => {
+  //       setLoadingGames(false);
+  //     }, 2000);
+
+  //     return () => clearTimeout(timeout);
+  //   }
+  // }, [query]);
 
 
-  if (!query) return 'null f';
+
 
   return (
-    <div className="absolute z-[99] m-auto p-4 bg-blue-600 mt-16 h-auto w-full overflow-y-scroll">
-      {loadingGames ? (
+    <div className="absolute z-[99] inset-0 m-auto p-4 bg-blue-600 mt-16 h-auto w-full overflow-y-scroll">
+      {loading ? (
         <p>loading...</p>
       ) : (
         <div className="">
