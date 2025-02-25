@@ -92,7 +92,7 @@ const OptionFilter = ({
       </button>
 
       <ul
-        className={` z-20 bg-transparent absolute m-auto w-[12rem] rounded-[0.5rem] transition-all duration-250 ease-linear shadow-sm overflow-scroll overflow-y-auto`}
+        className={` z-20 bg-transparent absolute m-auto w-[10.5rem] rounded-[0.5rem] transition-all duration-250 ease-linear shadow-sm overflow-scroll overflow-y-auto`}
         ref={countriesRef}
         style={{
           height:

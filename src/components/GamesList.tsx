@@ -2,10 +2,9 @@ import { fetchGames } from "@/helpers";
 import { games } from "@/types";
 import GamesCard from "./card/GamesCard";
 import Pagination from "./Pagination";
-import { mainPlatformsFilters } from "@/constants";
-import { buildCollectionTitle, buildGamesCurrentTitle } from "@/utils";
-import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+import { buildGamesCurrentTitle } from "@/utils";
+import GameTitleInfo from "./GameTitleInfo";
 
 const GamesList = async ({
   currentPage,
@@ -16,7 +15,7 @@ const GamesList = async ({
 }) => {
   //if(Number(searchParams.page) > buildTotalPages()) return
   //let gamesData = []
-  
+  console.log(searchParams)
     const gamesData = await fetchGames(currentPage, searchParams);
   
   if (!gamesData) {
@@ -47,14 +46,12 @@ const GamesList = async ({
 
   return (
     <div className="h-fit">
-      {currentCollection && (
+      {/* {currentCollection && (
         <h1 className="text-3xl text-center block p-2 pb-0 font-bold capitalize">
           {buildCollectionTitle(currentCollection)}
         </h1>
-      )}
-      <h1 className="text-2xl font-semibold p-4 text-center capitalize">
-        {buildGamesCurrentTitle(searchParams)}
-      </h1>
+      )} */}
+     <GameTitleInfo searchParams={searchParams}/>
       <div className="grid place-items-center grid-cols-1 md:gap-4 w-fit h-fit md:grid-cols-2 lg:grid-cols-3 p-0 m-auto">
         {gamesData.results.map((game: games) => (
           <GamesCard gamesData={game} />

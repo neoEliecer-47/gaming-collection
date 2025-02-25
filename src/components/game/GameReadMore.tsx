@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 
-const GameAbout = ({ description }: { description: string }) => {
+const GameReadMore = ({ description }: { description: string }) => {
   const [hiddenText, setHiddenText] = useState<boolean>(true);
   const aboutRef = useRef<HTMLDivElement>(null);
   return (
@@ -30,4 +30,4 @@ const GameAbout = ({ description }: { description: string }) => {
   );
 };
 
-export default GameAbout;
+export default GameReadMore;

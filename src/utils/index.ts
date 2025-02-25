@@ -1,4 +1,5 @@
 import { mainPlatformsFilters } from "@/constants";
+import { fetchPlatforms } from "@/helpers";
 
 export function buildDate(date: string) {
   const months = [
@@ -22,9 +23,18 @@ export function buildDate(date: string) {
 }
 
 
-export function buildGamesCurrentTitle(searchParams: Record<string, string>) {
-  //console.log(searchParams)
-  if (!searchParams.platforms) return "All the games";
+export async function buildGamesCurrentTitle(searchParams: Record<string, string>) {
+  //console.log(first)
+  if(searchParams.developers) return `Games by ${searchParams.developers}`
+  if (searchParams.platforms) {
+    try {
+      const data  = await fetchPlatforms(searchParams.platforms)
+      console.log('platformssss', data)
+      return `Games for ${data.name}`
+    } catch (error) {
+      
+    }
+  }
   const platformId = Number(searchParams.platforms);
 
   const mainPlatform = mainPlatformsFilters.find(

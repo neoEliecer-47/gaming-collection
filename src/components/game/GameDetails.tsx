@@ -6,7 +6,7 @@ import PlatformCardImages from "../card/PlatformCardImages";
 import { buildDate } from "@/utils";
 import MultimediaGameContent from "./MultimediaGameContent";
 import { fetchGameAchievements, fetchGameImages } from "@/helpers";
-import GameAbout from "./GameAbout";
+import GameAbout from "./GameReadMore";
 
 import GameFeatures from "./GameFeatures";
 import GameAchievements from "./GameAchievements";

@@ -84,3 +84,33 @@ export const mainCollectionsFilters = [
     { name: 'tags', id: 5, imgSrc: tagsSrc},
     { name: 'publishers', id: 6, imgSrc: publiSrc},
 ]
+
+
+export const storesData = [
+    { id: 1, name: 'steam' },
+    { id: 3, name: 'PlayStation Store' },
+    { id: 2, name: 'Xbox Store' },
+    { id: 4, name: 'App Store' },
+    { id: 5, name: 'GOG' },
+    { id: 6, name: 'Nintendo Store' },
+    { id: 7, name: 'Xbox 360 Store' },
+    { id: 8, name: 'Google Play' },
+    { id: 9, name: 'itch.io' },
+    { id: 11, name: 'Epic Games' },
+   
+]
+
+
+export const platformsData = [
+    { id: 4, name: 'PC' },
+    { id: 187, name: 'PlayStation 5' },
+    { id: 2, name: 'Xbox Store' },
+    { id: 4, name: 'App Store' },
+    { id: 5, name: 'GOG' },
+    { id: 6, name: 'Nintendo Store' },
+    { id: 7, name: 'Xbox 360 Store' },
+    { id: 8, name: 'Google Play' },
+    { id: 9, name: 'itch.io' },
+    { id: 11, name: 'Epic Games' },
+   
+]

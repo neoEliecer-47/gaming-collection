@@ -107,3 +107,17 @@ export async function fetchGamesCollection(type: collectionType) {
     
   }
 }
+
+
+export async function fetchPlatforms(id: string){
+  try {
+    const platforms = await fetch(`https://api.rawg.io/api/platforms/${id}?key=${process.env.NEXT_PUBLIC_API_KEY}`, {
+      
+    })
+
+    const data = await platforms.json()
+    return data
+  } catch (error) {
+    
+  }
+}
