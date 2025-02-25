@@ -66,8 +66,8 @@ const ModalContent = ({
         <h1 className="capitalize leading-none text-3xl flex justify-center  items-center w-[85vw] bg-black/55 text-border-white font-extrabold m-0 py-[1.05rem] text-green-800 drop-shadow-[0_0_0.25rem_rgba(255,200,255,0.90)]">
           games collections
         </h1>
-        <GamesCollection />
-        <aside className="flex w-[90vw] h-[50vh] items-center justify-center bg-transparent">
+        <GamesCollection onClose={()=>setIsOpenModal(false)}/>
+        <aside className="flex w-[80%] h-[20%] items-center justify-center bg-transparent">
           <button
             className="text-white/80 p-2 bg-green-600 rounded-full"
             onClick={() => setIsOpenModal(false)}
