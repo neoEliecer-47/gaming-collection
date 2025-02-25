@@ -43,7 +43,7 @@ const GamesSearchedList = ({ games, loading, onClose }: gamesSearchedListProps) 
         <div className="">
             {games.length > 0 ?
             games.map(({ slug, name, background_image, parent_platforms }, index) => (
-              <Link href={`/game/${slug}`} onClick={onClose} className="flex gap-2 mb-1 h-[4.5rem] w-full rounded-md p-2 bg-white/70 m-0" passHref key={index}>
+              <Link href={`/game/${slug}`} onClick={onClose} className="flex gap-2 mb-1 h-[4.5rem] w-full rounded-md p-2 bg-white/75 m-0" passHref key={index}>
              
              <Image
                   src={background_image || emptyImageGame as StaticImageData}
