@@ -24,11 +24,11 @@ const Header = async () => {
           </Link>
 
           <Search />
-          <div className="p-0">
+          
             <Link href="/user" className="p-0 m-0">
-              <User size={9} className="w-fit h-auto p-0 m-0 text-white" />
+              <User size={7} className=" p-0 m-0 text-white w-auto" />
             </Link>
-          </div>
+         
         </header>
         
         <Modal />

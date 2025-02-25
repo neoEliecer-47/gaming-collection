@@ -5,6 +5,11 @@ import androidSrc from '../assets/platforms/android.avif'
 import playstationSrc from '../assets/platforms/ps.avif'
 import xboxSrc from '../assets/platforms/xbox.avif'
 import nintendoSrc from '../assets/platforms/nintendo.avif'
+import segaSrc from '../assets/platforms/sega-2.avif'
+import webSrc from '../assets/platforms/web.avif'
+import commodoreSrc from '../assets/platforms/commodore-amiga.avif'
+import atariSrc from '../assets/platforms/atari.avif'
+import doSrc from '../assets/platforms/3DO_Logo.svg.avif'
 import { platformsProps } from '@/types'
 
 import platinumSrc from '../assets/trophies/platinum.avif'
@@ -28,6 +33,11 @@ export const platformsImages: platformsProps[] = [
     {slug: 'xbox', imgSrc: xboxSrc},
     {slug: 'nintendo', imgSrc: nintendoSrc},
     {slug: 'android', imgSrc: androidSrc},
+    {slug: 'sega', imgSrc: segaSrc},
+    {slug: 'web', imgSrc: webSrc},
+    {slug: 'commodore-amiga', imgSrc: commodoreSrc},
+    {slug: 'atari', imgSrc: atariSrc},
+    {slug: '3do', imgSrc: doSrc},
 ]
 
 

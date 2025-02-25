@@ -35,7 +35,7 @@ export async function fetchGamesByQuery(query: string) {
     );
 
     const data = await gamesSearched.json();
-    return { success: true, data: data.results };
+    return { success: true, data: data.results, count: data.count };
   } catch (error) {
     if (error instanceof Error) {
       console.error(`Error fetching games by query: ${error}`);
