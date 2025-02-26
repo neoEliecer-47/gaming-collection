@@ -77,7 +77,7 @@ const GameTitleInfo = async ({
   //tags -> singleplayer (platform) games
   return (
     <article className="mt-4 mb-6">
-      {data.description || searchParams.genres ? ( //if there is a platform in searchParams, show the description
+      {data?.description || searchParams.genres ? ( //if there is a platform in searchParams, show the description
         <>
           <TitleGame />
           <GameReadMore

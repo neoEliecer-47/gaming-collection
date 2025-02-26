@@ -48,7 +48,7 @@ const GamesCard = ({ gamesData }: gamesCardProps) => {
 
   return (
     <section
-      className={` w-[22rem] h-auto bg-gray-800 rounded-md mb-4 md:mb-0 overflow-hidden transition-all select-none`}
+      className={` w-[22rem] md:hover:scale-95 md:hover:shadow-xl duration-700 h-auto bg-gray-800 rounded-md mb-4 md:mb-0 overflow-hidden transition-all select-none`}
     >
       <figure className="w-[22rem] p-0 m-0 h-[12.5rem]">
         <SliderImages images={gamesData.short_screenshots} />
