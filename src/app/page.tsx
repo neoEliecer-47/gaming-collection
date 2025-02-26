@@ -9,16 +9,16 @@ export default function Home({ searchParams }: { searchParams: Record<string, st
 //  const params = await searchParams;
   //console.log('homeeeeeeeeeeee',JSON.stringify(searchParams))
   return (
-    <>
+    
      
-    <main className="bg-black/20 px-2 overflow-x-hidden">
+    <main className="bg-white/20 px-2 overflow-x-hidden">
       <Filters />
       
       <Suspense key={JSON.stringify(searchParams)} fallback={<p>Loading...</p>}>
         <GamesList currentPage={1} searchParams={searchParams}/>
       </Suspense>
     </main>
-    </>
+  
   );
 }
 

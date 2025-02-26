@@ -26,7 +26,7 @@ const CollectionCard = ({ collectionData, collectionType }: { collectionData: co
           {collectionData.name}
         </h1>
         <Link
-          href={`/?${collectionType}=${collectionType === "platforms" ? collectionData.id : collectionData.slug}`}
+          href={`/?${collectionType}=${collectionType === "platforms" || collectionType === 'stores' ? collectionData.id : collectionData.slug}`}
           className="px-6 py-2 mt-[1.7rem] flex justify-center items-center rounded-md text-white bg-white/20 backdrop-blur-[2px]"
         >
           Games

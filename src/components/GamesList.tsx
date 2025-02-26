@@ -15,9 +15,9 @@ const GamesList = async ({
 }) => {
   //if(Number(searchParams.page) > buildTotalPages()) return
   //let gamesData = []
-  console.log(searchParams)
-    const gamesData = await fetchGames(currentPage, searchParams);
-  
+  console.log(searchParams);
+  const gamesData = await fetchGames(currentPage, searchParams);
+
   if (!gamesData) {
     notFound();
   }
@@ -34,15 +34,15 @@ const GamesList = async ({
     return currentPage;
   }
 
-  const currentCollection =
-    searchParams.platforms ||
-    searchParams.developers ||
-    searchParams.genres ||
-    searchParams.stores ||
-    searchParams.tags ||
-    searchParams.publishers ||
-    searchParams.platforms;
-//console.log(currentCollection)
+  // const currentCollection =
+  //   searchParams.platforms ||
+  //   searchParams.developers ||
+  //   searchParams.genres ||
+  //   searchParams.stores ||
+  //   searchParams.tags ||
+  //   searchParams.publishers ||
+  //   searchParams.platforms;
+  //console.log(currentCollection)
 
   return (
     <div className="h-fit">
@@ -51,8 +51,8 @@ const GamesList = async ({
           {buildCollectionTitle(currentCollection)}
         </h1>
       )} */}
-     <GameTitleInfo searchParams={searchParams}/>
-      <div className="grid place-items-center grid-cols-1 md:gap-4 w-fit h-fit md:grid-cols-2 lg:grid-cols-3 p-0 m-auto">
+      <GameTitleInfo searchParams={searchParams} />
+      <div className="grid place-items-center grid-cols-1 md:gap-4 w-fit h-fit md:grid-cols-2 lg:grid-cols-3 px-4 m-auto py-8 bg-black/10  rounded-tr-2xl rounded-tl-2xl" style={{ boxShadow: "0 -1px 10px 1px #000" }}>
         {gamesData.results.map((game: games) => (
           <GamesCard gamesData={game} />
         ))}

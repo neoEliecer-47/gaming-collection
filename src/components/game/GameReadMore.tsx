@@ -8,7 +8,7 @@ const GameReadMore = ({
   initialHeight = 7.5,
   dangerousHtml = true,
   duration = 300,
-  maxLength = 120
+  maxLength = 132
 }: {
   description: string;
   title?: string;
@@ -18,24 +18,29 @@ const GameReadMore = ({
   maxLength?: number
 }) => {
   const [hiddenText, setHiddenText] = useState<boolean>(true);
-  const [dynamicHeight, setDynamicHeight] = useState('75px')
+  const [dynamicHeight, setDynamicHeight] = useState('70px')
   const readMoreRef = useRef<HTMLDivElement>(null);
 
-  const truncatedText = description.slice(0, maxLength);
+  
   const shouldTruncate = description.length > maxLength;
+  function buildText(){
+    const truncatedText = description.slice(0, maxLength);
+    const dots =shouldTruncate && hiddenText && "..."
+return (hiddenText ? truncatedText : description) + dots
+  }
 
   useEffect(()=>{
     setTimeout(()=>{
-      setDynamicHeight(hiddenText ? `75px` : `${readMoreRef.current?.scrollHeight}px`)
+      setDynamicHeight(hiddenText ? `70px` : `${readMoreRef.current?.scrollHeight}px`)
     }, 0)
   }, [hiddenText])
 
   return (
     <div
-      className="w-full h-fit overflow-hidden mb-4"
+      className="w-full h-fit overflow-hidden mb-4 bg-blue-300 py-2"
       onClick={() => !hiddenText && setHiddenText(!hiddenText)}
     >
-      <h1 className="text-white text-center text-2xl font-bold">{title}</h1>
+     
       <div
         ref={readMoreRef}
         className={`relative inline-flex justify-center text-white w-full bg-black transition-all duration-${duration} ease-in-out overflow-hidden`}
@@ -45,10 +50,10 @@ const GameReadMore = ({
          
         }}
       >
-        <p className="relative text-white w-full h-fit">
-       {hiddenText ? truncatedText : description}
-        {shouldTruncate && hiddenText && "..."} 
-        </p>
+        <div className="relative text-white w-full h-fit" dangerouslySetInnerHTML={{__html: buildText()}} >
+       
+         {/* {shouldTruncate && hiddenText && "..."}   */}
+        </div>
         {hiddenText && (
        
           <button
