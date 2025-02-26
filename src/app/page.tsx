@@ -1,5 +1,6 @@
 import Filters from "@/components/game/filters/Filters";
 import GamesList from "@/components/GamesList";
+import GameTitleInfo from "@/components/GameTitleInfo";
 import Header from "@/components/Header";
 
 
@@ -13,7 +14,9 @@ export default function Home({ searchParams }: { searchParams: Record<string, st
      
     <main className="bg-white/20 px-2 overflow-x-hidden">
       <Filters />
-      
+      <Suspense key={JSON.stringify(searchParams.platforms)} fallback={<p>Loading...</p>}>
+        <GameTitleInfo searchParams={searchParams} />
+      </Suspense>
       <Suspense key={JSON.stringify(searchParams)} fallback={<p>Loading...</p>}>
         <GamesList currentPage={1} searchParams={searchParams}/>
       </Suspense>
