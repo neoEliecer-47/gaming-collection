@@ -51,18 +51,21 @@ const GamesList = async ({
           {buildCollectionTitle(currentCollection)}
         </h1>
       )} */}
-      
-  <div className='max-h-[100vh]'>
-  <div className="grid place-items-center grid-cols-1 md:gap-4 w-fit h-full overflow-y-scroll md:grid-cols-2 lg:grid-cols-3 px-4 m-auto py-8 bg-black/10  rounded-tr-2xl rounded-tl-2xl" style={{ boxShadow: "0 -1px 10px 1px #000" }}>
-        {gamesData.results.map((game: games) => (
-          <GamesCard gamesData={game} />
-        ))}
-      </div>
-  </div>
+
+      <div className="md:max-h-[100vh] h-full pb-[4rem]">
+        <div
+          className="grid place-items-center grid-cols-1 md:gap-4 w-fit h-full overflow-y-scroll md:grid-cols-2 lg:grid-cols-3 px-4 m-auto py-8 bg-black/10  rounded-tr-2xl rounded-tl-2xl"
+          style={{ boxShadow: "0 -1px 10px 1px #000" }}
+        >
+          {gamesData.results.map((game: games) => (
+            <GamesCard gamesData={game} />
+          ))}
+        </div>
       <Pagination
         currentPage={buildCurrentPage()}
         totalPages={buildTotalPages()}
       />
+      </div>
     </div>
   );
 };

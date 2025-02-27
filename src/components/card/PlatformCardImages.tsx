@@ -13,7 +13,7 @@ const PlatformCardImages = ({ platforms }: PlatformCardImagesProps) => {
 
   return (
     <div className="my-1 h-auto flex justify-start items-center gap-[0.4rem] bg-white/50 rounded-lg px-2 py-[0.15rem] w-fit">
-      {platforms.map(({ platform }) => (
+      {platforms?.map(({ platform }) => (
         <Image
           src={buildImgSrc(platform.slug)}
           alt={platform.slug}

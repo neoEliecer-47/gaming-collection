@@ -209,3 +209,14 @@ export const genresData = [
       "<p>Educational games are the video games genre centered around useful information throughout a playthrough. It is the secondary characteristic in the game&#39;s description because it denotes the value a player can make out of the gameplay and say little to nothing about the actual game itself. So, platformers, shooters, puzzles, and card games can be didactic. The ability to educate is utterly mean that playing given title may replace the textbook or a lesson experience due to the procedural nature of a video game medium as it can persuade the players to learn information in a more efficient way than just reading or watching. The most popular genres within the sub-genre are strategies as they teach one to think forward strategically; simulators as they mimic the real working experience and point-and-click adventures as they train logic, teach how to solve puzzles and guide the player through the variety of tricky situations.</p>",
   },
 ];
+
+
+export const selectedPlatformsMenu = [
+  { name: "PC", slug: 'pc', imgSrc: windowsSrc, id: 4 },
+  { name: "playstation 4", slug: 'playstation4', imgSrc: playstationSrc, id: 18 },
+  { name: "xbox 360", slug: 'xbox360', imgSrc: xboxSrc, id: 14 },
+  { name: "nintendo 3ds", slug: 'nintendo-3ds', imgSrc: windowsSrc, id: 8 },
+  { name: "playstation 2", slug: 'playstation-2', imgSrc: playstationSrc, id: 15 },
+  { name: "android", slug: 'android', imgSrc: androidSrc, id: 21 },
+  { name: "IOS", slug: 'ios', imgSrc: appleSrc, id: 3 },
+]

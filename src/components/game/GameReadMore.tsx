@@ -37,7 +37,7 @@ return (hiddenText ? truncatedText : description) + dots
 
   return (
     <div
-      className="w-full h-fit overflow-hidden mb-4 bg-blue-300 py-2"
+      className="w-full h-fit overflow-hidden mb-4 bg-blue-300 py-2 lg:px-8"
       onClick={() => !hiddenText && setHiddenText(!hiddenText)}
     >
      

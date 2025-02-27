@@ -58,13 +58,13 @@ const GameTitleInfo = async ({
   }
 
   const titleStyles =
-    "w-full text-2xl max-w-[15rem] text-center font-bold text-black flex items-center justify-center capitalize";
+    "w-full text-2xl md:text-5xl max-w-[15rem] lg:max-w-[30rem] text-center lg:text-start font-bold text-black flex items-center justify-center capitalize";
 
 
 
   function TitleGame() {
     return (
-      <div className="w-full flex justify-center items-center p-0 m-0 mb-2">
+      <div className="w-full lg:block flex justify-center items-center p-0 m-0 mb-2">
         <h1 className={titleStyles}>{buildCollectionTitle()}</h1>
       </div>
     );
@@ -76,7 +76,7 @@ const GameTitleInfo = async ({
   //publishers -> published by /(platform) games
   //tags -> singleplayer (platform) games
   return (
-    <article className="mt-4 mb-6">
+    <article className="mt-14 mb-2">
       {data?.description || searchParams.genres ? ( //if there is a platform in searchParams, show the description
         <>
           <TitleGame />
