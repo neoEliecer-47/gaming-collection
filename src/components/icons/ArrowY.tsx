@@ -1,4 +1,4 @@
-const ArrowY = ({ className = '', duration = 0.3, strokeWidth = 1.5 }: { className?: string, duration?: number, strokeWidth?: number }) => {
+const ArrowY = ({ className = '', duration = 0.3, strokeWidth = 1.5 }: { className?: string, duration?: 0.3 |0.5| 1, strokeWidth?: number }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,8 @@ const ArrowY = ({ className = '', duration = 0.3, strokeWidth = 1.5 }: { classNa
       viewBox="0 0 24 24"
       strokeWidth={strokeWidth}
       stroke="currentColor"
-      className={`size-5 transition-all duration-[${duration}s] ${className}`}
+      className={`size-5 transition-all ${className}`}
+      style={{ transitionDuration: `${duration}s` }}
     >
       <path
         strokeLinecap="round"

@@ -23,10 +23,11 @@ const GameCollectionMenu = ({
   const [showAll, setShowAll] = useState<boolean>(false);
   return (
     <div>
-      <h2 className="text-lg font-bold mb-2 capitalize">{collectionName}</h2>
+      <h2 className="text-2xl font-extrabold mb-2 capitalize text-white">{collectionName}</h2>
       <section
-        className="flex flex-col items-start gap-2 bg-yellow-500 overflow-hidden transition-all duration-300"
+        className="flex flex-col items-start gap-2 bg-black/45 overflow-hidden transition-all duration-300"
         style={{ maxHeight: `calc(${!showAll ? "3" : data.length} * 2.2rem)` }}
+       
       >
         {data.map((game) => (
           <Link
@@ -43,7 +44,7 @@ const GameCollectionMenu = ({
                 className="h-full w-full object-cover aspect-video"
               />
             </figure>
-            <p>{game.name}</p>
+            <p className="text-white capitalize">{game.name}</p>
           </Link>
         ))}
       </section>
@@ -61,7 +62,7 @@ const GameCollectionMenu = ({
         {showAll && (
           <Link
             href={`/collections/${collectionName}`}
-            className={`bg-orange-500 text-white transition-all flex gap-1 px-1 group w-[8.5rem] ${
+            className={`bg-orange-500 text-white transition-all flex gap-1 px-1 group min-w-max pr-2 ${
               !showAll ? "animate-fadeOut" : "animate-fadeIn"
             }`}
             style={{ animationDuration: "1s" }}
