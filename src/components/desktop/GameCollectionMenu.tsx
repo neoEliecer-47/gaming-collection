@@ -54,6 +54,7 @@ const GameCollectionMenu = ({
           <ArrowY
             className={!showAll ? "w-[1.8rem]" : "rotate-180 w-[1.8rem]"}
             duration={1}
+            strokeWidth={3}
           />
         </button>
         {showAll && (
