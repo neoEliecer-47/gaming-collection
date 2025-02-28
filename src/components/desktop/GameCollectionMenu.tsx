@@ -4,6 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ArrowY from "../icons/ArrowY";
+import ArrowRightIcon from "../icons/ArrowNext";
 
 type GameCollectionMenuProps = {
   collectionName: string;
@@ -22,7 +23,7 @@ const GameCollectionMenu = ({
   const [showAll, setShowAll] = useState<boolean>(false);
   return (
     <div>
-      <h2 className="text-lg font-bold mb-2">{collectionName}</h2>
+      <h2 className="text-lg font-bold mb-2 capitalize">{collectionName}</h2>
       <section
         className="flex flex-col items-start gap-2 bg-yellow-500 overflow-hidden transition-all duration-300"
         style={{ maxHeight: `calc(${!showAll ? "3" : data.length} * 2.2rem)` }}
@@ -31,9 +32,9 @@ const GameCollectionMenu = ({
           <Link
             href={`/?${collectionName}=${game.id}`}
             key={game.slug}
-            className="flex gap-2 justify-center items-center h-7 cursor-pointer"
+            className="flex gap-2 justify-center items-center h-7 cursor-pointer group"
           >
-            <figure className="p-[0.30rem] m-0 w-7 h-7 bg-purple-300 rounded-md">
+            <figure className="p-[0.30rem] m-0 w-7 h-7 bg-purple-300 transition-all duration-200 group-hover:bg-white rounded-md">
               <Image
                 src={game.imgSrc}
                 alt={game.name}
@@ -60,12 +61,13 @@ const GameCollectionMenu = ({
         {showAll && (
           <Link
             href={`/collections/${collectionName}`}
-            className={`bg-orange-500 text-white transition-all ${
+            className={`bg-orange-500 text-white transition-all flex gap-1 px-1 group w-[8.5rem] ${
               !showAll ? "animate-fadeOut" : "animate-fadeIn"
             }`}
             style={{ animationDuration: "1s" }}
           >
-            View all
+            <span className="capitalize">all {collectionName}</span>
+            <ArrowRightIcon strokeWidth={3} className="relative left-0 group-hover:left-2"/>
           </Link>
         )}
       </div>
