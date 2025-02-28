@@ -1,4 +1,4 @@
-const ArrowY = ({ className = '' }: { className?: string }) => {
+const ArrowY = ({ className = '', duration = 300 }: { className?: string, duration?: number }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,7 @@ const ArrowY = ({ className = '' }: { className?: string }) => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`size-5 transition-all duration-300 ${className}`}
+      className={`size-5 transition-all duration-[${duration}s] ${className}`}
     >
       <path
         strokeLinecap="round"
