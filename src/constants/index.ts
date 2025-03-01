@@ -24,6 +24,17 @@ import storesSrc from "../assets/collections/stores.avif";
 import tagsSrc from "../assets/collections/tags.avif";
 import publiSrc from "../assets/collections/publishers.avif";
 
+import actionSrc from "../assets/genres/action-2.avif";
+import indieSrc from "../assets/genres/indie.avif";
+import adventureSrc from "../assets/genres/adventure.avif";
+import rpgSrc from "../assets/genres/rpg.avif";
+import shooterSrc from "../assets/genres/shooter.avif";
+import racingSrc from "../assets/genres/racing.avif";
+import platformerSrc from "../assets/collections/tags.avif";
+import sportsSrc from "../assets/genres/sports-1.avif";
+import fightingSrc from "../assets/genres/fighting.avif";
+
+
 export const platformsImages: platformsProps[] = [
   { slug: "pc", imgSrc: windowsSrc },
   { slug: "ios", imgSrc: appleSrc },
@@ -220,3 +231,18 @@ export const selectedPlatformsMenu = [
   { name: "android", slug: 'android', imgSrc: androidSrc, id: 21 },
   { name: "IOS", slug: 'ios', imgSrc: appleSrc, id: 3 },
 ]
+
+
+export const selectedGenresMenu = [
+  { name: "action", slug: 'action', imgSrc: actionSrc  },
+  { name: "indie", slug: 'indie', imgSrc: indieSrc   },
+  { name: "adventure", slug: 'adventure', imgSrc: adventureSrc   },
+  { name: "RPG", slug: 'role-playing-games-rpg', imgSrc: rpgSrc   },
+  { name: "shooter", slug: 'shooter', imgSrc: shooterSrc   },
+  { name: "platformer", slug: 'platformer', imgSrc: platformerSrc },
+  { name: "racing", slug: 'racing', imgSrc: racingSrc },
+  { name: "sports", slug: 'sports', imgSrc: sportsSrc },
+  { name: "fighting", slug: 'fighting', imgSrc: fightingSrc },
+ 
+]
+
