@@ -2,10 +2,12 @@ import { fetchPlatforms } from "@/helpers";
 import GameReadMore from "./game/GameReadMore";
 import { genresData, storesData } from "@/constants";
 
+
 type dataProps = {
   name: string;
   description: string;
 };
+
 
 const GameTitleInfo = async ({
   searchParams,
@@ -24,7 +26,7 @@ const GameTitleInfo = async ({
         key === "publishers" ||
         key === "tags" ||
         key === "top_games" ||
-        key === 'greatest_2025'
+        key === "greatest_2025"
     );
 
     if (!key) return "All the Games";
@@ -50,14 +52,18 @@ const GameTitleInfo = async ({
         return `${
           searchParams.platforms ? data.name + " games" : ""
         } published by ${searchParams.publishers}`;
-        case "top_games":
-          return `${
-            searchParams.platforms ? data.name + " games top 250 of all time 🏆" : "top 250 games of all time 🏆"
-          }`;
-          case "greatest_2025":
-            return `${
-              searchParams.platforms ? data.name + " upcoming games for 2025" : "upcoming games for 2025"
-            }`;
+      case "top_games":
+        return `${
+          searchParams.platforms
+            ? data.name + " games top 250 of all time 🏆"
+            : "top 250 games of all time 🏆"
+        }`;
+      case "greatest_2025":
+        return `${
+          searchParams.platforms
+            ? data.name + " upcoming games for 2025"
+            : "upcoming games for 2025"
+        }`;
       case "tags":
         return `${searchParams.platforms ? data.name : ""} ${
           searchParams.tags
@@ -69,8 +75,6 @@ const GameTitleInfo = async ({
 
   const titleStyles =
     "w-full text-2xl md:text-5xl max-w-[15rem] lg:max-w-[30rem] text-center lg:text-start font-bold text-black flex items-center justify-center capitalize";
-
-
 
   function TitleGame() {
     return (
