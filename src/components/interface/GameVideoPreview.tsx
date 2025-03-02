@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { videoPreviewProps } from "@/types";
 import Link from "next/link";
@@ -6,30 +6,30 @@ import Play from "../icons/Play";
 import { useEffect, useRef, useState } from "react";
 
 const GameVideoPreview = ({ videoData }: videoPreviewProps) => {
-  const [isDragging, setIsDragging] = useState(false)
-  const [startX, setStartX] = useState(0)
-  const [scrollLeft, setScrollLeft] = useState(0)
-  const videoContainer = useRef<HTMLDivElement>(null)
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+  const videoContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const container = videoContainer.current;
     if (!container) return;
 
     const handleMouseDown = (event: MouseEvent) => {
-      setIsDragging(true);
-      setStartX(event.pageX - container.offsetLeft);
-      setScrollLeft(container.scrollLeft);
+      isDragging.current = true;
+      startX.current = event.pageX - container.offsetLeft;
+      scrollLeft.current = container.scrollLeft
     };
 
     const handleMouseMove = (event: MouseEvent) => {
-      if (!isDragging) return;
+      if (!isDragging.current) return;
       event.preventDefault();
       const x = event.pageX - container.offsetLeft;
-      const walk = (x - startX) * 2; // Adjust scroll speed
-      container.scrollLeft = scrollLeft - walk;
+      const walk = (x - startX.current) * 2; // Adjust scroll speed
+      container.scrollLeft = scrollLeft.current - walk;
     };
 
-    const handleMouseUp = () => setIsDragging(false);
+    const handleMouseUp = () => isDragging.current = false
 
     container.addEventListener("mousedown", handleMouseDown);
     container.addEventListener("mousemove", handleMouseMove);
@@ -40,13 +40,14 @@ const GameVideoPreview = ({ videoData }: videoPreviewProps) => {
       container.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging, startX, scrollLeft]);
-
-
-
+  }, []);
 
   return (
-    <div ref={videoContainer} className="overflow-x-auto lg:overflow-y-hidden w-full lg:mx-auto min-h-[12rem] mt-4 cursor-grab" style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none' }}>
+    <div
+      ref={videoContainer}
+      className="overflow-x-auto lg:overflow-y-hidden w-full lg:mx-auto min-h-[12rem] mt-4 cursor-grab"
+      style={{ scrollBehavior: "smooth", scrollbarWidth: "none" }}
+    >
       <div className="flex flex-row gap-2 p-2">
         {videoData?.map(({ data: { "480": min, max }, id }) => (
           <div key={id} className="min-w-[250px] lg:min-w-[500px] relative">
