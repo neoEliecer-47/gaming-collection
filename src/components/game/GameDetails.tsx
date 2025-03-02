@@ -30,7 +30,7 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
           loading="eager"
         />
       </div>
-      <Header fixed={false}/>
+      
       <section className="relative text-white p-2 mt-7 flex justify-center items-center z-[2] gap-2">
         <Link href="/">home</Link>
         <span>/</span>
@@ -47,10 +47,10 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
 
       {/* <div className="fixed h-full w-full bg-[rgba(21,21,21)]"></div> */}
       <div
-        className="absolute top-0 left-0 w-full h-full z-[-1]" //change to 1
+        className="absolute top-0 left-0 w-full h-full z-[0]" //change to 1
         style={{
           background:
-            "linear-gradient(rgba(15, 15, 15, 0.5), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.3), rgba(21, 21, 21, 0.9))",
+            "linear-gradient(rgba(10, 15, 15, 0.5), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.3), rgba(21, 21, 21))",
         }}
       ></div>
 
@@ -60,15 +60,17 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
         </h1>
       </div>
 
+      <div className="relative z-[2] w-full">
+        <GameAbout description={gameDetailsData.description} initialHeight={1} maxLength={300}/>
+      </div>
+
       <Suspense key={gameDetailsData.id} fallback={<p className="text-lg text-white bg-green-400 w-full h-[11rem]">loading...</p>}>
         <MultimediaGameContent
           id={gameDetailsData.id}
         />
       </Suspense>
 
-      <div className="relative z-[2] w-full">
-        <GameAbout description={gameDetailsData.description} initialHeight={1} maxLength={300}/>
-      </div>
+     
 
         <div className="p-0 m-0 lg:flex">
 

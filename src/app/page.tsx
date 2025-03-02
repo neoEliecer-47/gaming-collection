@@ -14,13 +14,14 @@ export default function Home({
   //  const params = await searchParams;
   //console.log('homeeeeeeeeeeee',JSON.stringify(searchParams))
   return (
-    <main className="bg-black/20 px-2 overflow-hidden">
-      
+    
+    <main className="bg-black/20 px-2">
+      <Header />
       <section className="p-0 m-0 flex">
         <div className="min-w-[20rem] hidden md:block bg-black/50 max-h-[100vh] overflow-y-auto mt-16">
           <MenuGameCollections />
-          <div className="h-[80rem] bg-green-700">menu2</div>
-          <div className="h-[80rem] bg-red-400">menu3</div>
+         
+       
         </div>
 
         <div className="p-0 pt-2 m-0 md:flex-1 md:overflow-y-auto">

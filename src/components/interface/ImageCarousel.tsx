@@ -7,12 +7,12 @@ import ImageSkeleton from "../card/skeletons/ImageSkeleton";
 
 const ImageCarousel = ({ images }: imageCarousel) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [isImageLoaded, setIsImageLoaded] = useState(true)
+  const [isImageLoaded, setIsImageLoaded] = useState(true);
   //console.log("first", images);
 
-  function handleLoadedImages(){
-    setIsImageLoaded(false)
-  } 
+  function handleLoadedImages() {
+    setIsImageLoaded(false);
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,16 +23,17 @@ const ImageCarousel = ({ images }: imageCarousel) => {
   }, [images.length]);
 
   return (
-    <div className=" w-full max-h-[500px] overflow-hidden mt-4">
+    <div className=" w-full lg:w-[50rem] mx-auto max-h-[500px] overflow-hidden mt-4 rounded-2xl border-white/45 border-[2px]">
       <div
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        className="flex transition-all duration-500"
+        className="flex transition-all duration-500 "
       >
         {images.map(({ id, image }, index) => (
           <div
             key={id}
-            className="min-w-full h-[13rem] relative border-white/45 border-y-[1px]"
+            className="min-w-full h-[13rem] lg:h-[16.5rem] relative "
           >
+            {isImageLoaded && <ImageSkeleton />}
             <Image
               src={image}
               alt="asas"
@@ -47,8 +48,7 @@ const ImageCarousel = ({ images }: imageCarousel) => {
         ))}
       </div>
 
-      <section className="absolute bottom-[-50%] w-full flex items-center justify-center gap-2 ">
-        {isImageLoaded && <ImageSkeleton />}
+      <section className="absolute bottom-[-50%] lg:bottom-[-80%] mx-auto w-full lg:w-[50rem] flex items-center justify-center gap-2 ">
         {images.map((_, index) => (
           <button
             onClick={() => setCurrentIndex(index)}

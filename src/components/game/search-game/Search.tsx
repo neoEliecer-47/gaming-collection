@@ -80,7 +80,7 @@ const Search = () => {
         type="text"
         ref={inputRef}
         placeholder="Search game..."
-        className=" p-[0.3rem] m-0 w-[14rem] max-w-[20rem] rounded-lg bg-white/90 backdrop-blur-[3px] border-[1px] border-gray-400 text-black focus:border-green-600 focus:border-[2px] focus:outline-none"
+        className=" p-[0.3rem] m-0 w-[14rem] max-w-[20rem] lg:min-w-[40rem] rounded-lg bg-white/90 backdrop-blur-[3px] border-[1px] border-gray-400 text-black focus:border-green-600 focus:border-[2px] focus:outline-none"
         onChange={(e) => handleSearch(e.target.value)}
         onClick={() => {
           if (inputRef.current && inputRef.current.value) {
