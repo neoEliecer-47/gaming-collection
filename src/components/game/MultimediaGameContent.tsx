@@ -10,7 +10,7 @@ const MultimediaGameContent = async ({ id }: { id: number }) => {
   //console.log("first", gameVideos);
   return (
     <div
-      className={`p-0 m-0 relative z-[2] w-full h-[10rem] ${
+      className={`p-0 m-0 relative z-[2] w-full h-[10rem] lg:mb-[40rem] ${
         gameVideos?.length === 0 ? "mb-[7rem]" : "mb-[4.5rem]"
       }`}
     >

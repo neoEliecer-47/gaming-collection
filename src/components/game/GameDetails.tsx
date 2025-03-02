@@ -30,8 +30,8 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
           loading="eager"
         />
       </div>
-      <Header />
-      <section className="relative text-white p-2 flex justify-center items-center z-[2] gap-2">
+      <Header fixed={false}/>
+      <section className="relative text-white p-2 mt-7 flex justify-center items-center z-[2] gap-2">
         <Link href="/">home</Link>
         <span>/</span>
         <Link href="/">games</Link>
@@ -67,8 +67,10 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
       </Suspense>
 
       <div className="relative z-[2] w-full">
-        <GameAbout description={gameDetailsData.description} />
+        <GameAbout description={gameDetailsData.description} initialHeight={1} maxLength={300}/>
       </div>
+
+        <div className="p-0 m-0 lg:flex">
 
       <div className="grid grid-cols-2 relative z-[2] w-full mt-[2rem] gap-1">
         <GameFeatures label="platforms" data={gameDetailsData.parent_platforms}/>
@@ -83,6 +85,7 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
       <section className="relative z-[2] w-full">
         <GameAchievements trophies={achievementsData?.results} />
       </section>
+        </div>
     </div>
   );
 };
