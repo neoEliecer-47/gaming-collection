@@ -32,8 +32,8 @@ const GameCollectionMenu = ({
   
   
   return (
-    <div className="mb-4">
-      <h2 className="text-2xl font-extrabold mb-2 capitalize text-white">{collectionName}</h2>
+    <div className="mb-5">
+      <h2 className="text-2xl font-extrabold capitalize bg-black/70 text-white">{collectionName}</h2>
       <section
         className="flex flex-col items-start gap-2 bg-black/45 overflow-hidden transition-all duration-300"
         style={{ maxHeight: `calc(${!showAll ? "3" : data.length} * 2.2rem)` }}
@@ -58,7 +58,7 @@ const GameCollectionMenu = ({
           </Link>
         ))}
       </section>
-      <div className="flex justify-between items-center w-full gap-2">
+      <div className="flex justify-between items-center bg-black/70 w-full gap-2 py-1">
         <button
           className="bg-purple-700 text-white"
           onClick={() => setShowAll(!showAll)}

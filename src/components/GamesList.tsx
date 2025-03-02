@@ -1,4 +1,4 @@
-import { fetchGames } from "@/helpers";
+import { fetchGames, fetchTopGames } from "@/helpers";
 import { games } from "@/types";
 import GamesCard from "./card/GamesCard";
 import Pagination from "./Pagination";
@@ -7,16 +7,14 @@ import { buildGamesCurrentTitle } from "@/utils";
 import GameTitleInfo from "./GameTitleInfo";
 
 const GamesList = async ({
-  currentPage,
   searchParams,
 }: {
-  currentPage: number;
   searchParams: Record<string, string>;
 }) => {
   //if(Number(searchParams.page) > buildTotalPages()) return
   //let gamesData = []
   console.log(searchParams);
-  const gamesData = await fetchGames(currentPage, searchParams);
+  const gamesData = !searchParams.top_games && !searchParams.greatest_2025 ? await fetchGames(searchParams) : await fetchTopGames(searchParams)
 
   if (!gamesData) {
     notFound();

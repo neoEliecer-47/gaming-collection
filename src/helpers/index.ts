@@ -1,6 +1,10 @@
 import { collectionType } from "@/types";
 
-export async function fetchGames(page: number, searchParams: Record<string, string>) {
+function buildInitialFetch(){
+
+}
+
+export async function fetchGames(searchParams: Record<string, string>) {
 
   if(searchParams?.query) delete searchParams.query
 
@@ -14,7 +18,7 @@ export async function fetchGames(page: number, searchParams: Record<string, stri
   //console.log('fetchGamesQuery', query.toString())
     try {
         const gamesData = await fetch(
-            `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}&${query.toString()}`,
+            `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&${query.toString()}`,
          
           );
           if (!gamesData.ok)
@@ -24,6 +28,28 @@ export async function fetchGames(page: number, searchParams: Record<string, stri
     } catch (error) {
         console.log(error)
     }
+}
+
+
+export async function fetchTopGames(searchParams: Record<string, string>) {
+ //best games in 2024 --->  //https://rawg.io/api/games/lists/greatest?year=2024&discover=true&ordering=-added&page_size=20&page=1&key=c542e67aec3a4340908f9de9e86038af
+ //best of the year --- >  https://rawg.io/api/games/lists/greatest?discover=true&ordering=-added&page_size=20&page=1&key=c542e67aec3a4340908f9de9e86038af 
+  const currentPage = searchParams.page || 1
+  console.log('hereeeeeeeeeeeeeeeee')
+  try {
+    const gamesData = await fetch(
+      `https://rawg.io/api/games/lists/${searchParams.top_games ? 'popular' : 'greatest'}?discover=true&&page_size=20&page=${currentPage}&key=${process.env.NEXT_PUBLIC_API_KEY}`,
+    );
+
+    if (!gamesData.ok)
+      throw new Error("Failed to fetch Top games");
+
+    const data = await gamesData.json();
+    console.log('data top games', data)
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 

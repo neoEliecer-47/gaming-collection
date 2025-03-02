@@ -17,7 +17,7 @@ export default function Home({
     <main className="bg-black/20 px-2 overflow-hidden">
       
       <section className="p-0 m-0 flex">
-        <div className="min-w-[20rem] hidden md:block bg-black/80 max-h-[100vh] overflow-y-auto mt-16">
+        <div className="min-w-[20rem] hidden md:block bg-black/50 max-h-[100vh] overflow-y-auto mt-16">
           <MenuGameCollections />
           <div className="h-[80rem] bg-green-700">menu2</div>
           <div className="h-[80rem] bg-red-400">menu3</div>
@@ -35,7 +35,7 @@ export default function Home({
             key={JSON.stringify(searchParams)}
             fallback={<p>Loading...</p>}
           >
-            <GamesList currentPage={1} searchParams={searchParams} />
+            <GamesList searchParams={searchParams} />
           </Suspense>
         </div>
       </section>

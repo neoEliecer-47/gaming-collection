@@ -22,7 +22,9 @@ const GameTitleInfo = async ({
         key === "genres" ||
         key === "developers" ||
         key === "publishers" ||
-        key === "tags"
+        key === "tags" ||
+        key === "top_games" ||
+        key === 'greatest_2025'
     );
 
     if (!key) return "All the Games";
@@ -48,6 +50,14 @@ const GameTitleInfo = async ({
         return `${
           searchParams.platforms ? data.name + " games" : ""
         } published by ${searchParams.publishers}`;
+        case "top_games":
+          return `${
+            searchParams.platforms ? data.name + " games top 250 of all time 🏆" : "top 250 games of all time 🏆"
+          }`;
+          case "greatest_2025":
+            return `${
+              searchParams.platforms ? data.name + " upcoming games for 2025" : "upcoming games for 2025"
+            }`;
       case "tags":
         return `${searchParams.platforms ? data.name : ""} ${
           searchParams.tags
