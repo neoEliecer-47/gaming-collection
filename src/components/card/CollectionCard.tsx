@@ -1,13 +1,34 @@
+'use client'
+
 import { collectionProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import UserCollection from "../icons/UserCollection";
+import { useState } from "react";
+import ImageSkeleton from "./skeletons/ImageSkeleton";
 
-const CollectionCard = ({ collectionData, collectionType }: { collectionData: collectionProps, collectionType: string }) => {
+const CollectionCard = ({ collectionData, collectionType, index }: { collectionData: collectionProps, collectionType: string, index: number }) => {
   //const currentPathname = usePathname()
   //const pathname = currentPathname.split('/')[1]
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
+
+  const getClassNames = (index: number) => {
+    return index % 6 === 0
+      ? "col-span-2 row-span-2"
+      : "col-span-1 row-span-1";
+  };
+
   return (
+    <div 
+    key={collectionData.id}
+    className={`${getClassNames(index)} animate-fadeIn`}
+    style={{
+      animationDelay: `${index * 50}ms`,
+      animationDuration: "300ms",
+      animationFillMode: "backwards",
+    }}>
     <div className="relative p-2 w-full h-full mb-2 overflow-hidden rounded-lg">
+        {!isImageLoaded && <ImageSkeleton />}
       <div className="absolute inset-0 m-2 rounded-lg">
         <Image
           src={collectionData.image_background}
@@ -16,6 +37,7 @@ const CollectionCard = ({ collectionData, collectionType }: { collectionData: co
           quality={100}
           className="w-full h-full aspect-video z-[-1] rounded-lg object-fill"
           loading="eager"
+          onLoad={()=>setIsImageLoaded(!isImageLoaded)}
         />
       </div>
       <div className="absolute m-2 inset-0 bg-gradient-to-t from-black/95 to-black/35 z-[1] rounded-lg" />
@@ -25,7 +47,7 @@ const CollectionCard = ({ collectionData, collectionType }: { collectionData: co
         </h1>
         <Link
           href={`/?${collectionType}=${collectionType === "platforms" || collectionType === 'stores' ? collectionData.id : collectionData.slug}`}
-          className="px-6 py-2 mt-[1.7rem] flex justify-center items-center rounded-md text-white bg-white/20 backdrop-blur-[2px]"
+          className="px-6 py-2 mt-[1.7rem] flex justify-center items-center rounded-md text-white bg-white/20 hover:bg-green-600/50 transition-all duration-200 backdrop-blur-[2px]"
         >
           Games
         </Link>
@@ -53,6 +75,7 @@ const CollectionCard = ({ collectionData, collectionType }: { collectionData: co
           ))}
         </section>
       </article>
+    </div>
     </div>
   );
 };

@@ -3,8 +3,7 @@ import { games } from "@/types";
 import GamesCard from "./card/GamesCard";
 import Pagination from "./Pagination";
 import { notFound } from "next/navigation";
-import { buildGamesCurrentTitle } from "@/utils";
-import GameTitleInfo from "./GameTitleInfo";
+
 
 const GamesList = async ({
   searchParams,
@@ -31,16 +30,6 @@ const GamesList = async ({
     const currentPage = Number(page) || 1;
     return currentPage;
   }
-
-  // const currentCollection =
-  //   searchParams.platforms ||
-  //   searchParams.developers ||
-  //   searchParams.genres ||
-  //   searchParams.stores ||
-  //   searchParams.tags ||
-  //   searchParams.publishers ||
-  //   searchParams.platforms;
-  //console.log(currentCollection)
 
   return (
     <div className="h-fit">

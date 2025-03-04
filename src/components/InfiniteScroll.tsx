@@ -19,30 +19,31 @@ export default function InfiniteScroll({
   const [data, setdata] = useState(initialData);
   const [page, setPage] = useState<number>(2);
   const [hasMore, setHasMore] = useState<boolean | null>(true);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   console.log(hasMore);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   const fetchMoreData = useCallback(async () => {
-    if(!hasMore) return
-    setLoading(true)
+    if (!hasMore) return;
+    setLoading(true);
     try {
-      
-      const collectionRes = await fetchCollections(page, collectionTypeEndpoint);//server action
-      if(!collectionRes?.data){
-        setLoading(false)
+      const collectionRes = await fetchCollections(
+        page,
+        collectionTypeEndpoint
+      ); //server action
+      if (!collectionRes?.data) {
+        setLoading(false);
         //console.log('hjereeeeee')
-        return
+        return;
       }
       //console.log("new data", newData);
       //if (newData instanceof Array) {
-        setdata((prev) => [...prev, ...collectionRes?.data]); //we need the prev to now lose the old data, the previous loaded data
+      setdata((prev) => [...prev, ...collectionRes?.data]); //we need the prev to now lose the old data, the previous loaded data
       //}
       setPage((prev) => prev + 1);
       setHasMore(collectionRes.isNextPage); //collectionRes.data.length > 0
-      setLoading(false)
-      
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -65,24 +66,25 @@ export default function InfiniteScroll({
 
       return () => observer.disconnect();
     }
-
-    
   }, [hasMore, fetchMoreData]);
 
   return (
     <div className="w-full overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-
-      {data.length > 0 && data.map((item, index)=>(
-        <div key={item.id} className={`${index % 6 === 0 ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1'} animate-fadeIn`}>
-
-          <CollectionCard collectionData={item} collectionType={collectionTypeEndpoint}/>
-        </div>
-      ))}
+        {data.length > 0 &&
+          data.map((item, index) => (
+          
+              <CollectionCard
+                collectionData={item}
+                collectionType={collectionTypeEndpoint}
+                index={index}
+              />
+            
+          ))}
       </div>
       {loading && (
         <div className="w-full flex items-center justify-center p-0">
-            <LoadingCollectionSpinner />
+          <LoadingCollectionSpinner />
         </div>
       )}
       {hasMore && <div ref={observerRef} className="h-10 bg-transparent"></div>}
