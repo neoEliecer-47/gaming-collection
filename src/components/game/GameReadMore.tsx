@@ -1,85 +1,88 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const GameReadMore = ({
   description,
   title,
-  initialHeight = 7.5,
+  initialHeight = 30,
   dangerousHtml = true,
-  duration = 300,
-  maxLength = 132
 }: {
   description: string;
   title?: string;
   initialHeight: number;
   dangerousHtml?: boolean;
-  duration?: number,
-  maxLength?: number
 }) => {
-  const [hiddenText, setHiddenText] = useState<boolean>(true);
-  const [dynamicHeight, setDynamicHeight] = useState('70px')
+  const [hiddenText, setHiddenText] = useState(true);
+  const [dynamicHeight, setDynamicHeight] = useState(`${initialHeight}rem`);
+  const [maxLength, setMaxLength] = useState(380);
   const readMoreRef = useRef<HTMLDivElement>(null);
+  const previousWidth = useRef<number | null>(null);
 
-  
+  useEffect(() => {
+    const element = readMoreRef.current;
+    if (!element) return;
+
+    const observer = new ResizeObserver(([entry]) => {
+      const width = entry.contentRect.width;
+      if (previousWidth.current === width) return;
+      previousWidth.current = width;
+
+      setMaxLength(width < 400 ? 115 : width < 700 ? 250 : 380);
+    });
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  const truncatedText = description.slice(0, maxLength);
   const shouldTruncate = description.length > maxLength;
-  function buildText(){
-    const truncatedText = description.slice(0, maxLength);
-    const dots =shouldTruncate && hiddenText && "..."
-return (hiddenText ? truncatedText : description) + dots
-  }
 
-  useEffect(()=>{
-    setTimeout(()=>{
-      setDynamicHeight(hiddenText ? `70px` : `${readMoreRef.current?.scrollHeight}px`)
-    }, 0)
-  }, [hiddenText])
+  const textContent = useMemo(() => {
+    return hiddenText ? truncatedText + (shouldTruncate ? "..." : "") : description;
+  }, [hiddenText, description, maxLength]);
+
+  useEffect(() => {
+    if (readMoreRef.current) {
+      requestAnimationFrame(() => {
+        setDynamicHeight(
+          hiddenText ? `${initialHeight}rem` : `${readMoreRef.current!.scrollHeight}px`
+        );
+      });
+    }
+  }, [hiddenText, initialHeight]);
 
   return (
-    <div
-      className="w-full h-fit overflow-hidden mb-4 bg-blue-300 py-2 lg:px-8"
-      onClick={() => !hiddenText && setHiddenText(!hiddenText)}
-    >
-     
+    <div className="w-full px-4 lg:px-8">
       <div
         ref={readMoreRef}
-        className={`relative inline-flex justify-center text-white w-full bg-black transition-all duration-${duration} ease-in-out overflow-hidden`}
-        style={{
-          height: dynamicHeight
-           
-         
-        }}
+        className="relative bg-black/90 text-white p-2 rounded-lg overflow-hidden transition-all"
+        style={{ height: dynamicHeight, maxWidth: "100%", transition: "height 200ms ease" }}
       >
-        <div className="relative text-white w-full h-fit" dangerouslySetInnerHTML={{__html: buildText()}} >
-       
-         {/* {shouldTruncate && hiddenText && "..."}   */}
-        </div>
-        {hiddenText && (
-       
-          <button
-          onClick={() => setHiddenText(!hiddenText)}
-          className="text-blue-500 absolute right-0 bottom-0 text-xs bg-green-300 h-[30%] hover:text-blue-700 focus:outline-none whitespace-nowrap"
+        <div
+          className="w-full break-words text-white"
+          style={{ wordBreak: "break-word", whiteSpace: "normal" }}
         >
-          {hiddenText && "Read More"}
-        </button>
-        
+          {dangerousHtml ? (
+            <div dangerouslySetInnerHTML={{ __html: textContent }} />
+          ) : (
+            <div>{textContent}</div>
+          )}
+        </div>
 
-      )}
-      
-        {/* {dangerousHtml ? (
-          <div
-            className="text-white overflow-hidden"
-            dangerouslySetInnerHTML={{ __html: description }}
-          />
-        ) : (
-          <p className="text-white overflow-hidden">{description}</p>
-        )} */}
+        {shouldTruncate && (
+          <button
+            aria-expanded={!hiddenText}
+            onClick={(e) => {
+              e.stopPropagation();
+              setHiddenText(!hiddenText);
+            }}
+            className="absolute bottom-1 right-2 px-3 py-1 text-xs font-semibold text-white bg-purple-500 rounded-md hover:bg-purple-400 transition-all focus:outline-none"
+          >
+            {hiddenText ? "Read More" : "Show Less"}
+          </button>
+        )}
       </div>
-      
-        {/* <button className="absolute top-[10.2rem] right-2 text-white bg-green-500">
-          {hiddenText && "Read more"}
-        </button> */}
-      
     </div>
   );
 };

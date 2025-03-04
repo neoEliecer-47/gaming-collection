@@ -18,7 +18,7 @@ const GameVideoPreview = ({ videoData }: videoPreviewProps) => {
     const handleMouseDown = (event: MouseEvent) => {
       isDragging.current = true;
       startX.current = event.pageX - container.offsetLeft;
-      scrollLeft.current = container.scrollLeft
+      scrollLeft.current = container.scrollLeft;
     };
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -29,7 +29,7 @@ const GameVideoPreview = ({ videoData }: videoPreviewProps) => {
       container.scrollLeft = scrollLeft.current - walk;
     };
 
-    const handleMouseUp = () => isDragging.current = false
+    const handleMouseUp = () => (isDragging.current = false);
 
     container.addEventListener("mousedown", handleMouseDown);
     container.addEventListener("mousemove", handleMouseMove);

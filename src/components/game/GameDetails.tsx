@@ -61,7 +61,7 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
       </div>
 
       <div className="relative z-[2] w-full">
-        <GameAbout description={gameDetailsData.description} initialHeight={1} maxLength={300}/>
+        <GameAbout description={gameDetailsData.description} initialHeight={1}/>
       </div>
 
       <Suspense key={gameDetailsData.id} fallback={<p className="text-lg text-white bg-green-400 w-full h-[11rem]">loading...</p>}>
