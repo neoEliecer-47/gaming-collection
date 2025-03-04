@@ -53,7 +53,7 @@ const GameReadMore = ({
   }, [hiddenText, initialHeight]);
 
   return (
-    <div className="w-full px-4 lg:px-8">
+    <div className="max-w-[80rem] px-4 lg:px-8">
       <div
         ref={readMoreRef}
         className="relative bg-black/90 text-white p-2 rounded-lg overflow-hidden transition-all"

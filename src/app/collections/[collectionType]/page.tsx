@@ -1,4 +1,5 @@
 import CollectionCard from "@/components/card/CollectionCard";
+import Header from "@/components/Header";
 import InfiniteScroll from "@/components/InfiniteScroll";
 import { fetchGamesCollection } from "@/helpers";
 import { collectionProps, collectionType } from "@/types";
@@ -9,6 +10,8 @@ const page = async ({ params }: { params: { collectionType: collectionType }}) =
   const gamesCollectionInitialData = await fetchGamesCollection(params.collectionType);
 
   return (
+    <>
+    <Header />
     <div className="flex flex-col items-center justify-center">
       <h1 className="font-bold w-full flex justify-center items-center text-lg capitalize p-2">
         {params.collectionType}
@@ -26,6 +29,7 @@ const page = async ({ params }: { params: { collectionType: collectionType }}) =
         />
       )}
     </div>
+    </>
   );
 };
 

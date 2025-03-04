@@ -7,16 +7,14 @@ const CollectionCard = ({ collectionData, collectionType }: { collectionData: co
   //const currentPathname = usePathname()
   //const pathname = currentPathname.split('/')[1]
   return (
-    <div className="relative p-2 w-full h-[18rem] mb-2 overflow-hidden rounded-lg">
+    <div className="relative p-2 w-full h-full mb-2 overflow-hidden rounded-lg">
       <div className="absolute inset-0 m-2 rounded-lg">
         <Image
           src={collectionData.image_background}
           alt={collectionData.slug}
-          width={100}
-          height={100}
-          objectFit="cover"
-          quality={60}
-          className="w-full h-full aspect-video z-[-1] rounded-lg"
+          fill
+          quality={100}
+          className="w-full h-full aspect-video z-[-1] rounded-lg object-fill"
           loading="eager"
         />
       </div>

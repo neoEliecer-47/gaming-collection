@@ -60,9 +60,6 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
         </h1>
       </div>
 
-      <div className="relative z-[2] w-full">
-        <GameAbout description={gameDetailsData.description} initialHeight={1}/>
-      </div>
 
       <Suspense key={gameDetailsData.id} fallback={<p className="text-lg text-white bg-green-400 w-full h-[11rem]">loading...</p>}>
         <MultimediaGameContent
@@ -70,6 +67,9 @@ const GameDetails = async ({ gameDetailsData }: gameDetailsProps) => {
         />
       </Suspense>
 
+      <div className="relative flex justify-center items-center z-[2] w-full">
+        <GameAbout description={gameDetailsData.description} initialHeight={5}/>
+      </div>
      
 
         <div className="p-0 m-0 lg:flex">

@@ -71,9 +71,15 @@ export default function InfiniteScroll({
 
   return (
     <div className="w-full overflow-hidden">
-      {data.length > 0 && data.map((item)=>(
-        <CollectionCard collectionData={item} collectionType={collectionTypeEndpoint}/>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+      {data.length > 0 && data.map((item, index)=>(
+        <div key={item.id} className={`${index % 6 === 0 ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1'} animate-fadeIn`}>
+
+          <CollectionCard collectionData={item} collectionType={collectionTypeEndpoint}/>
+        </div>
       ))}
+      </div>
       {loading && (
         <div className="w-full flex items-center justify-center p-0">
             <LoadingCollectionSpinner />

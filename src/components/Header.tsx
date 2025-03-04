@@ -13,8 +13,8 @@ const Header = async ({ fixed = true }: { fixed?: boolean }) => {
   //console.log('HEADER FATA',data)
   return (
    
-      <div className={`${fixed ? 'fixed' : 'block'} z-[100] relative flex w-full h-8`}>
-        <header className="flex justify-center lg:justify-between items-center backdrop-blur-[8px] gap-4 p-8 w-[90%] md:w-full h-8 bg-black/50 clip-path-inset-0 border-none">
+      <div className={`${fixed ? 'fixed' : 'relative'} z-[100] flex w-full h-8`}>
+        <header className="flex justify-center lg:justify-between items-center backdrop-blur-[5px] gap-4 p-8 w-[90%] md:w-full h-8 bg-black/50 clip-path-inset-0 border-none">
           <Link
             href="/"
             className=" bg-white/60 p-[0.10rem] shrink-0 h-8 w-8 rounded-md color-black text-sm"
