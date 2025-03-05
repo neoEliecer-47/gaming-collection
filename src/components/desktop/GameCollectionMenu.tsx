@@ -22,7 +22,7 @@ const GameCollectionMenu = ({
   data,
   viewAllCollections = true,
 }: GameCollectionMenuProps) => {
-  const [showAll, setShowAll] = useState<boolean>(false);
+  const [showAll, setShowAll] = useState<boolean>(true);
   
   
   function buildUrl(game: GameCollectionMenuProps['data'][0]) {
