@@ -3,12 +3,15 @@ import Header from "@/components/Header";
 import InfiniteScroll from "@/components/InfiniteScroll";
 import { fetchGamesCollection } from "@/helpers";
 import { collectionProps, collectionType } from "@/types";
+import { notFound } from "next/navigation";
 
 //const NO_PAGES_COLLECTIONS = ['genres', 'stores']
 
 const page = async ({ params }: { params: { collectionType: collectionType }}) => {
   const gamesCollectionInitialData = await fetchGamesCollection(params.collectionType);
-
+  if(!gamesCollectionInitialData){
+    notFound()
+  }
   return (
     <>
     <Header />
@@ -17,9 +20,9 @@ const page = async ({ params }: { params: { collectionType: collectionType }}) =
         {params.collectionType}
       </h1>
       {params.collectionType === 'genres' || params.collectionType ==='stores' ? (
-        <div className="flex flex-wrap justify-center gap-4">
-          {gamesCollectionInitialData.results.map((item: collectionProps) => (
-            <CollectionCard collectionData={item} collectionType={params.collectionType}/>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-4">
+          {gamesCollectionInitialData.results.map((item: collectionProps, index: number ) => (
+            <CollectionCard collectionData={item} collectionType={params.collectionType} index={index}/>
           ))}
         </div>
       ): (

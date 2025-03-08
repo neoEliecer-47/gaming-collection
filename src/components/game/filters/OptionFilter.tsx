@@ -43,25 +43,26 @@ const OptionFilter = ({
   const submenuRef = useRef<HTMLLIElement | null>(null);
 
   //console.log('component mounted')
-  const handleFilterChange = useCallback(
-    (key: string, value: number | string) => {
-      //console.log("value: ", value);
-      setOptionFilter(value);
+  const [selectedFilter, setSelectedFilter] = useState<string | number | "">("");
 
-      const params = new URLSearchParams(searchParams);
+const handleFilterChange = useCallback(
+  (key: string, value: number | string) => {
+    setSelectedFilter(value); // UI updates instantly
 
-      if (optionFilter === value) {
-        params.delete(key);
-        setOptionFilter("");
-      } else {
-        setOptionFilter(value);
-        params.set(key, value.toString());
-      }
+    const params = new URLSearchParams(searchParams);
 
-      router.push(`?${params.toString()}`, { scroll: false });
-    },
-    [searchParams, router]
-  );
+    if (selectedFilter === value) {
+      params.delete(key);
+      setSelectedFilter("");
+    } else {
+      setSelectedFilter(value);
+      params.set(key, value.toString());
+    }
+
+    router.push(`?${params.toString()}`, { scroll: false });
+  },
+  [searchParams, router, selectedFilter]
+);
 
   const toggleSubmenus = useCallback((platformName: string) => {
     console.log("plat", platformName);

@@ -3,8 +3,7 @@ import { games } from "@/types";
 import GamesCard from "./card/GamesCard";
 import Pagination from "./Pagination";
 import { notFound } from "next/navigation";
-import { buildGamesCurrentTitle } from "@/utils";
-import GameTitleInfo from "./GameTitleInfo";
+
 
 const GamesList = async ({
   searchParams,
@@ -32,16 +31,6 @@ const GamesList = async ({
     return currentPage;
   }
 
-  // const currentCollection =
-  //   searchParams.platforms ||
-  //   searchParams.developers ||
-  //   searchParams.genres ||
-  //   searchParams.stores ||
-  //   searchParams.tags ||
-  //   searchParams.publishers ||
-  //   searchParams.platforms;
-  //console.log(currentCollection)
-
   return (
     <div className="h-fit">
       {/* {currentCollection && (
@@ -53,7 +42,7 @@ const GamesList = async ({
       <div className="md:max-h-[100vh] h-full pb-[4rem]">
         <div
           className="grid place-items-center grid-cols-1 md:gap-4 w-fit h-full overflow-y-scroll md:grid-cols-2 lg:grid-cols-3 px-4 m-auto py-8 bg-black/10  rounded-tr-2xl rounded-tl-2xl"
-          style={{ boxShadow: "0 -1px 10px 1px #000" }}
+          style={{ boxShadow: "0 -1px 10px 1px #000", scrollbarWidth: 'none' }}
         >
           {gamesData.results.map((game: games) => (
             <GamesCard gamesData={game} />

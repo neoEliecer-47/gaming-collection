@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import DOMpurify from 'dompurify'
 
 const GameReadMore = ({
   description,
@@ -38,9 +39,10 @@ const GameReadMore = ({
   const truncatedText = description.slice(0, maxLength);
   const shouldTruncate = description.length > maxLength;
 
-  const textContent = useMemo(() => {
-    return hiddenText ? truncatedText + (shouldTruncate ? "..." : "") : description;
-  }, [hiddenText, description, maxLength]);
+  const textContent = hiddenText ? truncatedText + (shouldTruncate ? "..." : "") : description;
+ 
+
+  const sinitizedHtml = useMemo(()=> DOMpurify.sanitize(textContent), [textContent])
 
   useEffect(() => {
     if (readMoreRef.current) {
@@ -64,7 +66,7 @@ const GameReadMore = ({
           style={{ wordBreak: "break-word", whiteSpace: "normal" }}
         >
           {dangerousHtml ? (
-            <div dangerouslySetInnerHTML={{ __html: textContent }} />
+            <div dangerouslySetInnerHTML={{ __html: sinitizedHtml }} />
           ) : (
             <div>{textContent}</div>
           )}

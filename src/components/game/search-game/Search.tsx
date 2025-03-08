@@ -98,7 +98,7 @@ const Search = () => {
       </button>
 
       <div
-        className={`fixed z-[999] top-7 p-4 transition-opacity duration-[250ms] left-[1.3rem] m-auto md:max-w-[50rem] mt-10 h-[30rem] rounded-md w-[90vw]
+        className={`fixed z-[999] top-7 p-4 md:inset-0 md:mt-14 transition-opacity duration-[250ms] left-[1.3rem] m-auto md:max-w-[50rem] mt-10 h-[30rem] rounded-md w-[90vw]
         ${gamesListOpen ? " opacity-100 backdrop-blur-lg overflow-hidden bg-black/80" : "opacity-0 hidden"} ${
           isFading ? "animate-fadeOut" : "animate-fadeIn"
         }`}
@@ -108,11 +108,13 @@ const Search = () => {
         <div className="flex gap-2"><h1 className="font-bold text-white m-0 p-0">Games Related</h1> {loading ? <div className="flex items-center justify-center"><LoadingSpinner /></div> : gamesSearchedAmount}</div>
         {!loading && <button onClick={handleCloseGamesList} className="bg-green-600 rounded-full"><Delete /></button>}
         </section>
+       
         <GamesSearchedList
           loading={loading}
           games={gamesSearchedData}
           onClose={handleCloseGamesList}
         />
+        
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
-import MenuGameCollections from "@/components/desktop/MenuGameCollections";
-import Filters from "@/components/game/filters/Filters";
-import GamesList from "@/components/GamesList";
-import GameTitleInfo from "@/components/GameTitleInfo";
-import Header from "@/components/Header";
-
+import React from 'react'
 import { Suspense } from "react";
+import Header from '../components/Header';
+import MenuGameCollections from '../components/desktop/MenuGameCollections';
+import GameTitleInfo from '../components/GameTitleInfo';
+import Filters from '../components/game/filters/Filters';
+import GamesList from '../components/GamesList';
 
 export default function Home({
   searchParams,
@@ -14,24 +14,21 @@ export default function Home({
   //  const params = await searchParams;
   //console.log('homeeeeeeeeeeee',JSON.stringify(searchParams))
   return (
-    
     <main className="bg-black/20 px-2">
       <Header />
       <section className="p-0 m-0 flex">
-        <div className="min-w-[20rem] hidden md:block bg-black/50 max-h-[100vh] overflow-y-auto mt-16">
+        <div className="min-w-[20rem] hidden md:block bg-black/50 h-screen overflow-y-auto mt-16">
           <MenuGameCollections />
-         
-       
         </div>
 
         <div className="p-0 pt-2 m-0 md:flex-1 md:overflow-y-auto">
-      <Suspense
-        key={JSON.stringify(searchParams.platforms)}
-        fallback={<p>Loading...</p>}
-      >
-        <GameTitleInfo searchParams={searchParams} />
-      </Suspense>
-        <Filters />
+          <Suspense
+            key={JSON.stringify(searchParams.platforms)}
+            fallback={<p>Loading...</p>}
+          >
+            <GameTitleInfo searchParams={searchParams} />
+          </Suspense>
+          <Filters />
           <Suspense
             key={JSON.stringify(searchParams)}
             fallback={<p>Loading...</p>}
