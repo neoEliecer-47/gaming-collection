@@ -1,10 +1,10 @@
-import MenuGameCollections from "@/components/desktop/MenuGameCollections";
-import Filters from "@/components/game/filters/Filters";
-import GamesList from "@/components/GamesList";
-import GameTitleInfo from "@/components/GameTitleInfo";
-import Header from "@/components/Header";
-
+import React from 'react'
 import { Suspense } from "react";
+import Header from '../components/Header';
+import MenuGameCollections from '../components/desktop/MenuGameCollections';
+import GameTitleInfo from '../components/GameTitleInfo';
+import Filters from '../components/game/filters/Filters';
+import GamesList from '../components/GamesList';
 
 export default function Home({
   searchParams,

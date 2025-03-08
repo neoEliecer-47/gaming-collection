@@ -1,6 +1,10 @@
-import { fetchPlatforms } from "@/helpers";
+import React from 'react'
+import { genresData, storesData } from "../constants";
+import { fetchPlatforms } from "../helpers";
 import GameReadMore from "./game/GameReadMore";
-import { genresData, storesData } from "@/constants";
+import ReadMoreDescription from 'read-more-descriptions';
+
+
 
 
 type dataProps = {
@@ -94,7 +98,7 @@ const GameTitleInfo = async ({
       {data?.description || searchParams.genres ? ( //if there is a platform in searchParams, show the description
         <>
           <TitleGame />
-          <GameReadMore
+           <ReadMoreDescription 
             description={
               searchParams.genres
                 ? genresData.filter(
@@ -102,10 +106,9 @@ const GameTitleInfo = async ({
                   )[0].description
                 : data.description
             }
-            title={data.name}
             initialHeight={5}
-            duration={300}
-          />
+            
+          /> 
         </>
       ) : (
         <TitleGame />
