@@ -3,6 +3,7 @@ import { games } from "@/types";
 import GamesCard from "./card/GamesCard";
 import Pagination from "./Pagination";
 import { notFound } from "next/navigation";
+import GameDetails from "./game/GameDetails";
 
 
 const GamesList = async ({
@@ -15,10 +16,11 @@ const GamesList = async ({
   console.log(searchParams);
   const gamesData = !searchParams.top_games && !searchParams.greatest_2025 ? await fetchGames(searchParams) : await fetchTopGames(searchParams)
 
-  if (!gamesData) {
+  if (!gamesData || !gamesData.results || gamesData.results?.length === 0) {
     notFound();
   }
   function buildTotalPages() {
+    if(!gamesData.count || !gamesData) return 1
     const totalPages = Math.ceil(gamesData.count / 20);
     return totalPages;
   }
@@ -31,6 +33,9 @@ const GamesList = async ({
     return currentPage;
   }
 
+
+  if(buildCurrentPage() > buildTotalPages()) return notFound()//in case searchParams.page is greater than totalPages
+
   return (
     <div className="h-fit">
       {/* {currentCollection && (
@@ -41,11 +46,11 @@ const GamesList = async ({
 
       <div className="md:max-h-[100vh] h-full pb-[4rem]">
         <div
-          className="grid place-items-center grid-cols-1 md:gap-4 w-fit h-full overflow-y-scroll md:grid-cols-2 lg:grid-cols-3 px-4 m-auto py-8 bg-black/10  rounded-tr-2xl rounded-tl-2xl"
+          className="grid place-items-center grid-cols-1 md:gap-4 w-fit h-full overflow-y-auto md:grid-cols-2 lg:grid-cols-3 px-4 m-auto py-8 bg-black/10  rounded-tr-2xl rounded-tl-2xl"
           style={{ boxShadow: "0 -1px 10px 1px #000", scrollbarWidth: 'none' }}
         >
           {gamesData.results.map((game: games) => (
-            <GamesCard gamesData={game} />
+            <GamesCard gamesData={game} key={game.id}/>
           ))}
         </div>
       <Pagination
