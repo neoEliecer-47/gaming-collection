@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { collectionProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -80,4 +81,4 @@ const CollectionCard = ({ collectionData, collectionType, index }: { collectionD
   );
 };
 
-export default CollectionCard;
+export default React.memo(CollectionCard);

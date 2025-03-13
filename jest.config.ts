@@ -1,12 +1,17 @@
-import type { JestConfigWithTsJest } from "ts-jest";
+const nextJest = require("next/jest");
 
-const config: JestConfigWithTsJest = {
-  testEnvironment: "jsdom", // Ensures Jest runs in a browser-like environment
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"], // Setup file for mocks
+const createJestConfig = nextJest({ dir: "./" });
+
+const customJestConfig = {
+  testEnvironment: "jsdom",
   transform: {
-    "^.+\\.(t|j)sx?$": "ts-jest", // Use ts-jest for transforming TypeScript files
+    "^.+\\.(ts|tsx|js|jsx)$": ["@swc/jest"],
   },
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1", // Adjust if needed
+  },
+  setupFilesAfterEnv: ["./jest.setup.ts"],
 };
 
-export default config;
+module.exports = createJestConfig(customJestConfig);
 

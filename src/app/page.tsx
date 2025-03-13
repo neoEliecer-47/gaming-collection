@@ -6,7 +6,7 @@ import GameTitleInfo from '../components/GameTitleInfo';
 import Filters from '../components/game/filters/Filters';
 import GamesList from '../components/GamesList';
 
-export default function Home({
+export default async function Home({
   searchParams,
 }: {
   searchParams: Record<string, string>;
