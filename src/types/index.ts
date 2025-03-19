@@ -159,7 +159,7 @@ export interface collectionProps {
   name: string;
   slug: string;
   image_background: string;
-  games_count: number;
+  games_count?: number;
   games: Array<{
     id: number;
     name: string;

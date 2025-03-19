@@ -73,13 +73,12 @@ export default function InfiniteScroll({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data.length > 0 &&
           data.map((item, index) => (
-          
-              <CollectionCard
-                collectionData={item}
-                collectionType={collectionTypeEndpoint}
-                index={index}
-              />
-            
+            <CollectionCard
+              key={item.id}
+              collectionData={item}
+              collectionType={collectionTypeEndpoint}
+              index={index}
+            />
           ))}
       </div>
       {loading && (
@@ -87,7 +86,13 @@ export default function InfiniteScroll({
           <LoadingCollectionSpinner />
         </div>
       )}
-      {hasMore && <div ref={observerRef} className="h-10 bg-transparent"></div>}
+      {hasMore && (
+        <div
+          ref={observerRef}
+          data-testid="observer-div"
+          className="h-10 bg-transparent"
+        ></div>
+      )}
     </div>
   );
 }
