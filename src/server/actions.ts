@@ -1,5 +1,11 @@
 "use server";
 
+import { cookies } from 'next/headers'
+import jwt from 'jsonwebtoken'
+
+const SECRET = process.env.JWT_SECRET || 'secret_key'
+
+
 export async function fetchCollections(page: number, collectionType: string) {
   try {
     const res = await fetch(
@@ -42,4 +48,36 @@ export async function fetchGamesByQuery(query: string) {
       return { success: false, error: error.message };
     }
   }
+}
+
+
+export async function login(username: string, password: string) {
+if(username !== "testuser" || password !== '123'){
+  return { error: 'invalid credentials' }
+}
+
+//generate JWT
+const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' })
+cookies().set('token', token, { httpOnly: true, secure: true, path: '/' })
+
+return { seccess: true }
+}
+
+
+export async function veryfyUser(){
+  const token = cookies().get('token')?.value
+
+  if(!token){
+    return { error: 'no token provided' }
+  }
+
+  try {
+    const decoded = jwt.verify(token, SECRET);
+    return {  success: true, username: decoded }
+  } catch (error) {
+    console.log('here error middlewareee')
+    console.log(error)
+      return { error: 'invalid token' }
+  }
+
 }

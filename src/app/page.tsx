@@ -19,6 +19,7 @@ export default async function Home({
       <section className="p-0 m-0 flex">
         <div className="min-w-[20rem] hidden md:block bg-black/50 h-screen overflow-y-auto mt-16">
           <MenuGameCollections />
+          
         </div>
 
         <div className="p-0 pt-2 m-0 md:flex-1 md:overflow-y-auto">

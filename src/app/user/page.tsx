@@ -2,10 +2,15 @@
 import Header from "@/components/Header";
 import User from "@/components/icons/User";
 import GamesCategories from "@/components/user/GamesCategories";
+import { veryfyUser } from "@/server/actions";
 
 
 const page = async ({ searchParams }: { searchParams: { query: string } }) => {
-  console.log('useeeeerrrrrrr',searchParams)
+  const auth = await veryfyUser()
+
+  if(auth.error){
+    return <p>Unautorized. Please logIn first</p>
+  }
 
   return (
     <div className="py-1 m-0 min-h-screen bg-gray-500 w-full">
