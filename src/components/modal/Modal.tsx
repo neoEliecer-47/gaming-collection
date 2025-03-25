@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 import Menu from "../icons/Menu";
-import ModalContent from "./ModalContent";
+import dynamic from "next/dynamic";
+
+const ModalContent = dynamic(() => import('./ModalContent'), {
+  ssr: false
+});
 
 const Modal = () => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
@@ -14,7 +18,7 @@ const Modal = () => {
         </button>
      
 
-      <ModalContent isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
+      { isOpenModal && <ModalContent isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} /> }
     </div>
   );
 };

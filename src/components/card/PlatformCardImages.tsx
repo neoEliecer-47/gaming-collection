@@ -1,6 +1,6 @@
 'use client'
 
-import { platformsImages } from "@/constants";
+import { platformsImages } from "../../constants/index";
 import { PlatformCardImagesProps } from "@/types";
 import Image, { StaticImageData } from "next/image";
 

@@ -6,7 +6,7 @@ import { Suspense } from "react"
 export const dynamic = 'auto'; //it allows new game pages to be generated
 
 export async function generateStaticParams() {
-  const res = await fetch(`https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&page=1`)
+  const res = await fetch(`https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_API_KEY}&page=1`)//SSG
   const data = await res.json()
   //console.log('staticParams',data)
   return data.results.map((game: any)=>({
