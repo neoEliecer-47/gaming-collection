@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const SECRET = process.env.JWT_SECRET || "secret_key";
+//const SECRET = process.env.JWT_SECRET || "secret_key";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   //const ip = request.ip || request.headers.get('x-forwarded-for');
 
   if (pathname.startsWith("/collections")) {
-    const country = request.geo?.country;
+    const country = request.geo?.country || 'MT';
     console.log("country", country);
     if (country === "MT") {
       return NextResponse.json(

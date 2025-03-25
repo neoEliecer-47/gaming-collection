@@ -53,7 +53,7 @@ const Pagination = ({
   }, [currentPage, totalPages]); //to recalculate pages whenever this changes
 
   return (
-    <div className="flex items-center justify-center gap-2 overflow-auto w-full pb-4">
+    <div className="flex bg-green-500 p-2 md:p-[0.8rem] rounded-bl-md rounded-br-md md:mb-12 items-center justify-center gap-2 md:w-[95%] mx-auto">
       <button
         disabled={currentPage === 1}
         className={`mr-3 ${currentPage === 1 && "text-gray-500/35"}`}
