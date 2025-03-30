@@ -2,8 +2,27 @@
 
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
+import z from 'zod'
 
 const SECRET = process.env.JWT_SECRET || 'secret_key'
+
+const testUser = {
+  username: 'testuser',
+  password: '123',
+  id: 1
+}
+
+const userSchema = z.object({
+  username: z.string(),
+  password: z.string().min(8, {message: 'Password must be at least 8 characters long.' }),
+  email: z.string().email({ message: 'Invalid email address.' }).trim(),
+  id: z.number()
+})
+
+
+export async function loginUser(prevState: any, formData: FormData){
+
+}
 
 
 export async function fetchCollections(page: number, collectionType: string) {
