@@ -8,12 +8,12 @@ export async function middleware(request: NextRequest) {
   //console.log('collection',pathname)
   //const ip = request.ip || request.headers.get('x-forwarded-for');
 
-  const country = process.env.VERCEL_ENV === 'production'//this is for vercel production and NEXT15
-    ? request.headers.get('x-vercel-ip-country') // Vercel production
-    : 'MT'; // Mock value (e.g., 'US', 'GB', etc.)
+  const country =
+    process.env.VERCEL_ENV === "production" //this is for vercel production and NEXT15
+      ? request.headers.get("x-vercel-ip-country") // Vercel production
+      : "MT"; // Mock value (e.g., 'US', 'GB', etc.)
 
   if (pathname.startsWith("/collections")) {
-   
     console.log("country", country);
     if (country === "MT") {
       return NextResponse.json(
@@ -26,19 +26,30 @@ export async function middleware(request: NextRequest) {
   if (pathname.startsWith("/user")) {
     //console.log(token)
     if (!session) {
-        console.log('here middlewareee')
-        return NextResponse.redirect(new URL("/login", request.url)); //redirect to home if user is not authenticated
+      console.log("here middlewareee");
+      return NextResponse.redirect(new URL("/login", request.url)); //redirect to home if user is not authenticated
     }
 
     return NextResponse.next();
-  
   }
 
+  if (pathname.startsWith("/login")) {
+    //console.log(token)
+    if (session) {
+      
+      return NextResponse.redirect(new URL("/user", request.url)); //redirect to home if user is not authenticated
+    }
+
+    return NextResponse.next();
+  }
+  
 }
 
+
+
 export const config = {
-    matcher: ["/collections/:path*", "/user"],
-    //runtime: 'nodejs',//forces nodejs runtime
+  matcher: ["/collections/:path*", "/user", "/login"],
+  //runtime: 'nodejs',//forces nodejs runtime
 };
 
 // let country = 'US'; // Default fallback

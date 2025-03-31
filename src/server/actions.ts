@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
 import z from 'zod'
-import { createSession } from './sessions';
+import { createSession, deleteSession } from './sessions';
 import { redirect } from 'next/navigation';
 
 const SECRET = process.env.JWT_SECRET || 'secret_key'
@@ -41,6 +41,10 @@ export async function loginUser(prevState: any, formData: FormData){
   await createSession(testUser.id.toString())
 
   redirect('/user')
+}
+
+export async function logoutUser(){
+  await deleteSession()
 }
 
 
