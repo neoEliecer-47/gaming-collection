@@ -4,12 +4,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const token = request.cookies.get("token")?.value;
+  const session = request.cookies.get("session")?.value;
   //console.log('collection',pathname)
   //const ip = request.ip || request.headers.get('x-forwarded-for');
 
+  const country = process.env.VERCEL_ENV === 'production'//this is for vercel production and NEXT15
+    ? request.headers.get('x-vercel-ip-country') // Vercel production
+    : 'MT'; // Mock value (e.g., 'US', 'GB', etc.)
+
   if (pathname.startsWith("/collections")) {
-    const country = request.geo?.country || 'MT';
+   
     console.log("country", country);
     if (country === "MT") {
       return NextResponse.json(
@@ -20,10 +24,10 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith("/user")) {
-    console.log(token)
-    if (!token) {
+    //console.log(token)
+    if (!session) {
         console.log('here middlewareee')
-        return NextResponse.redirect(new URL("/", request.url)); //redirect to home if user is not authenticated
+        return NextResponse.redirect(new URL("/login", request.url)); //redirect to home if user is not authenticated
     }
 
     return NextResponse.next();
