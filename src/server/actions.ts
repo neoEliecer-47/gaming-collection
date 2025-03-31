@@ -3,25 +3,44 @@
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
 import z from 'zod'
+import { createSession } from './sessions';
+import { redirect } from 'next/navigation';
 
 const SECRET = process.env.JWT_SECRET || 'secret_key'
 
 const testUser = {
-  username: 'testuser',
-  password: '123',
-  id: 1
+  
+  id: "1",
+  email: 'eliecer.sanchez47@gmail.com',
+  password: '12345678',
 }
 
 const userSchema = z.object({
-  username: z.string(),
-  password: z.string().min(8, {message: 'Password must be at least 8 characters long.' }),
+  
   email: z.string().email({ message: 'Invalid email address.' }).trim(),
-  id: z.number()
+  password: z.string().min(8, {message: 'Password must be at least 8 characters long.' }),
+  
 })
 
 
 export async function loginUser(prevState: any, formData: FormData){
+  console.log(formData)
+  const rawData = Object.fromEntries(formData.entries());
+  console.log('rawdata', rawData)
+  const result = userSchema.safeParse(rawData)
+  console.log('result: ',result)
+  if(!result.success){
+    console.log('here at actions')
+    return { errors: result.error.flatten().fieldErrors }
+  }
+  const { password, email } = result.data
+  if(email !== testUser.email || password !== testUser.password){
+    return { errors: { email: ['invalid email'], password: ['error password'] } }
+  }
+  console.log('HEREEEEEEEEEEEEEEEEEEE')
+  await createSession(testUser.id.toString())
 
+  redirect('/user')
 }
 
 
@@ -77,14 +96,14 @@ if(username !== "testuser" || password !== '123'){
 
 //generate JWT
 const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' })
-cookies().set('token', token, { httpOnly: true, secure: true, path: '/' })
+;(await cookies()).set('token', token, { httpOnly: true, secure: true, path: '/' })
 
 return { seccess: true }
 }
 
 
 export async function veryfyUser(){
-  const token = cookies().get('token')?.value
+  const token = (await cookies()).get('token')?.value
 
   if(!token){
     return { error: 'no token provided' }
