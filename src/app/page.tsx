@@ -5,14 +5,15 @@ import MenuGameCollections from '../components/desktop/MenuGameCollections';
 import GameTitleInfo from '../components/GameTitleInfo';
 import Filters from '../components/game/filters/Filters';
 import GamesList from '../components/GamesList';
+import { veryfyUser } from '@/server/actions';
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: Record<string, string>;
 }) {
-  //  const params = await searchParams;
-  //console.log('homeeeeeeeeeeee',JSON.stringify(searchParams))
+  const auth = await veryfyUser()
+  //console.log('HOMEEEEEEEEEEEEEEEEEEEEEEEEEEE',auth)
   return (
     <main className="bg-black/20 px-2">
       <Header />

@@ -9,6 +9,7 @@ const GamesList = async ({
 }: {
   searchParams: Record<string, string>;
 }) => {
+
   const gamesData =
     !searchParams.top_games && !searchParams.greatest_2025
       ? await fetchGames(searchParams)

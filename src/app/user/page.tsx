@@ -6,11 +6,11 @@ import { veryfyUser } from "@/server/actions";
 
 
 const page = async ({ searchParams }: { searchParams: { query: string } }) => {
-  const auth = await veryfyUser()
+  // const auth = await veryfyUser()
 
-  if(auth.error){
-    return <p>Unautorized. Please logIn first</p>
-  }
+  // if(auth.error){
+  //   return <p>Unautorized. Please logIn first</p>
+  // }
 
   return (
     <div className="py-1 m-0 min-h-screen bg-gray-500 w-full">
