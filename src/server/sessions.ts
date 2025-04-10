@@ -33,3 +33,14 @@ export async function encrypt(payload: SessionPayload) {
     .setExpirationTime("2h")
     .sign(encondedKey);
 }
+
+export async function decrypt(session: string | undefined = "") {
+  try {
+    const { payload } = await jwtVerify(session, encondedKey, {
+      algorithms: ["HS256"],
+    });
+    return payload;
+  } catch (error) {
+    console.log("Failed to verify session");
+  }
+}

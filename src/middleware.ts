@@ -13,6 +13,7 @@ export async function middleware(request: NextRequest) {
       ? request.headers.get("x-vercel-ip-country") // Vercel production
       : "MT"; // Mock value (e.g., 'US', 'GB', etc.)
 
+     
   if (pathname.startsWith("/collections")) {
     console.log("country", country);
     if (country === "MT") {

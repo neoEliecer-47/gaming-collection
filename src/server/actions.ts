@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
 import z from 'zod'
-import { createSession, deleteSession } from './sessions';
+import { createSession, decrypt, deleteSession } from './sessions';
 import { redirect } from 'next/navigation';
 
 const SECRET = process.env.JWT_SECRET || 'secret_key'
@@ -24,13 +24,13 @@ const userSchema = z.object({
 
 
 export async function loginUser(prevState: any, formData: FormData){
-  console.log(formData)
+  //console.log(formData)
   const rawData = Object.fromEntries(formData.entries());
-  console.log('rawdata', rawData)
+  //console.log('rawdata', rawData)
   const result = userSchema.safeParse(rawData)
-  console.log('result: ',result)
+  //console.log('result: ',result)
   if(!result.success){
-    console.log('here at actions')
+    //console.log('here at actions')
     return { errors: result.error.flatten().fieldErrors }
   }
   const { password, email } = result.data
@@ -45,6 +45,7 @@ export async function loginUser(prevState: any, formData: FormData){
 
 export async function logoutUser(){
   await deleteSession()
+  redirect("/login");
 }
 
 
@@ -107,14 +108,18 @@ return { seccess: true }
 
 
 export async function veryfyUser(){
-  const token = (await cookies()).get('token')?.value
+  const session = (await cookies()).get('session')?.value
 
-  if(!token){
-    return { error: 'no token provided' }
+  if(!session){
+    return { error: 'no user logged in' }
   }
 
   try {
-    const decoded = jwt.verify(token, SECRET);
+    const decoded = decrypt(session)
+    if(!decoded){
+      return { error: 'invalid token' }
+    }
+    console.log('decoded', decoded)
     return {  success: true, username: decoded }
   } catch (error) {
     console.log('here error middlewareee')

@@ -1,7 +1,6 @@
 import React from 'react'
 import { genresData, storesData } from "../constants";
 import { fetchPlatforms } from "../helpers";
-import GameReadMore from "./game/GameReadMore";
 import ReadMoreDescription from 'read-more-descriptions';
 
 
@@ -19,7 +18,7 @@ const GameTitleInfo = async ({
   searchParams: Record<string, string>;
 }) => {
   const data = await fetchPlatforms(searchParams.platforms);
-  console.log(searchParams);
+  //console.log(searchParams);
   function buildCollectionTitle() {
     const key = Object.keys(searchParams).find(
       (key) =>
