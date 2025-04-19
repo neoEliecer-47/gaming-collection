@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-
+export { reportWebVitals } from './web-vitals'
 import { Providers } from "./providers";
 
 

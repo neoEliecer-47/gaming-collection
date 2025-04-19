@@ -17,6 +17,7 @@
     "classnames": "^2.5.1",
     "dompurify": "^3.2.4",
     "jest-environment-jsdom": "^29.7.0",
+    "jose": "^6.0.10",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.23",
     "next-auth": "^4.24.11",
@@ -24,7 +25,9 @@
     "react-dom": "19.0.0",
     "react-redux": "^9.2.0",
     "read-more-descriptions": "^1.0.4",
-    "use-debounce": "^10.0.4"
+    "use-debounce": "^10.0.4",
+    "web-vitals": "^4.2.4",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@swc/core": "^1.11.7",

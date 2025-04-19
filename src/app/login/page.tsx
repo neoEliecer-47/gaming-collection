@@ -1,8 +1,13 @@
+import LoginForm from "@/components/auth/LoginForm"
+import Header from "@/components/Header"
 
 
 const page = () => {
   return (
-    <div>page</div>
+    <>
+    <Header />
+    <LoginForm />
+    </>
   )
 }
 

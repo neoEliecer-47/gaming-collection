@@ -2,8 +2,51 @@
 
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
+import z from 'zod'
+import { createSession, decrypt, deleteSession } from './sessions';
+import { redirect } from 'next/navigation';
 
 const SECRET = process.env.JWT_SECRET || 'secret_key'
+
+const testUser = {
+  
+  id: "1",
+  email: 'eliecer.sanchez47@gmail.com',
+  password: '12345678',
+}
+
+const userSchema = z.object({
+  
+  email: z.string().email({ message: 'Invalid email address.' }).trim(),
+  password: z.string().min(8, {message: 'Password must be at least 8 characters long.' }),
+  
+})
+
+
+export async function loginUser(prevState: any, formData: FormData){
+  //console.log(formData)
+  const rawData = Object.fromEntries(formData.entries());
+  //console.log('rawdata', rawData)
+  const result = userSchema.safeParse(rawData)
+  //console.log('result: ',result)
+  if(!result.success){
+    //console.log('here at actions')
+    return { errors: result.error.flatten().fieldErrors }
+  }
+  const { password, email } = result.data
+  if(email !== testUser.email || password !== testUser.password){
+    return { errors: { email: ['invalid email'], password: ['error password'] } }
+  }
+  console.log('HEREEEEEEEEEEEEEEEEEEE')
+  await createSession(testUser.id.toString())
+
+  redirect('/user')
+}
+
+export async function logoutUser(){
+  await deleteSession()
+  redirect("/login");
+}
 
 
 export async function fetchCollections(page: number, collectionType: string) {
@@ -58,21 +101,25 @@ if(username !== "testuser" || password !== '123'){
 
 //generate JWT
 const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' })
-cookies().set('token', token, { httpOnly: true, secure: true, path: '/' })
+;(await cookies()).set('token', token, { httpOnly: true, secure: true, path: '/' })
 
 return { seccess: true }
 }
 
 
 export async function veryfyUser(){
-  const token = cookies().get('token')?.value
+  const session = (await cookies()).get('session')?.value
 
-  if(!token){
-    return { error: 'no token provided' }
+  if(!session){
+    return { error: 'no user logged in' }
   }
 
   try {
-    const decoded = jwt.verify(token, SECRET);
+    const decoded = decrypt(session)
+    if(!decoded){
+      return { error: 'invalid token' }
+    }
+    console.log('decoded', decoded)
     return {  success: true, username: decoded }
   } catch (error) {
     console.log('here error middlewareee')
