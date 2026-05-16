@@ -8,7 +8,10 @@ const nextConfig = {
             pathname: '/**'
         }],
         
-    }
+    },
+    experimental: {
+        instrumentationHook: true,
+    },
 };
 
 export default nextConfig;

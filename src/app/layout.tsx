@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-export { reportWebVitals } from './web-vitals'
-import { Providers } from "./providers";
 
+import { Providers } from "./providers";
+import { register } from './instrumentation'
+
+if (typeof window !== 'undefined') {
+  register()
+}
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
